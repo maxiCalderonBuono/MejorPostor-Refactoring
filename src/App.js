@@ -2,8 +2,8 @@ import React from "react";
 
 function App() {
   return (
-    <div>
-      <h1>Front End mejor postor</h1>
+    <div className="bg-dark h-screen">
+      <h1 className="text-center bg-primary text-2xl">Front End mejor postor</h1>
     </div>
   );
 }
