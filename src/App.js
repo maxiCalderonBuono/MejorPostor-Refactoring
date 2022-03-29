@@ -1,9 +1,12 @@
 import React from "react";
+import { NavBar } from "./components/NavBar/NavBar";
+import { NavBar2 } from "./components/NavBar/NavBar2";
+import "./index.css";
 
 function App() {
   return (
-    <div className= "h-screen bg-dark">
-      <h1 className= "text-center bg-primary">Front End mejor postor</h1>
+    <div className="bg-background_main">
+      <NavBar2 />
     </div>
   );
 }
