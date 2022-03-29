@@ -3,7 +3,22 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "text-primary": "#3d3d3d",
+        "text-secondary": "#a4a4a4",
+        danger: "#ec4b28",
+        background_main: "#eaeaea",
+        success: "#32a42b",
+        "dark-blue": "#05a297",
+        "light-blue": "#14acde",
+    
+      },
+      fontFamily: {
+      'poppins': 'Poppins',
+      'sans': 'Helvetica, Arial, sans-serif',
+      }
+    },
   },
   plugins: [],
 }
