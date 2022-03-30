@@ -1,14 +1,12 @@
 import React from "react";
-import Button from "./components/atoms/Buttons/Button";
-import * as styles from "./components/atoms/Buttons/buttonStyles";
 import CardProduct from "./components/moleculs/Cards/CardProduct";
 
 
 function App() {
   return (
-    <>
-      <CardProduct />
-    </>
+    <div className="flex justify-center w-full h-screen p-8 bg-gray-800">
+      <CardProduct name= "Ferrari SF90" />
+    </div>
   );
 }
 
