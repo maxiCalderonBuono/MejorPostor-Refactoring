@@ -5,12 +5,15 @@ module.exports = {
       colors: {
         "text-primary": "#3d3d3d",
         "text-secondary": "#a4a4a4",
-        background_nav: "3196DA",
         danger: "#ec4b28",
         background_main: "#eaeaea",
-        green: "#32a42b",
+        success: "#32a42b",
         "dark-blue": "#05a297",
         "light-blue": "#14acde",
+      },
+      fontFamily: {
+        poppins: "Poppins",
+        sans: "Helvetica, Arial, sans-serif",
       },
     },
   },
