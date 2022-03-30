@@ -1,42 +1,71 @@
+import React, { useState } from "react";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { FaBriefcase } from "react-icons/fa";
-import { AiOutlineMenu } from "react-icons/ai";
+import { GiTakeMyMoney } from "react-icons/gi";
+import { ImHammer2 } from "react-icons/im";
 
 export const NavBar = () => {
+  let [open, setOpen] = useState(false);
   return (
-    <nav className="flex justify-between items-center h-16 bg-[#3196DA] relative shadow-sm pl-1">
-      <div>
-        <img
-          src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648567242/Mejor%20postor/logo2_ehp6pn.png"
-          alt="Mejor postor"
-          className="w-16"
-        />
-      </div>
-      <div className="px-5 cursor-pointer sm:hidden">
-        <AiOutlineMenu />
-      </div>
+    <div className="shadow-md w-full fixed top-0 left-0">
+      <div className="md:flex items-center justify-between bg-[#3196DA] py-2 md:px-10 px-7">
+        <div className=" text-2xl cursor-pointer flex items-center  ">
+          <img
+            src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648567242/Mejor%20postor/logo2_ehp6pn.png"
+            alt="Mejor postor"
+            className="w-16"
+          />
+        </div>
 
-      <div className="pr-5 hidden sm:flex">
-        <a className="flex items-center px-2">
-          <img
-            src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648579156/Mejor%20postor/gavel-solid_ohg1kj.png"
-            alt="Hammer"
-            className="w-5"
-          />
-          <span className="pl-1">Crear subasta</span>
-        </a>
-        <a className="flex items-center px-2">
-          <FaBriefcase />
-          <span className="pl-1">Mis subastas</span>
-        </a>
-        <a className="flex items-center px-2">
-          <img
-            src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648579156/Mejor%20postor/group-bidding-1451857-1226852_olhpuz.png"
-            alt="Pujas"
-            className="w-5"
-          />
-          <span className="pl-1">Mis pujas</span>
-        </a>
+        <div
+          onClick={() => setOpen(!open)}
+          className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden"
+        >
+          {open ? <AiOutlineClose /> : <AiOutlineMenu />}
+        </div>
+        <div className="items-center">
+          <ul
+            className={`md:flex md:items-center  md:pb-0 absolute md:static md:z-auto z-[-1] left-auto right-auto w-96 md:w-auto md:pl-0 pl-5 transition-all duration-500 ease-in ${
+              open ? "top-20 " : "top-[-490px] "
+            }`}
+          >
+            <div className="md:hidden mt-3 flex">
+              <img
+                src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png"
+                alt="icon-default"
+                className="w-20"
+              />
+              <h1 className="ml-5 my-auto text-gray-800 text-xl">
+                NombreUsuario
+              </h1>
+            </div>
+            <div className="md:hidden mt-3 flex items-center justify-center ">
+              <button className="mx-auto bg-lime-300">Editar perfil</button>
+              <button className="mx-auto bg-danger">Cerrar sesion</button>
+            </div>
+
+            <hr className="mt-7" />
+            <li key="crear-subasta" className="md:ml-4 text-xl md:my-0 my-7 ">
+              <button className="text-gray-800 hover:text-gray-500 duration-500 flex items-center cursor-pointer">
+                <ImHammer2 className="mr-1.5" />
+                Crear subasta
+              </button>
+            </li>
+            <li key="mis-subastas" className="md:ml-4 text-xl md:my-0 my-7">
+              <button className="text-gray-800 hover:text-gray-500 duration-500 flex items-center cursor-pointer ">
+                <FaBriefcase className="mr-1.5" />
+                Mis subastas
+              </button>
+            </li>
+            <li key="mis-pujas" className="md:ml-4 text-xl md:my-0 my-7">
+              <button className="text-gray-800 hover:text-gray-500 duration-500 flex items-center cursor-pointer">
+                <GiTakeMyMoney className="mr-1.5" />
+                Mis pujas
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
-    </nav>
+    </div>
   );
 };
