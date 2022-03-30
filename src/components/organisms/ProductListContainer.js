@@ -1,9 +1,23 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import ProductList from "./ProductList";
 
-//Función para traer los datos del server. EN PROCESO.
+
 const ProductListContainer = () => {
+    const [products, setProducts] = useState([]);
+    const URL = "https://api.mercadolibre.com/sites/MLA/search?q=celular";
+
+    useEffect(() => {
+        fetch(URL)
+            .then(response => response.json())
+            .then(data => {
+                setProducts(data.results);
+            });
+    }, []);
+    console.log(products);
     return(
         <>
+          <ProductList products={products} />
         </>
     );
 };

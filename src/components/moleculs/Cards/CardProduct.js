@@ -1,7 +1,5 @@
 import React from "react";
-
 import { useForm } from "../../hooks/userForm";
-
 import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
@@ -9,7 +7,7 @@ import { FaPlusCircle } from "react-icons/fa";
 import { FaMinusCircle } from "react-icons/fa";
 
 //Card de los productos. EN PROCESO.
-const CardProduct = (props) => {
+const CardProduct = (/*props,*/ {image, title, price, id, key}) => {
 
   const [{bid}, handleInputChange] = useForm({bid:""}) 
 
@@ -17,13 +15,13 @@ const CardProduct = (props) => {
   return (
     <div className="items-center flex flex-col w-72 h-96 rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
       <img
-        src="https://i.blogs.es/326a59/ferrari/1366_2000.jpeg"
+        src={image}
         className="rounded-[12px_12px_30px_30px] mb-3"
         alt="producto en subasta"
       />
 
       <div className="flex flex-col items-center content-center w-full">
-        <h3 className="text-xl font-bold text-text-primary">{props.name}</h3>
+        <h3 className="text-xl font-bold text-text-primary">{title /*props.name*/}</h3>
         <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
           <AiOutlineFieldTime />
           <span className="text-sm">Quedan 20hs 59min 30seg</span>
@@ -33,7 +31,7 @@ const CardProduct = (props) => {
       <div className="flex flex-col items-center content-center w-full mb-4">
         <div className="flex items-center justify-center my-2 space-x-4 text-center">
           <p className="p-1 text-lg font-bold">Puja actual</p>
-          <p className="p-1 text-lg font-bold text-danger">USD 100.000</p>
+          <p className="p-1 text-lg font-bold text-danger">{price}</p>
         </div>
 
         <div className="flex flex-col items-center justify-center w-full">
