@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 
 import ProductList from "./ProductList";
 
-//Función para traer los datos del server. EN PROCESO.
 const ProductListContainer = () => {
 
     const [products, setProducts] = useState([]);
