@@ -7,6 +7,7 @@ module.exports = {
         "text-secondary": "#a4a4a4",
         danger: "#ec4b28",
         background_main: "#eaeaea",
+        background_nav: "3196DA",
         success: "#32a42b",
         "dark-blue": "#05a297",
         "light-blue": "#14acde",
