@@ -13,7 +13,7 @@ const CardProduct = (props) => {
 
 
   return (
-    <div className="items-center flex flex-col w-72 h-full rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white mb-5 p-3">
+    <div className="items-center flex flex-col w-80 rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white mb-5 mt-5">
       <div className="flex flex-col items-center content-center w-full">
         <img
           src={props.image}

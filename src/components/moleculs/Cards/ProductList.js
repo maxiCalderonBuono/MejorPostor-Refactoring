@@ -19,7 +19,7 @@ const ProductList = ({ products }) => {
     return (
         <>
             <Swiper
-            slidesPerView={3}
+            slidesPerView={2}
             grid={{
             rows: 2,
             }}
