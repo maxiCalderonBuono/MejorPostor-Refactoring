@@ -1,5 +1,5 @@
 import React from "react";
-import CardProduct from "../moleculs/Cards/CardProduct";
+import CardProduct from "./CardProduct";
 
 // Función para mapear el componente Card con todas las popiedades que se le pasen. EN PROCESO.
 const ProductList = ({ products }) => {
