@@ -2,9 +2,10 @@ import React from "react";
 import { useState, useRef, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
-import Button from "../atoms/Buttons/Button";
-import * as styles from "../atoms/Buttons/buttonStyles";
+import Button from "../../atoms/Buttons/Button";
+import * as styles from "../../atoms/Buttons/buttonStyles";
 
 const RegisterScreen = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -149,10 +150,12 @@ const RegisterScreen = () => {
                     content="Registrarse"
                   />
                   <p className="text-light-blue">¿Ya tienes una cuenta?</p>
-                  <Button
-                    styles={`${styles.GHOST_BUTTON} text-xl h-9 w-4/5`}
-                    content="Iniciar Sesión"
-                  />
+                  <Link className="link" to="/auth/login">
+                    <Button
+                      styles={`${styles.GHOST_BUTTON} text-xl h-9 w-4/5`}
+                      content="Iniciar Sesión"
+                    />
+                  </Link>
                 </div>
               </div>
             </div>
