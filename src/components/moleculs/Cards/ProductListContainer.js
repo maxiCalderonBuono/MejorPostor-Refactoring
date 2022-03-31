@@ -19,8 +19,8 @@ const ProductListContainer = () => {
 
 
     return(
-        <div className="flex flex-wrap w-3/4 mt-20 justify-evenly">
-         <ProductList products={products} />
+        <div className="grid gap-4 bg-gray-100 mt-20">
+           <ProductList products={products} />
         </div>
     );
 };
