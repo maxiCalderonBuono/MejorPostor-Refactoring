@@ -19,7 +19,7 @@ const ProductListContainer = () => {
 
 
     return(
-        <div className="grid gap-4 bg-gray-100 mt-20">
+        <div className="grid auto-rows-max">
            <ProductList products={products} />
         </div>
     );

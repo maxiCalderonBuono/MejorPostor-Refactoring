@@ -23,7 +23,7 @@ const ProductList = ({ products }) => {
             grid={{
             rows: 2,
             }}
-            spaceBetween={30}
+            spaceBetween={0}
             pagination={{
             clickable: true,
             }}
