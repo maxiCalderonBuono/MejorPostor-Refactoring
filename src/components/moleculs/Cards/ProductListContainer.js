@@ -17,7 +17,10 @@ const ProductListContainer = () => {
   }, []);
 
   return (
-    <div className="grid gap-4 bg-gray-100 ">
+    <div
+      className="grid max-h-screen gap-4 m-10
+     bg-gray-100 "
+    >
       <ProductList products={products} />
     </div>
   );
