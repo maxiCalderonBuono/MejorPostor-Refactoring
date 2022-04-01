@@ -33,13 +33,13 @@ const ProductList = ({ products }) => {
                 { products.length > 0 ? (
                     products.map(product => (
                         <SwiperSlide>
-                        <CardProduct
-                            key={product.id}
-                            id={product.id}
-                            title={product.title}
-                            price={product.price}
-                            image={product.thumbnail}
-                        />
+                            <CardProduct
+                                key={product.id}
+                                id={product.id}
+                                title={product.title}
+                                price={product.price}
+                                image={product.thumbnail}
+                            />
                         </SwiperSlide>
                     ))
                 )
