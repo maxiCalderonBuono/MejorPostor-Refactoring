@@ -8,12 +8,10 @@ import { FaMinusCircle } from "react-icons/fa";
 
 //Card de los productos. EN PROCESO.
 const CardProduct = (props) => {
-  
   const [{ bid }, handleInputChange] = useForm({ bid: "" });
 
-
   return (
-    <div className="items-center flex flex-col w-80 rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white mb-5 mt-5">
+    <div className="items-center flex flex-col w-72 h-full rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white mb-5 p-3">
       <div className="flex flex-col items-center content-center w-full">
         <img
           src={props.image}
@@ -50,7 +48,10 @@ const CardProduct = (props) => {
               <FaPlusCircle size="28px" />
             </button>
           </div>
-          <Button styles={`${styles.SUCCESS_BUTTON} w-3/4 p-1`} content="Pujar" />
+          <Button
+            styles={`${styles.SUCCESS_BUTTON} w-3/4 p-1`}
+            content="Pujar"
+          />
         </div>
       </div>
     </div>
