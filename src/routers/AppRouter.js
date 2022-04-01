@@ -1,10 +1,17 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-export const AppRouter = () => {
+import AuthRouter from "./AuthRouters";
+import { useDispatch } from "react-redux";
+
+const AppRouter = () => {
   return (
-    <Routes>
-      <Route path="/" element={<h1>Home</h1>} />
-    </Routes>
+    <Router>
+      <Routes>
+        <Route path="/auth/*" element={<AuthRouter />} />
+      </Routes>
+    </Router>
   );
 };
+
+export default AppRouter;
