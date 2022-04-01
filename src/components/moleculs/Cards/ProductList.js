@@ -19,10 +19,23 @@ const ProductList = ({ products }) => {
     return (
         <>
             <Swiper
-            slidesPerView={2}
-            grid={{
-            rows: 2,
+
+            
+            breakpoints={{
+                640: {
+                width: 640,
+                slidesPerView: 1,
+                rows: 2,
+                },
+                768: {
+                width: 768,
+                slidesPerView: 2,
+                grid:{
+                    rows: 2,
+                    }
+                },
             }}
+
             spaceBetween={30}
             pagination={{
             clickable: true,
