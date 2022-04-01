@@ -8,10 +8,9 @@ import { useForm } from "../../hooks/userForm";
 import { useDispatch } from "react-redux";
 import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
-import { login} from "../../../actions/auth";
+import { login } from "../../../actions/auth";
 
 const LoginScreen = () => {
-
   const [isOpen, setIsOpen] = useState(true);
 
   const firstInput = useRef(null);
@@ -26,13 +25,11 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
-    
-    e. preventDefault();
+    e.preventDefault();
 
-    dispatch(login(email,password))
+    dispatch(login(email, password));
+  };
 
-  }
-  
   return (
     <>
       <Button
@@ -96,7 +93,10 @@ const LoginScreen = () => {
                   de Argentina. Busca, pujá y ganá!
                 </Dialog.Description>
 
-                <form onSubmit = {handleSubmit} className="absolute flex flex-col items-center w-full top-36">
+                <form
+                  onSubmit={handleSubmit}
+                  className="absolute flex flex-col items-center w-full top-36"
+                >
                   <label
                     for="email"
                     className="w-4/5 text-left text-text-primary"
@@ -109,8 +109,8 @@ const LoginScreen = () => {
                     name="email"
                     autoComplete="off"
                     placeholder="Email"
-                    value= {email}
-                    onChange= {handleInputChange}
+                    value={email}
+                    onChange={handleInputChange}
                     className="w-4/5 h-10 border-2 border-solid border-text-secondary rounded-[43px] mb-4 p-2"
                     ref={firstInput}
                   />
@@ -125,29 +125,28 @@ const LoginScreen = () => {
                     name="password"
                     autoComplete="off"
                     placeholder="Password"
-                    value= {password}
-                    onChange= {handleInputChange}
+                    value={password}
+                    onChange={handleInputChange}
                     className="w-4/5 h-10 border-2 border-solid border-text-secondary rounded-[43px] mb-4 p-2"
                   />
-                     <Button
+                  <Button
                     styles={`${styles.PRIMARY_BUTTON} text-xl h-9 w-4/5`}
                     content="Iniciar Sesión"
-                    type= "submit"
+                    type="submit"
                   />
                 </form>
                 <div className="absolute flex flex-col items-center w-full bottom-4">
-               
                   <p className="mb-4 text-dark-blue">
                     ¿Olvidaste tu contraseña?
                   </p>
                   <p className="text-light-blue">
                     ¿Todavía no tienes una cuenta?
                   </p>
-                  <Link className="link" to="/auth/register">
-                    <Button
-                      styles={`${styles.GHOST_BUTTON} text-xl h-9 w-4/5`}
-                      content="Registrarse"
-                    />
+                  <Link
+                    className={`${styles.GHOST_BUTTON} text-xl h-9 w-4/5 text-center leading-[1.75]`}
+                    to="/auth/register"
+                  >
+                    Registrarse
                   </Link>
                 </div>
               </div>

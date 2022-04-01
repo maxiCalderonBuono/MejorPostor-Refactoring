@@ -1,5 +1,4 @@
 module.exports = {
-  
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -12,14 +11,17 @@ module.exports = {
         success: "#32a42b",
         "dark-blue": "#05a297",
         "light-blue": "#14acde",
-    
       },
       fontFamily: {
-      'poppins': 'Poppins',
-      'sans': 'Helvetica, Arial, sans-serif',
-      }
+        poppins: "Poppins",
+        sans: "Helvetica, Arial, sans-serif",
+      },
+      screens: {
+        "modal-2": "700px",
+        "modal-1": "875px",
+        
+      },
     },
   },
   plugins: [],
-}
-;
+};

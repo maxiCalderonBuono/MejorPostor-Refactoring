@@ -46,17 +46,22 @@ const RegisterScreen = () => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-50"
           >
-            <div className="relative flex bg-white rounded-2xl w-[900px] h-[480px]">
-              <div className="rounded-[16px_0px_0px_16px] bg-background_main flex items-center">
+            <div className="relative h-[915px] flex modal-2:flex-row flex-col bg-white rounded-2xl w-[1000px]  modal-2:h-[600px] modal-1:h-[480px]">
+              <div className="rounded-[16px_0px_0px_16px] bg-background_main flex flex-col items-center justify-center w-full modal-2:w-1/2 pt-3">
                 <img
                   src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648567242/Mejor%20postor/logo2_ehp6pn.png"
                   alt="main logo"
-                  className=" w-96"
+                  className="w-80 modal-2:w-96"
+                />
+                <Button
+                  styles={`${styles.DANGER_BUTTON} absolute top-8 right-1 block modal-2:hidden`}
+                  content={<AiOutlineCloseCircle />}
+                  setFunction={() => setIsOpen(false)}
                 />
               </div>
-              <div className="relative flex flex-col items-center w-3/4">
+              <div className="relative flex flex-col items-center w-full h-full modal-2:w-1/2 modal-1:w-3/4">
                 <Button
-                  styles={`${styles.DANGER_BUTTON} absolute right-1`}
+                  styles={`${styles.DANGER_BUTTON} absolute right-1 hidden modal-2:block`}
                   content={<AiOutlineCloseCircle />}
                   setFunction={() => setIsOpen(false)}
                 />
@@ -74,9 +79,9 @@ const RegisterScreen = () => {
                   de Argentina. Busca, pujá y ganá!
                 </Dialog.Description>
 
-                <div className="absolute flex flex-col items-center w-full top-40">
-                  <div className="flex flex-row justify-center w-full">
-                    <div className="flex flex-col items-center w-1/2">
+                <form className="absolute flex flex-col items-center w-full top-36 modal-2:top-36 modal-1:top-40">
+                  <div className="flex flex-col w-full modal-1:flex-row modal-1:justify-center">
+                    <div className="flex flex-col items-center w-full modal-1:w-1/2">
                       <label
                         for="user"
                         className="w-5/6 text-left text-text-primary"
@@ -89,11 +94,11 @@ const RegisterScreen = () => {
                         name="user"
                         autoComplete="off"
                         placeholder="Usuario"
-                        className="w-5/6 t h-10 border-2 border-solid border-text-secondary rounded-[43px] mb-4 p-2"
+                        className="w-5/6 t h-10 border-2 border-solid border-text-secondary rounded-[43px] mb-4 p-2 text-sm"
                         ref={firstInput}
                       />
                     </div>
-                    <div className="flex flex-col items-center w-1/2">
+                    <div className="flex flex-col items-center w-full modal-1:w-1/2">
                       <label
                         for="email"
                         className="w-5/6 text-left t text-text-primary"
@@ -106,12 +111,12 @@ const RegisterScreen = () => {
                         name="email"
                         autoComplete="off"
                         placeholder="Email"
-                        className="w-5/6 t h-10 border-2 border-solid border-text-secondary rounded-[43px] mb-4 p-2"
+                        className="w-5/6 t h-10 border-2 border-solid border-text-secondary rounded-[43px] mb-4 p-2 text-sm"
                       />
                     </div>
                   </div>
-                  <div className="flex flex-row justify-center w-full">
-                    <div className="flex flex-col items-center w-1/2">
+                  <div className="flex flex-col w-full modal-1:flex-row modal-1:justify-center modal-1:mb-4">
+                    <div className="flex flex-col items-center w-full modal-1:w-1/2">
                       <label
                         for="email"
                         className="w-5/6 text-left t text-text-primary"
@@ -123,10 +128,10 @@ const RegisterScreen = () => {
                         name="password"
                         autoComplete="off"
                         placeholder="Password"
-                        className="w-5/6 t h-10 border-2 border-solid border-text-secondary rounded-[43px] mb-4 p-2"
+                        className="w-5/6 t h-10 border-2 border-solid border-text-secondary rounded-[43px] mb-4 p-2 text-sm"
                       />
                     </div>
-                    <div className="flex flex-col items-center w-1/2">
+                    <div className="flex flex-col items-center w-full modal-1:w-1/2">
                       <label
                         for="password-2"
                         className="w-5/6 text-left t text-text-primary"
@@ -139,22 +144,19 @@ const RegisterScreen = () => {
                         name="password-2"
                         autoComplete="off"
                         placeholder="Repeat Password"
-                        className="w-5/6  h-10 border-2 border-solid border-text-secondary rounded-[43px] mb-4 p-2"
+                        className="w-5/6  h-10 border-2 border-solid border-text-secondary rounded-[43px] mb-4 p-2 text-sm"
                       />
                     </div>
                   </div>
-                </div>
-                <div className="absolute flex flex-col items-center w-full bottom-4">
                   <Button
-                    styles={`${styles.PRIMARY_BUTTON} text-xl h-9 w-4/5 mb-5`}
+                    styles={`${styles.PRIMARY_BUTTON} text-xl h-9 w-4/5`}
                     content="Registrarse"
                   />
+                </form>
+                <div className="absolute flex flex-col items-center w-full bottom-1 modal-2:bottom-5 modal-1:bottom-7">
                   <p className="text-light-blue">¿Ya tienes una cuenta?</p>
-                  <Link className="link" to="/auth/login">
-                    <Button
-                      styles={`${styles.GHOST_BUTTON} text-xl h-9 w-4/5`}
-                      content="Iniciar Sesión"
-                    />
+                  <Link className={`${styles.GHOST_BUTTON} text-xl h-9 w-4/5 text-center align-middle leading-[1.75]`} to="/auth/login">
+                   Iniciar Sesión
                   </Link>
                 </div>
               </div>
