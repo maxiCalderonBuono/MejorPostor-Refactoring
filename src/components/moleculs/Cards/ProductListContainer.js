@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import ProductList from "./ProductList";
 
 const ProductListContainer = () => {
+  const [products, setProducts] = useState([]);
+  const URL = "https://api.mercadolibre.com/sites/MLA/search?q=auto";
 
-    const [products, setProducts] = useState([]);
-    const URL = "https://api.mercadolibre.com/sites/MLA/search?q=auto";
 
     useEffect(() => {
         fetch(URL)

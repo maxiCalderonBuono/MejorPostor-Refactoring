@@ -18,23 +18,28 @@ export default function ProductCarousel() {
   return (
     <>
       <Swiper
-        slidesPerView={3}
+        slidesPerView={2}
         grid={{
           rows: 2,
         }}
-        spaceBetween={30}
+        spaceBetween={0}
         pagination={{
           clickable: true,
         }}
         modules={[Grid, Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide><ProductListContainer /></SwiperSlide>
+        <SwiperSlide>
+          <ProductListContainer />
+        </SwiperSlide>
       </Swiper>
     </>
   );
 }
+<<<<<<< HEAD
 */
 
 
 
+=======
+>>>>>>> 852005dc4f3b42843a7a831d530e2ccb045569bc
