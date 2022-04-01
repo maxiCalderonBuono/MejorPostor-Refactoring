@@ -19,11 +19,24 @@ const ProductList = ({ products }) => {
     return (
         <>
             <Swiper
-            slidesPerView={2}
-            grid={{
-            rows: 2,
+
+            
+            breakpoints={{
+                640: {
+                width: 640,
+                slidesPerView: 1,
+                rows: 2,
+                },
+                768: {
+                width: 768,
+                slidesPerView: 2,
+                grid:{
+                    rows: 2,
+                    }
+                },
             }}
-            spaceBetween={0}
+
+            spaceBetween={30}
             pagination={{
             clickable: true,
             }}
@@ -33,13 +46,13 @@ const ProductList = ({ products }) => {
                 { products.length > 0 ? (
                     products.map(product => (
                         <SwiperSlide>
-                        <CardProduct
-                            key={product.id}
-                            id={product.id}
-                            title={product.title}
-                            price={product.price}
-                            image={product.thumbnail}
-                        />
+                            <CardProduct
+                                key={product.id}
+                                id={product.id}
+                                title={product.title}
+                                price={product.price}
+                                image={product.thumbnail}
+                            />
                         </SwiperSlide>
                     ))
                 )
