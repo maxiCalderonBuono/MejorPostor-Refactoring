@@ -10,8 +10,8 @@ import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
 import { login } from "../../../actions/auth";
 
-const LoginScreen = () => {
-  const [isOpen, setIsOpen] = useState(true);
+const LoginScreen = (props) => {
+  //const [isOpen, setIsOpen] = useState(true);
 
   const firstInput = useRef(null);
 
@@ -30,13 +30,15 @@ const LoginScreen = () => {
     dispatch(login(email, password));
   };
 
+  
+
   return (
     <>
-      <Transition show={isOpen} as={Fragment}>
+      <Transition show={props.showLogin} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 flex flex-row items-center justify-center h-full overflow-y-auto"
-          onClose={() => setIsOpen(false)}
+          className="fixed inset-0 z-30  flex flex-row items-center justify-center h-full overflow-y-auto backdrop-blur-[5px]"
+          onClose={() => props.function(false)}
           initialFocus={firstInput}
         >
           <Transition.Child
@@ -47,6 +49,7 @@ const LoginScreen = () => {
             leave="ease-in duration-200"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
+            
           >
             <Dialog.Overlay className="fixed inset-0 bg-black opacity-40" />
           </Transition.Child>
@@ -60,7 +63,7 @@ const LoginScreen = () => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-50"
           >
-            <div className="relative h-full flex modal-2:flex-row flex-col bg-white modal-2:rounded-2xl w-[1000px]  modal-2:h-[480px]">
+            <div className="relative h-full flex modal-2:flex-row flex-col bg-white modal-2:rounded-2xl w-[1000px]  modal-2:h-[500px] modal-2:m-4">
               <div className="modal-2:rounded-[16px_0px_0px_16px] bg-background_main flex flex-col items-center justify-center w-full modal-2:w-1/2 py-3 px-2">
                 <img
                   src="https://res.cloudinary.com/dvqlenul5/image/upload/v1648904794/logo1_ykmcgn.png"
@@ -70,18 +73,18 @@ const LoginScreen = () => {
                 <Button
                   styles={`${styles.DANGER_BUTTON} absolute top-1 right-1 block modal-2:hidden`}
                   content={<AiOutlineCloseCircle />}
-                  setFunction={() => setIsOpen(false)}
+                  setFunction={() => props.function(false)}
                 />
               </div>
               <div className=" bg-white relative flex flex-col min-h-[510px] items-center w-full modal-2:min-h-full modal-2:rounded-[0px_16px_16px_0px] top-8modal-2:w-1/2 modal-1:w-3/4">
                 <Button
                   styles={`${styles.DANGER_BUTTON} absolute right-1 hidden modal-2:block`}
                   content={<AiOutlineCloseCircle />}
-                  setFunction={() => setIsOpen(false)}
+                  setFunction={() => props.function(false)}
                 />
                 <Dialog.Title
                   as="h1"
-                  className="absolute mt-3 text-2xl italic font-bold text-text-primary modal-2:top-8"
+                  className="absolute mt-3 text-2xl italic font-bold text-text-primary modal-2:top-5"
                 >
                   Bienvenidos a Mejor postor
                 </Dialog.Title>
@@ -99,7 +102,7 @@ const LoginScreen = () => {
                   className="absolute flex flex-col items-center w-full top-28 modal-2:top-36"
                 >
                   <label
-                    for="email"
+                    hmtlFor="email"
                     className="w-4/5 text-left text-text-primary"
                   >
                     Email
@@ -116,7 +119,7 @@ const LoginScreen = () => {
                     ref={firstInput}
                   />
                   <label
-                    for="email"
+                    htmlFor="email"
                     className="w-4/5 text-left text-text-primary"
                   >
                     Password
@@ -132,7 +135,7 @@ const LoginScreen = () => {
                   />
                   <div className="w-full text-center bg-white">
                     <Button
-                      styles={`${styles.PRIMARY_BUTTON} text-xl h-9 w-4/5 mt-4 modal-2:mt-0`}
+                      styles={`${styles.PRIMARY_BUTTON} text-xl modal-2:text-2xl h-9 w-4/5 mt-4 modal-2:mt-0`}
                       content="Iniciar Sesión"
                       type="submit"
                     />
@@ -145,7 +148,7 @@ const LoginScreen = () => {
                       ¿Todavía no tienes una cuenta?
                     </p>
                     <Link
-                      className={`${styles.GHOST_BUTTON} text-xl h-9 w-4/5 text-center leading-[1.75]`}
+                      className={`${styles.GHOST_BUTTON} text-xl modal-2:text-2xl h-9 w-4/5 text-center leading-[1.75]`}
                       to="/auth/register"
                     >
                       Registrarse

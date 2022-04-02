@@ -7,17 +7,17 @@ import { Link } from "react-router-dom";
 import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
 
-const RegisterScreen = () => {
-  const [isOpen, setIsOpen] = useState(true);
+const RegisterScreen = (props) => {
+  //const [isOpen, setIsOpen] = useState(true);
   const firstInput = useRef(null);
-  console.log(isOpen);
+
   return (
     <>
-      <Transition show={isOpen} as={Fragment}>
+      <Transition show={props.showRegister} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 flex flex-row items-center justify-center h-full overflow-y-auto"
-          onClose={() => setIsOpen(false)}
+          className="fixed inset-0 z-30 flex flex-row items-center justify-center h-full overflow-y-auto backdrop-blur-[5px]"
+          onClose={() => props.function(false)}
           initialFocus={firstInput}
         >
           <Transition.Child
@@ -41,7 +41,7 @@ const RegisterScreen = () => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-50"
           >
-            <div className="relative h-full flex modal-2:flex-row flex-col bg-white modal-2:rounded-2xl w-[1000px]  modal-2:h-[600px] modal-1:h-[480px]">
+            <div className="relative h-full flex modal-2:flex-row flex-col bg-white modal-2:rounded-2xl w-[1000px]  modal-2:h-[620px] modal-1:h-[500px] modal-2:m-4">
               <div className="modal-2:rounded-[16px_0px_0px_16px] bg-background_main flex flex-col items-center justify-center w-full modal-2:w-1/2 py-3 px-2">
                 <img
                   src="https://res.cloudinary.com/dvqlenul5/image/upload/v1648904794/logo1_ykmcgn.png"
@@ -51,14 +51,14 @@ const RegisterScreen = () => {
                 <Button
                   styles={`${styles.DANGER_BUTTON} absolute top-1 right-1 block modal-2:hidden`}
                   content={<AiOutlineCloseCircle />}
-                  setFunction={() => setIsOpen(false)}
+                  setFunction={() => props.function(false)}
                 />
               </div>
               <div className=" bg-white relative flex flex-col items-center w-full min-h-[660px] modal-2:min-h-full modal-2:rounded-[0px_16px_16px_0px] top-8modal-2:w-1/2 modal-1:w-3/4">
                 <Button
                   styles={`${styles.DANGER_BUTTON} absolute right-1 hidden modal-2:block`}
                   content={<AiOutlineCloseCircle />}
-                  setFunction={() => setIsOpen(false)}
+                  setFunction={() => props.function(false)}
                 />
                 <Dialog.Title
                   as="h1"
@@ -79,7 +79,7 @@ const RegisterScreen = () => {
                   <div className="flex flex-col w-full modal-1:flex-row modal-1:justify-center">
                     <div className="flex flex-col items-center w-full modal-1:w-1/2">
                       <label
-                        for="user"
+                        htmlFor="user"
                         className="w-5/6 text-left text-text-primary"
                       >
                         Usuario
@@ -96,7 +96,7 @@ const RegisterScreen = () => {
                     </div>
                     <div className="flex flex-col items-center w-full modal-1:w-1/2">
                       <label
-                        for="email"
+                        htmlFor="email"
                         className="w-5/6 text-left t text-text-primary"
                       >
                         Email
@@ -114,7 +114,7 @@ const RegisterScreen = () => {
                   <div className="flex flex-col w-full bg-white modal-1:flex-row modal-1:justify-center modal-1:mb-4">
                     <div className="flex flex-col items-center w-full modal-1:w-1/2">
                       <label
-                        for="email"
+                        htmlFor="email"
                         className="w-5/6 text-left t text-text-primary"
                       >
                         Password
@@ -129,7 +129,7 @@ const RegisterScreen = () => {
                     </div>
                     <div className="flex flex-col items-center w-full modal-1:w-1/2">
                       <label
-                        for="password-2"
+                       htmlFor="password-2"
                         className="w-5/6 text-left t text-text-primary"
                       >
                         Repite la contraseña
@@ -147,12 +147,12 @@ const RegisterScreen = () => {
                   
                   <div className="flex flex-col items-center w-full mt-4 bg-white modal-2:mt-4">
                   <Button
-                    styles={`${styles.PRIMARY_BUTTON} text-xl h-9 w-4/5`}
+                    styles={`${styles.PRIMARY_BUTTON} text-xl modal-2:text-2xl h-9 w-4/5`}
                     content="Registrarse"
                   />
                     <p className="mt-8 modal-2:mt-4 text-light-blue">¿Ya tienes una cuenta?</p>
                     <Link
-                      className={`${styles.GHOST_BUTTON} text-xl h-9 w-4/5 text-center align-middle leading-[1.75]`}
+                      className={`${styles.GHOST_BUTTON} text-xl h-9 w-4/5 modal-2:text-2xl text-center align-middle leading-[1.75]`}
                       to="/auth/login"
                     >
                       Iniciar Sesión

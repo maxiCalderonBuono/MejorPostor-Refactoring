@@ -18,8 +18,7 @@ module.exports = {
       },
       screens: {
         "modal-2": "700px",
-        "modal-1": "875px",
-        
+        "modal-1": "875px", 
       },
     },
   },
