@@ -16,6 +16,11 @@ module.exports = {
         poppins: "Poppins",
         sans: "Helvetica, Arial, sans-serif",
       },
+      screens: {
+        "modal-2": "700px",
+        "modal-1": "875px",
+        
+      },
     },
   },
   plugins: [],
