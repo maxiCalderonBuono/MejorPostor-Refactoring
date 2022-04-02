@@ -1,17 +1,33 @@
-import React, { useEffect } from "react";
+import React from "react";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import AuthRouter from "./AuthRouters";
-import { useDispatch } from "react-redux";
-
+//import { DashboardRouter } from "./DashboardRouter";
+import { PrivateRoutes } from "./PrivateRoutes";
+//import { PublicRoutes } from "./PublicRoutes";
 
 const AppRouter = () => {
-
-
   return (
     <Router>
       <Routes>
-        <Route path="/auth/*" element={<AuthRouter />} />
+    
+        
+        {/*<Route
+          path="/"
+          element={
+            <PublicRoutes>
+              
+            </PublicRoutes>
+          }
+        />*/}
+
+        <Route
+          path="/*"
+          element={
+            <PrivateRoutes>
+              
+            </PrivateRoutes>
+          }
+        />
       </Routes>
     </Router>
   );

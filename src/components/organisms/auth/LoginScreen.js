@@ -40,7 +40,7 @@ const LoginScreen = () => {
       <Transition show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 flex flex-row items-center justify-center overflow-y-auto"
+          className="fixed inset-0 z-10 flex flex-row items-center justify-center h-full overflow-y-auto"
           onClose={() => setIsOpen(false)}
           initialFocus={firstInput}
         >
@@ -65,37 +65,43 @@ const LoginScreen = () => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-50"
           >
-            <div className="relative flex bg-white rounded-2xl w-[736px] h-[480px]">
-              <div className="rounded-[16px_0px_0px_16px] bg-background_main flex items-center">
+            <div className="relative h-full flex modal-2:flex-row flex-col bg-white modal-2:rounded-2xl w-[1000px]  modal-2:h-[480px]">
+              <div className="modal-2:rounded-[16px_0px_0px_16px] bg-background_main flex flex-col items-center justify-center w-full modal-2:w-1/2 py-3 px-2">
                 <img
-                  src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648567242/Mejor%20postor/logo2_ehp6pn.png"
+                  src="https://res.cloudinary.com/dvqlenul5/image/upload/v1648904794/logo1_ykmcgn.png"
                   alt="main logo"
-                  className=" w-96"
+                  className="modal-2:w-72 w-60"
+                />
+                <Button
+                  styles={`${styles.DANGER_BUTTON} absolute top-1 right-1 block modal-2:hidden`}
+                  content={<AiOutlineCloseCircle />}
+                  setFunction={() => setIsOpen(false)}
                 />
               </div>
-              <div className="relative flex flex-col items-center w-1/2">
+              <div className=" bg-white relative flex flex-col min-h-[510px] items-center w-full modal-2:min-h-full modal-2:rounded-[0px_16px_16px_0px] top-8modal-2:w-1/2 modal-1:w-3/4">
                 <Button
-                  styles={`${styles.DANGER_BUTTON} absolute right-1`}
+                  styles={`${styles.DANGER_BUTTON} absolute right-1 hidden modal-2:block`}
                   content={<AiOutlineCloseCircle />}
                   setFunction={() => setIsOpen(false)}
                 />
                 <Dialog.Title
                   as="h1"
-                  className="absolute mt-3 text-2xl italic font-bold text-text-primary top-8"
+                  className="absolute mt-3 text-2xl italic font-bold text-text-primary modal-2:top-8"
                 >
                   Bienvenidos a Mejor postor
                 </Dialog.Title>
                 <Dialog.Description
                   as="p"
-                  className="absolute mt-2 text-sm text-center top-20 text-text-secondary"
+                  className="absolute px-4 mt-2 text-sm text-center modal-1:px-0 top-12 modal-2:top-20 text-text-secondary"
                 >
                   El lugar donde podrás encontrar la mayor variedad de subastas
-                  de Argentina. Busca, pujá y ganá!
+                  de Argentina.
+                  <span className="modal-1:block"> Busca, pujá y ganá!</span>
                 </Dialog.Description>
 
                 <form
                   onSubmit={handleSubmit}
-                  className="absolute flex flex-col items-center w-full top-36"
+                  className="absolute flex flex-col items-center w-full top-28 modal-2:top-36"
                 >
                   <label
                     for="email"
@@ -111,7 +117,7 @@ const LoginScreen = () => {
                     placeholder="Email"
                     value={email}
                     onChange={handleInputChange}
-                    className="w-4/5 h-10 border-2 border-solid border-text-secondary rounded-[43px] mb-4 p-2"
+                    className="w-4/5 h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-4 p-2"
                     ref={firstInput}
                   />
                   <label
@@ -127,28 +133,30 @@ const LoginScreen = () => {
                     placeholder="Password"
                     value={password}
                     onChange={handleInputChange}
-                    className="w-4/5 h-10 border-2 border-solid border-text-secondary rounded-[43px] mb-4 p-2"
+                    className="w-4/5 h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-4 p-2"
                   />
-                  <Button
-                    styles={`${styles.PRIMARY_BUTTON} text-xl h-9 w-4/5`}
-                    content="Iniciar Sesión"
-                    type="submit"
-                  />
+                  <div className="w-full text-center bg-white">
+                    <Button
+                      styles={`${styles.PRIMARY_BUTTON} text-xl h-9 w-4/5 mt-4 modal-2:mt-0`}
+                      content="Iniciar Sesión"
+                      type="submit"
+                    />
+                    <p className="mt-2 text-dark-blue">
+                      ¿Olvidaste tu contraseña?
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-center w-full mt-8 bg-white modal-2:mt-5 ">
+                    <p className="mb-2 text-light-blue">
+                      ¿Todavía no tienes una cuenta?
+                    </p>
+                    <Link
+                      className={`${styles.GHOST_BUTTON} text-xl h-9 w-4/5 text-center leading-[1.75]`}
+                      to="/auth/register"
+                    >
+                      Registrarse
+                    </Link>
+                  </div>
                 </form>
-                <div className="absolute flex flex-col items-center w-full bottom-4">
-                  <p className="mb-4 text-dark-blue">
-                    ¿Olvidaste tu contraseña?
-                  </p>
-                  <p className="text-light-blue">
-                    ¿Todavía no tienes una cuenta?
-                  </p>
-                  <Link
-                    className={`${styles.GHOST_BUTTON} text-xl h-9 w-4/5 text-center leading-[1.75]`}
-                    to="/auth/register"
-                  >
-                    Registrarse
-                  </Link>
-                </div>
               </div>
             </div>
           </Transition.Child>
