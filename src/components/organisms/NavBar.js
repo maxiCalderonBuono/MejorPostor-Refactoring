@@ -10,7 +10,7 @@ import Button from "../atoms/Buttons/Button";
 export const NavBar = () => {
   let [openNav, setOpenNav] = useState(false);
   return (
-    <div className="fixed z-20 top-0 left-0 w-full shadow-md">
+    <div className="fixed top-0 left-0 z-20 w-full shadow-md">
       <div className="md:flex items-center justify-between bg-[#3196DA] py-2 md:px-10 px-7">
         <div className="flex items-center text-2xl cursor-pointer ">
           <img
@@ -41,10 +41,12 @@ export const NavBar = () => {
                 className="w-20"
               />
               <h1 className="my-auto ml-5 text-xl text-gray-800">
-                NombreUsuario
+                NombreUsuarioddddddd
               </h1>
             </div>
             <div className="flex items-center justify-center mt-8 sm:hidden ">
+              {/* Una vez loggeado, ve estos botones 
+              
               <Button
                 styles={`${styles.SUCCESS_BUTTON} p-2 `}
                 content="Editar perfil"
@@ -52,12 +54,21 @@ export const NavBar = () => {
               <Button
                 styles={`${styles.DANGER_BUTTON} p-2 `}
                 content="Cerrar sesión"
+          /> */}
+
+              <Button
+                styles={`${styles.PRIMARY_BUTTON} p-2 `}
+                content="Ingresa"
+              />
+              <Button
+                styles={`${styles.GHOST_BUTTON} p-2 `}
+                content="Crea tu cuenta"
               />
             </div>
             {/* hr */}
             <hr className="mt-7" />
             {/* Navbar main */}
-            <li key="crear-subasta" className="text-xl sm:ml-4 sm:my-0  my-7 ">
+            <li key="crear-subasta" className="text-xl sm:ml-4 sm:my-0 my-7 ">
               <button className="flex items-center text-gray-800 duration-500 cursor-pointer hover:text-gray-500">
                 <ImHammer2 className="mr-1.5" />
                 Crear subasta
@@ -79,13 +90,13 @@ export const NavBar = () => {
             <li className="items-center justify-center hidden duration-500 md:flex md:ml-4 hover:text-gray-500">
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-2 sm:pr-0">
                 {/* Profile dropdown */}
-                <Menu as="div" className=" relative">
+                <Menu as="div" className="relative ">
                   <div>
-                    <Menu.Button className="bg-gray-800 flex text-sm rounded-full ">
+                    <Menu.Button className="flex text-sm bg-gray-800 rounded-full ">
                       <img
                         src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png"
                         alt="icon-default"
-                        className="h-8 w-8 rounded-full"
+                        className="w-8 h-8 rounded-full"
                       />
                     </Menu.Button>
                   </div>
@@ -98,7 +109,7 @@ export const NavBar = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg py-1 bg-background_main pt-3 pb-3 px-0 ">
+                    <Menu.Items className="absolute right-0 w-64 px-0 py-1 pt-3 pb-3 mt-2 origin-top-right rounded-md shadow-lg bg-background_main ">
                       <Menu.Item>
                         <div className="flex ">
                           <img
@@ -114,6 +125,7 @@ export const NavBar = () => {
 
                       <Menu.Item>
                         <div className="flex">
+                         {/* Estos botones los ve al estar loggeado
                           <Button
                             styles={`${styles.SUCCESS_BUTTON} p-1`}
                             content="Editar perfil"
@@ -121,6 +133,15 @@ export const NavBar = () => {
                           <Button
                             styles={`${styles.DANGER_BUTTON} p-1`}
                             content="Cerrar sesión"
+                          /> */}
+
+                          <Button
+                            styles={`${styles.PRIMARY_BUTTON} p-1 text-xl h-fit `}
+                            content="Ingresa"
+                          />
+                          <Button
+                            styles={`${styles.GHOST_BUTTON} p-1 text-xl h-fit`}
+                            content="Crea tu cuenta"
                           />
                         </div>
                       </Menu.Item>

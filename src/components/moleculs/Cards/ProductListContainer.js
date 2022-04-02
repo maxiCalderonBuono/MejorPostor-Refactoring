@@ -13,7 +13,7 @@ const ProductListContainer = () => {
             .then(response => response.json())
             .then(data => {
                 setProducts(data.results);
-            console.log(data.results)
+          
             });
     }, []);
 
