@@ -13,11 +13,6 @@ const RegisterScreen = () => {
   console.log(isOpen);
   return (
     <>
-      <Button
-        styles={styles.PRIMARY_BUTTON}
-        content="Open"
-        setFunction={() => setIsOpen(true)}
-      />
       <Transition show={isOpen} as={Fragment}>
         <Dialog
           as="div"

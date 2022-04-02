@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "../../hooks/userForm";
-import Button from "../../atoms/Buttons/Button";
-import * as styles from "../../atoms/Buttons/buttonStyles";
+import Button from "../atoms/Buttons/Button";
+import * as styles from "../atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { FaPlusCircle } from "react-icons/fa";
 import { FaMinusCircle } from "react-icons/fa";

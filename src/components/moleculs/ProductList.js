@@ -2,14 +2,14 @@ import React from "react";
 import CardProduct from "./CardProduct";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import ProductListContainer from "./ProductListContainer";
+
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 
-import "../../../screens/pujas.css";
+import "../../screens/pujas.css";
 
 // import required modules
 import { Grid, Pagination } from "swiper";

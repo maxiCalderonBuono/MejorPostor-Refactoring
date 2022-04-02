@@ -4,7 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-import { useForm } from "../../hooks/userForm";
+import { useForm } from "../../../hooks/userForm";
 import { useDispatch } from "react-redux";
 import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
@@ -32,11 +32,6 @@ const LoginScreen = () => {
 
   return (
     <>
-      <Button
-        styles={styles.PRIMARY_BUTTON}
-        content="Open"
-        setFunction={() => setIsOpen(true)}
-      />
       <Transition show={isOpen} as={Fragment}>
         <Dialog
           as="div"

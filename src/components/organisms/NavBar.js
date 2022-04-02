@@ -6,6 +6,7 @@ import { GiTakeMyMoney } from "react-icons/gi";
 import { ImHammer2 } from "react-icons/im";
 import * as styles from "../atoms/Buttons/buttonStyles";
 import Button from "../atoms/Buttons/Button";
+import { Link } from "react-router-dom";
 
 export const NavBar = () => {
   let [openNav, setOpenNav] = useState(false);
@@ -41,7 +42,7 @@ export const NavBar = () => {
                 className="w-20"
               />
               <h1 className="my-auto ml-5 text-xl text-gray-800">
-                NombreUsuarioddddddd
+                NombreUsuario
               </h1>
             </div>
             <div className="flex items-center justify-center mt-8 sm:hidden ">
@@ -124,8 +125,8 @@ export const NavBar = () => {
                       </Menu.Item>
 
                       <Menu.Item>
-                        <div className="flex">
-                         {/* Estos botones los ve al estar loggeado
+                        <div className="flex justify-center">
+                          {/* Estos botones los ve al estar loggeado
                           <Button
                             styles={`${styles.SUCCESS_BUTTON} p-1`}
                             content="Editar perfil"
@@ -134,15 +135,17 @@ export const NavBar = () => {
                             styles={`${styles.DANGER_BUTTON} p-1`}
                             content="Cerrar sesión"
                           /> */}
-
+                          <Link
+                      className={`${styles.PRIMARY_BUTTON} p-2`}
+                      to="/auth/login"
+                    >
+                      Iniciar
+                    </Link>
                           <Button
-                            styles={`${styles.PRIMARY_BUTTON} p-1 text-xl h-fit `}
-                            content="Ingresa"
+                            styles={`${styles.GHOST_BUTTON} p-2`}
+                            content="Crear cuenta"
                           />
-                          <Button
-                            styles={`${styles.GHOST_BUTTON} p-1 text-xl h-fit`}
-                            content="Crea tu cuenta"
-                          />
+                          
                         </div>
                       </Menu.Item>
                     </Menu.Items>
