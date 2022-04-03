@@ -2,7 +2,7 @@ import React from "react";
 import CardProduct from "./CardProduct";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import ProductListContainer from "./ProductListContainer";
+
 
 // Import Swiper styles
 import "swiper/css";
@@ -20,19 +20,14 @@ const ProductList = ({ products }) => {
         <>
             <Swiper
 
-            
             breakpoints={{
                 640: {
                 width: 640,
                 slidesPerView: 1,
-                rows: 2,
                 },
                 768: {
                 width: 768,
                 slidesPerView: 2,
-                grid:{
-                    rows: 2,
-                    }
                 },
             }}
 

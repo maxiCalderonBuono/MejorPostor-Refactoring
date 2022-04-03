@@ -36,10 +36,4 @@ export default function ProductCarousel() {
     </>
   );
 }
-<<<<<<< HEAD
 */
-
-
-
-=======
->>>>>>> 852005dc4f3b42843a7a831d530e2ccb045569bc
