@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "../../hooks/userForm";
-import Button from "../../atoms/Buttons/Button";
-import * as styles from "../../atoms/Buttons/buttonStyles";
+import Button from "../atoms/Buttons/Button";
+import * as styles from "../atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { FaPlusCircle } from "react-icons/fa";
 import { FaMinusCircle } from "react-icons/fa";
@@ -11,8 +11,8 @@ const CardProduct = (props) => {
   const [{ bid }, handleInputChange] = useForm({ bid: "" });
 
   return (
-    <div className="items-center flex flex-col w-72 h-full rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white mb-5 p-3">
-      <div className="flex flex-col items-center content-center w-full">
+    <div className="items-center h-auto m-auto flex flex-col w-80 rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white mb-10" >
+      <div className="flex flex-col items-center content-center w-full h-full">
         <img
           src={props.image}
           className="rounded-[12px_12px_30px_30px] mb-3 w-full h-44 object-fit"
@@ -25,13 +25,13 @@ const CardProduct = (props) => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center content-center w-full mb-4">
+      <div className="flex flex-col items-center content-center w-full h-full mb-4">
         <div className="flex items-center justify-center my-2 space-x-4 text-center">
           <p className="p-1 text-lg font-bold">Puja actual</p>
           <p className="p-1 text-lg font-bold text-danger">{props.price}</p>
         </div>
 
-        <div className="flex flex-col items-center justify-center w-full">
+        <div className="flex flex-col items-center justify-center w-full h-full">
           <div className="flex flex-row items-center mb-3 space-x-3">
             <button>
               <FaMinusCircle size="28px" />

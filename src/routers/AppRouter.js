@@ -1,14 +1,21 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import AuthRouter from "./AuthRouters";
-import { useDispatch } from "react-redux";
+import React from "react";
 
 const AppRouter = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Home />} />
+
         <Route path="/auth/*" element={<AuthRouter />} />
+
+        {/*<Route
+          path="/*"
+          element={
+            <PrivateRoutes>
+              <DashboardRouter />
+            </PrivateRoutes>
+          }
+        /> */}
       </Routes>
     </Router>
   );

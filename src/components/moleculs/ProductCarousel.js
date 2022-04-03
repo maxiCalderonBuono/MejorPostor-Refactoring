@@ -1,3 +1,4 @@
+
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,7 +14,7 @@ import "../../../index.css";
 // import required modules
 import { Grid, Pagination } from "swiper";
 
-export default function App() {
+export default function ProductCarousel() {
   return (
     <>
       <Swiper
@@ -35,3 +36,7 @@ export default function App() {
     </>
   );
 }
+
+
+
+
