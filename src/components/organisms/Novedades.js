@@ -1,5 +1,5 @@
 import React from "react";
-import ProductListContainer from "../moleculs/Cards/ProductListContainer";
+import ProductListContainer from "./ProductListContainer";
 
 const Novedades = () => {
 

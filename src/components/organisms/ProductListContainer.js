@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-import ProductList from "./ProductList";
+import ProductList from "../moleculs/ProductList"
 
 const ProductListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -13,7 +13,7 @@ const ProductListContainer = () => {
             .then(response => response.json())
             .then(data => {
                 setProducts(data.results);
-            console.log(data.results)
+          
             });
     }, []);
 

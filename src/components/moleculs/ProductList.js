@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 
-import "../../../screens/pujas.css";
+import "../../screens/pujas.css";
 
 // import required modules
 import { Grid, Pagination } from "swiper";
