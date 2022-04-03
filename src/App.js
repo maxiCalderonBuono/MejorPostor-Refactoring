@@ -1,6 +1,10 @@
 import React from "react";
 import { Provider } from "react-redux";
 
+import { NavBar } from "./components/organisms/NavBar";
+import ProductListContainer from "./components/moleculs/Cards/ProductListContainer";
+import Novedades from "./components/organisms/Novedades";
+import MainScreen from "./screens/MainScreen";
 
 import { store } from "./store/store"
 import {AppRouter} from "./routers/AppRouter";

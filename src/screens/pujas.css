@@ -1,8 +1,10 @@
 .swiper {
-  width: 90%;
-  height: 100%;
+  width: 80%;
+  height: 90%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .swiper-slide {
