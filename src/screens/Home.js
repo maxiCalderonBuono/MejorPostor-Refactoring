@@ -1,8 +1,8 @@
 import React from "react";
-
-import ProductListContainer from "../components/organisms/ProductListContainer";
 import { NavBar } from "../components/organisms/NavBar";
-import MainScreen from "./MainScreen";
+import MainScreen from "../screens/MainScreen";
+import Footer from "../components/organisms/Footer";
+
 
 const Home = () => {
   return (
@@ -19,6 +19,7 @@ const Home = () => {
        */}
 
       <MainScreen />
+      
     </>
   );
 };

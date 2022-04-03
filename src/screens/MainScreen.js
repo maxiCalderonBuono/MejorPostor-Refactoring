@@ -1,6 +1,7 @@
 import React from "react";
 import Novedades from "../components/organisms/Novedades";
 import UltimoAviso from "../components/organisms/UltimoAviso";
+
 const MainScreen = () => {
   return (
     <div className="flex flex-col">
@@ -11,6 +12,7 @@ const MainScreen = () => {
         <div className="mt-20">
             <UltimoAviso />
         </div>
+        
     </div>
   );
 }
