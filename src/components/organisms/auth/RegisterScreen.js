@@ -1,23 +1,32 @@
 import React from "react";
-import { useState, useRef, Fragment } from "react";
+import { useRef, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
+import { uiCloseRegister } from "../../../actions/modal";
 
 const RegisterScreen = (props) => {
-  //const [isOpen, setIsOpen] = useState(true);
+
   const firstInput = useRef(null);
 
+  const dispatch = useDispatch();
+
+  const { ModalRegister }= useSelector(state => state.ui)
+
+  const onClosed = () => {
+    dispatch( uiCloseRegister() )
+  }
   return (
     <>
-      <Transition show={props.showRegister} as={Fragment}>
+      <Transition show={ModalRegister} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 z-30 flex flex-row items-center justify-center h-full overflow-y-auto backdrop-blur-[5px]"
-          onClose={() => props.function(false)}
+          onClose={() => onClosed()}
           initialFocus={firstInput}
         >
           <Transition.Child
@@ -51,14 +60,14 @@ const RegisterScreen = (props) => {
                 <Button
                   styles={`${styles.DANGER_BUTTON} absolute top-1 right-1 block modal-2:hidden`}
                   content={<AiOutlineCloseCircle />}
-                  setFunction={() => props.function(false)}
+                  setFunction={() => onClosed()}
                 />
               </div>
               <div className=" bg-white relative flex flex-col items-center w-full min-h-[660px] modal-2:min-h-full modal-2:rounded-[0px_16px_16px_0px] top-8modal-2:w-1/2 modal-1:w-3/4">
                 <Button
                   styles={`${styles.DANGER_BUTTON} absolute right-1 hidden modal-2:block`}
                   content={<AiOutlineCloseCircle />}
-                  setFunction={() => props.function(false)}
+                  setFunction={() => onClosed()}
                 />
                 <Dialog.Title
                   as="h1"

@@ -1,17 +1,17 @@
 import React from "react";
-import { useState, useRef, Fragment } from "react";
+import { useRef, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 import { useForm } from "../../../hooks/userForm";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
 import { login } from "../../../actions/auth";
+import { uiCloseLogin } from "../../../actions/modal";
 
-const LoginScreen = (props) => {
-  //const [isOpen, setIsOpen] = useState(true);
+const LoginScreen = () => {
 
   const firstInput = useRef(null);
 
@@ -22,23 +22,28 @@ const LoginScreen = (props) => {
 
   const { email, password } = formValues;
 
-  const dispatch = useDispatch();
+ const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
 
     dispatch(login(email, password));
   };
 
-  
+ //Tomo del estado global, el correspondiente a modalOpen para manejar la apertura y cierre. 
+  const { ModalLogin }= useSelector(state => state.ui)
 
+  const onClosed = () => {
+    dispatch( uiCloseLogin() )
+  }
+  
   return (
     <>
-      <Transition show={props.showLogin} as={Fragment}>
+      <Transition show={ModalLogin} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 z-30  flex flex-row items-center justify-center h-full overflow-y-auto backdrop-blur-[5px]"
-          onClose={() => props.function(false)}
+          onClose={() => onClosed()}
           initialFocus={firstInput}
         >
           <Transition.Child
@@ -73,14 +78,14 @@ const LoginScreen = (props) => {
                 <Button
                   styles={`${styles.DANGER_BUTTON} absolute top-1 right-1 block modal-2:hidden`}
                   content={<AiOutlineCloseCircle />}
-                  setFunction={() => props.function(false)}
+                  setFunction={() => onClosed()}
                 />
               </div>
               <div className=" bg-white relative flex flex-col min-h-[510px] items-center w-full modal-2:min-h-full modal-2:rounded-[0px_16px_16px_0px] top-8modal-2:w-1/2 modal-1:w-3/4">
                 <Button
                   styles={`${styles.DANGER_BUTTON} absolute right-1 hidden modal-2:block`}
                   content={<AiOutlineCloseCircle />}
-                  setFunction={() => props.function(false)}
+                  setFunction={() => onClosed()}
                 />
                 <Dialog.Title
                   as="h1"
@@ -98,7 +103,7 @@ const LoginScreen = (props) => {
                 </Dialog.Description>
 
                 <form
-                  onSubmit={handleSubmit}
+                  onSubmit={handleLogin}
                   className="absolute flex flex-col items-center w-full top-28 modal-2:top-36"
                 >
                   <label

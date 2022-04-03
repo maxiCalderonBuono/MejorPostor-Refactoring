@@ -6,21 +6,29 @@ import { GiTakeMyMoney } from "react-icons/gi";
 import { ImHammer2 } from "react-icons/im";
 import * as styles from "../atoms/Buttons/buttonStyles";
 import Button from "../atoms/Buttons/Button";
+
+import { useDispatch } from "react-redux";
+import { uiOpenLogin, uiOpenRegister} from "../../actions/modal";
 import LoginScreen from "./auth/LoginScreen";
 import RegisterScreen from "./auth/RegisterScreen";
 
 export const NavBar = () => {
   const [openNav, setOpenNav] = useState(false);
 
-  //Este estado le debe llegar al modal. Debería ser con Redux. Primera prueba casera
-  const [showLogin, setShowLogin] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
+  //Hago el dispatch de la apertura del modal de Login y Registro
+ const dispatch = useDispatch();
 
+ const openLogin = () => {
+   dispatch( uiOpenLogin() )
+ }
+
+ const OpenRegister = () => {
+  dispatch( uiOpenRegister() )
+}
   return (
     <>
-    {showLogin && <LoginScreen showLogin= {showLogin} function={setShowLogin} />}
-
-    {showRegister && <RegisterScreen showRegister= {showRegister} function={setShowRegister} />}
+      <LoginScreen />
+      <RegisterScreen />
 
       <div className="fixed top-0 left-0 z-20 w-full shadow-md">
         <div className="md:flex items-center justify-between bg-[#3196DA] py-2 md:px-10 px-7">
@@ -149,12 +157,12 @@ export const NavBar = () => {
                             <Button
                             styles={`${styles.PRIMARY_BUTTON} p-1`}
                             content="Iniciar"
-                            setFunction={() => setShowLogin(true)}
+                            setFunction={() => openLogin()}
                           />
                             <Button
                             styles={`${styles.GHOST_BUTTON} p-1`}
                             content="Crear cuenta"
-                            setFunction={() => setShowRegister(true)}
+                            setFunction={() => OpenRegister()}
                           />
                           </div>
                         </Menu.Item>
