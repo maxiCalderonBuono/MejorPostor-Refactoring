@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
 import { uiCloseRegister, uiOpenLogin } from "../../../actions/modal";
+import { useForm } from "../../../hooks/userForm";
 
 const RegisterScreen = (props) => {
   const firstInput = useRef(null);
@@ -15,6 +16,15 @@ const RegisterScreen = (props) => {
   const dispatch = useDispatch();
 
   const { ModalRegister } = useSelector((state) => state.ui);
+
+  const [formRegisterValues, handleRegisterInputChange] = useForm({
+    rName: "",
+    rEmail: "",
+    rPassword: "",
+    rCPassword: "",
+  });
+
+  const { rName, rEmail, rPassword, rCPassword } = formRegisterValues;
 
   const onClosed = () => {
     dispatch(uiCloseRegister());
@@ -100,11 +110,13 @@ const RegisterScreen = (props) => {
                       <input
                         id="user"
                         type="text"
-                        name="user"
                         autoComplete="off"
                         placeholder="Usuario"
                         className="w-5/6 t h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-4 p-2 text-sm"
                         ref={firstInput}
+                        onChange={handleRegisterInputChange}
+                        value={rName}
+                        name="rName"
                       />
                     </div>
                     <div className="flex flex-col items-center w-full modal-1:w-1/2">
@@ -117,10 +129,12 @@ const RegisterScreen = (props) => {
                       <input
                         id="email"
                         type="email"
-                        name="email"
+                        name="rEmail"
                         autoComplete="off"
                         placeholder="Email"
                         className="w-5/6 t h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-4 p-2 text-sm"
+                        onChange={handleRegisterInputChange}
+                        value={rEmail}
                       />
                     </div>
                   </div>
@@ -134,10 +148,12 @@ const RegisterScreen = (props) => {
                       </label>
                       <input
                         type="password"
-                        name="password"
+                        name="rPassword"
                         autoComplete="off"
                         placeholder="Password"
                         className="w-5/6 t h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-4 p-2 text-sm"
+                        onChange={handleRegisterInputChange}
+                        value={rPassword}
                       />
                     </div>
                     <div className="flex flex-col items-center w-full modal-1:w-1/2">
@@ -150,10 +166,12 @@ const RegisterScreen = (props) => {
                       <input
                         id="password-2"
                         type="password"
-                        name="password-2"
+                        name="rCPassword"
                         autoComplete="off"
                         placeholder="Repeat Password"
                         className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-4 p-2 text-sm"
+                        onChange={handleRegisterInputChange}
+                        value={rCPassword}
                       />
                     </div>
                   </div>

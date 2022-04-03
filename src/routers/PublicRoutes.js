@@ -6,5 +6,10 @@ export const PublicRoutes = ({ children }) => {
   let location = useLocation();
   const from = location.state ? location.state.from : "/";
 
-  return <div>PublicRoutes</div>;
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  if (!isAuthenticated) {
+    return children;
+  } else {
+    return <Navigate to={from} />;
+  }
 };

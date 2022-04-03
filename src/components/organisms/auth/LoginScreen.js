@@ -8,7 +8,7 @@ import { useForm } from "../../../hooks/userForm";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
-import { login } from "../../../actions/auth";
+import { startLogin } from "../../../actions/auth";
 import { uiCloseLogin, uiOpenRegister } from "../../../actions/modal";
 
 const LoginScreen = () => {
@@ -25,8 +25,7 @@ const LoginScreen = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
-    dispatch(login(email, password));
+    dispatch(startLogin(email, password));
   };
 
   //Tomo del estado global, el correspondiente a modalOpen para manejar la apertura y cierre.
