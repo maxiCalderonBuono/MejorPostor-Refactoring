@@ -9,10 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
 import { login } from "../../../actions/auth";
-import { uiCloseLogin } from "../../../actions/modal";
+import { uiCloseLogin, uiOpenRegister } from "../../../actions/modal";
 
 const LoginScreen = () => {
-
   const firstInput = useRef(null);
 
   const [formValues, handleInputChange] = useForm({
@@ -22,7 +21,7 @@ const LoginScreen = () => {
 
   const { email, password } = formValues;
 
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -30,13 +29,18 @@ const LoginScreen = () => {
     dispatch(login(email, password));
   };
 
- //Tomo del estado global, el correspondiente a modalOpen para manejar la apertura y cierre. 
-  const { ModalLogin }= useSelector(state => state.ui)
+  //Tomo del estado global, el correspondiente a modalOpen para manejar la apertura y cierre.
+  const { ModalLogin } = useSelector((state) => state.ui);
 
   const onClosed = () => {
-    dispatch( uiCloseLogin() )
-  }
-  
+    dispatch(uiCloseLogin());
+  };
+
+  const OpenRegister = () => {
+    dispatch(uiCloseLogin());
+    dispatch(uiOpenRegister());
+  };
+
   return (
     <>
       <Transition show={ModalLogin} as={Fragment}>
@@ -54,7 +58,6 @@ const LoginScreen = () => {
             leave="ease-in duration-200"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
-            
           >
             <Dialog.Overlay className="fixed inset-0 bg-black opacity-40" />
           </Transition.Child>
@@ -154,7 +157,8 @@ const LoginScreen = () => {
                     </p>
                     <Link
                       className={`${styles.GHOST_BUTTON} text-xl modal-2:text-2xl h-9 w-4/5 text-center leading-[1.75]`}
-                      to="/auth/register"
+                      to="/"
+                      onClick={() => OpenRegister()}
                     >
                       Registrarse
                     </Link>

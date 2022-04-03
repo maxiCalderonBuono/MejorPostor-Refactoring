@@ -30,7 +30,7 @@ export const NavBar = () => {
       <LoginScreen />
       <RegisterScreen />
 
-      <div className="sticky top-0 left-0 z-20 w-full shadow-md">
+      <div className="fixed top-0 left-0 z-20 w-full shadow-md">
         <div className="md:flex items-center justify-between bg-[#3196DA] py-2 md:px-10 px-7">
           <div className="flex items-center text-2xl cursor-pointer ">
             <img

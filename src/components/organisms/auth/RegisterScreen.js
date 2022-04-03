@@ -7,19 +7,23 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
-import { uiCloseRegister } from "../../../actions/modal";
+import { uiCloseRegister, uiOpenLogin } from "../../../actions/modal";
 
 const RegisterScreen = (props) => {
-
   const firstInput = useRef(null);
 
   const dispatch = useDispatch();
 
-  const { ModalRegister }= useSelector(state => state.ui)
+  const { ModalRegister } = useSelector((state) => state.ui);
 
   const onClosed = () => {
-    dispatch( uiCloseRegister() )
-  }
+    dispatch(uiCloseRegister());
+  };
+
+  const openLogin = () => {
+    dispatch(uiCloseRegister());
+    dispatch(uiOpenLogin());
+  };
   return (
     <>
       <Transition show={ModalRegister} as={Fragment}>
@@ -79,7 +83,7 @@ const RegisterScreen = (props) => {
                   as="p"
                   className="absolute px-4 mt-2 text-sm text-center modal-1:px-0 top-12 modal-2:top-20 text-text-secondary"
                 >
-                     El lugar donde podrás encontrar la mayor variedad de subastas
+                  El lugar donde podrás encontrar la mayor variedad de subastas
                   de Argentina.
                   <span className="modal-1:block"> Busca, pujá y ganá!</span>
                 </Dialog.Description>
@@ -138,7 +142,7 @@ const RegisterScreen = (props) => {
                     </div>
                     <div className="flex flex-col items-center w-full modal-1:w-1/2">
                       <label
-                       htmlFor="password-2"
+                        htmlFor="password-2"
                         className="w-5/6 text-left t text-text-primary"
                       >
                         Repite la contraseña
@@ -153,16 +157,19 @@ const RegisterScreen = (props) => {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="flex flex-col items-center w-full mt-4 bg-white modal-2:mt-4">
-                  <Button
-                    styles={`${styles.PRIMARY_BUTTON} text-xl modal-2:text-2xl h-9 w-4/5`}
-                    content="Registrarse"
-                  />
-                    <p className="mt-8 modal-2:mt-4 text-light-blue">¿Ya tienes una cuenta?</p>
+                    <Button
+                      styles={`${styles.PRIMARY_BUTTON} text-xl modal-2:text-2xl h-9 w-4/5`}
+                      content="Registrarse"
+                    />
+                    <p className="mt-8 modal-2:mt-4 text-light-blue">
+                      ¿Ya tienes una cuenta?
+                    </p>
                     <Link
                       className={`${styles.GHOST_BUTTON} text-xl h-9 w-4/5 modal-2:text-2xl text-center align-middle leading-[1.75]`}
-                      to="/auth/login"
+                      to="/"
+                      onClick={() => openLogin()}
                     >
                       Iniciar Sesión
                     </Link>
