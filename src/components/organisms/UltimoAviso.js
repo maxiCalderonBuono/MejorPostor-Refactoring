@@ -2,7 +2,7 @@ import React from "react";
 import ProductListContainer from "./ProductListContainer";
 const UltimoAviso = () => {
     return (
-        <div className="mt-20 pb-20">
+        <div className="mt-20 pb-20 mb-10">
             <div className="grid grid-rows-3 grid-flow-col">
                 <div className="col-span-2">
                     <h3 className="text-6xl text-start font-bold">Último aviso</h3>
@@ -14,7 +14,9 @@ const UltimoAviso = () => {
                     <p className="text-start text-slate-400">Quedan 24 hs para pujar</p>
                 </div>
             </div>
-            <ProductListContainer />
+            <div className="h-screen flex items-center justify-center">
+                <ProductListContainer />
+            </div>
         </div>
     );
     };

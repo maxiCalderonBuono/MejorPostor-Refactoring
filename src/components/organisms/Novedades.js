@@ -1,5 +1,6 @@
 import React from "react";
 import ProductListContainer from "./ProductListContainer";
+import { Link } from "react-router-dom";
 
 const Novedades = () => {
 
@@ -7,7 +8,7 @@ const Novedades = () => {
         <div className="mt-20">
             <div className="grid grid-rows-3 grid-flow-col">
                 <div className="col-span-2">
-                    <h3 className="text-6xl text-start font-bold">Novedades</h3>
+                    <Link to={'AllProductListContainer'} className="text-6xl text-start font-bold">Novedades</Link>
                 </div>
                 <div className="col-span-2">
                     <p className="item-end text-lg  text-right text-indigo-900">Ver más.</p>
