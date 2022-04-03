@@ -2,6 +2,7 @@ import React from "react";
 
 import ProductListContainer from "../components/organisms/ProductListContainer";
 import { NavBar } from "../components/organisms/NavBar";
+import MainScreen from "./MainScreen";
 
 const Home = () => {
   return (
@@ -17,7 +18,7 @@ const Home = () => {
 
        */}
 
-      <ProductListContainer />
+      <MainScreen />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import ProductListContainer from "../moleculs/Cards/ProductListContainer";
+import ProductListContainer from "./ProductListContainer";
 const UltimoAviso = () => {
     return (
         <div className="mt-20 pb-20">
