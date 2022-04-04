@@ -17,7 +17,9 @@ const ProductListContainer = () => {
  
     
     return(
-        <AllProductList products={products}/>
+        <div className="flex flex-wrap gap-8 items-center justify-center">
+            <AllProductList products={products}/>
+        </div>
     );
 }
 
