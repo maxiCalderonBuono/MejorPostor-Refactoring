@@ -48,7 +48,7 @@ export const NavBar = () => {
           >
             {openNav ? <AiOutlineClose /> : <AiOutlineMenu />}
           </div>
-          <div>
+          <div className="flex justify-center">
             <ul
               className={`sm:flex sm:shadow-none sm:items-center sm:bg-[#3196DA] sm:pb-0 sm:static sm:z-auto sm:w-auto sm:pl-0
             shadow-xl rounded-lg bg-background_main absolute z-[-1] pr-5 pl-5 transition-all duration-500 ease-in ${
