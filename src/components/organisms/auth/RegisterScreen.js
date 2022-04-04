@@ -38,7 +38,7 @@ const RegisterScreen = (props) => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    dispatch(startRegister(rEmail, rPassword, rName));
+    dispatch(startRegister(rName, rPassword, rEmail));
   };
 
   return (

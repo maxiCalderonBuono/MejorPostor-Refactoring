@@ -21,14 +21,14 @@ const fetchConToken = (endpoint, data, method = "GET") => {
   if (method === "GET") {
     return fetch(url, {
       method,
-      headers: { "x-token": token },
+      headers: { token: token },
     });
   } else {
     return fetch(url, {
       method,
       headers: {
         "Content-Type": "application/json",
-        "x-token": token,
+        token: token,
       },
       body: JSON.stringify(data),
     });

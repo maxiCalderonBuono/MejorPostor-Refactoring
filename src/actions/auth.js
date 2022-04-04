@@ -9,9 +9,10 @@ export const startLogin = (email, password) => {
     const res = await fetchSinToken("auth/signin", { email, password }, "POST");
     const body = await res.json();
     console.log(body);
-    if (body.ok) {
+    if (res.status === 200) {
       localStorage.setItem("token", body.token);
-
+      localStorage.setItem("userid", body.userid);
+      localStorage.setItem("username", body.username);
       dispatch(login({ id: body.payload.id, username: body.payload.username }));
       dispatch(uiCloseLogin());
     } else {
@@ -35,10 +36,9 @@ export const startRegister = (username, password, email) => {
       "POST"
     );
     const body = await res.json();
-    console.log(body);
-    if (body.ok) {
-      localStorage.setItem("token", body.token);
 
+    if (res.status === 200) {
+      localStorage.setItem("token", body.token);
       dispatch(login({ id: body.data.id, username: body.data.username }));
       dispatch(uiCloseRegister());
     } else {
