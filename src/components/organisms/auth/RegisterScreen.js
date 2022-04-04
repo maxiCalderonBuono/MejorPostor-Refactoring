@@ -9,6 +9,7 @@ import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
 import { uiCloseRegister, uiOpenLogin } from "../../../actions/modal";
 import { useForm } from "../../../hooks/userForm";
+import { startRegister } from "../../../actions/auth";
 
 const RegisterScreen = (props) => {
   const firstInput = useRef(null);
@@ -34,6 +35,12 @@ const RegisterScreen = (props) => {
     dispatch(uiCloseRegister());
     dispatch(uiOpenLogin());
   };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    dispatch(startRegister(rEmail, rPassword, rName));
+  };
+
   return (
     <>
       <Transition show={ModalRegister} as={Fragment}>
@@ -98,7 +105,10 @@ const RegisterScreen = (props) => {
                   <span className="modal-1:block"> Busca, pujá y ganá!</span>
                 </Dialog.Description>
 
-                <form className="absolute flex flex-col items-center w-full top-28 modal-2:top-[135px] modal-1:top-40">
+                <form
+                  className="absolute flex flex-col items-center w-full top-28 modal-2:top-[135px] modal-1:top-40"
+                  onSubmit={handleRegister}
+                >
                   <div className="flex flex-col w-full modal-1:flex-row modal-1:justify-center">
                     <div className="flex flex-col items-center w-full modal-1:w-1/2">
                       <label
