@@ -88,10 +88,10 @@ export const NavBar = () => {
                       alt="icon-default"
                       className="w-20 mt-5"
                     />
-                    <h1 className="my-auto text-xl text-gray-800 absolute left-24 top-6">
+                    <h1 className="absolute my-auto text-xl text-gray-800 left-24 top-6">
                       Bienvenido a Mejor Postor
                     </h1>
-                    <p className="flex absolute top-14 text-left left-24 w-3/4 text-sm">
+                    <p className="absolute flex w-3/4 text-sm text-left top-14 left-24">
                       Ingresa a tu cuenta para ver tus subastas activas y
                       ofertas
                     </p>
@@ -100,10 +100,12 @@ export const NavBar = () => {
                     <Button
                       styles={`${styles.PRIMARY_BUTTON} p-2 `}
                       content="Ingresa"
+                      setFunction={() => openLogin()}
                     />
                     <Button
                       styles={`${styles.GHOST_BUTTON} p-2 `}
                       content="Crea tu cuenta"
+                      setFunction={() => OpenRegister()}
                     />
                   </div>
                 </>
@@ -207,10 +209,10 @@ export const NavBar = () => {
                                   alt="icon-default"
                                   className="w-16 ml-3.5 rounded-full"
                                 />
-                                <h1 className="my-auto text-xl text-gray-800 absolute left-24">
+                                <h1 className="absolute my-auto text-xl text-gray-800 left-24">
                                   Bienvenido a Mejor Postor
                                 </h1>
-                                <p className="flex absolute top-10 text-left left-24 w-3/4 text-sm">
+                                <p className="absolute flex w-3/4 text-sm text-left top-10 left-24">
                                   Ingresa a tu cuenta para ver tus subastas
                                   activas y ofertas
                                 </p>
