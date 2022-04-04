@@ -1,6 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import {  AiFillFacebook , AiOutlineMail } from "react-icons/ai";
 
 const Footer = () => {
     return (
@@ -17,17 +15,17 @@ const Footer = () => {
                         <div className="mb-5">
                             <h4>Información</h4>
                             <ul>
-                                <li><Link>Sobre nosotros</Link></li>
-                                <li><Link>Nuestros servicios</Link></li>
-                                <li><Link>Políticas de privacidad</Link></li>
+                                <li>Sobre nosotros</li>
+                                <li>Nuestros servicios</li>
+                                <li>Políticas de privacidad</li>
                             </ul>
                         </div>
                         <div className="mb-5">
                             <h4>Redes Sociales</h4>
                             <ul>
-                                <li><Link>Facebook</Link></li>
-                                <li><Link>Twitter</Link></li>
-                                <li><Link>Instagram</Link></li>
+                                <li>Facebook</li>
+                                <li>Twitter</li>
+                                <li>Instagram</li>
                             </ul>
                         </div>
                     </div>

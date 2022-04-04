@@ -6,7 +6,7 @@ import Footer from "../components/organisms/Footer";
 
 const Home = () => {
   return (
-    <>
+    <div className="flex flex-col">
       <NavBar />
       {/* FALTAN LOS SIGUIENTES COMPONENTES
 
@@ -19,8 +19,9 @@ const Home = () => {
        */}
 
       <MainScreen />
+      <Footer />
       
-    </>
+    </div>
   );
 };
 
