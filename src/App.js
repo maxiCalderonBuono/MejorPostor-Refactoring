@@ -13,7 +13,7 @@ import "swiper/css/bundle";
 const App = () => {
   return (
     <Provider store={store}>
-      <div className="flex justify-center w-full h-full p-8 md:h-full bg-background_main">
+      <div className="flex justify-center w-full h-full md:h-full bg-background_main">
         <AppRouter />
       </div>
     </Provider>

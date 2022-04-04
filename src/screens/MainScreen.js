@@ -4,7 +4,7 @@ import UltimoAviso from "../components/organisms/UltimoAviso";
 
 const MainScreen = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col p-8">
         <div className="flex flex-col justify-center items-center mb-20">
             <Novedades />
         </div>
