@@ -1,13 +1,9 @@
 import React, { useEffect } from "react";
-import { Provider, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { store } from "./store/store";
 import { AppRouter } from "./routers/AppRouter";
 import "swiper/css/bundle";
 import { startIsAuth } from "./actions/auth";
-
-
-
 
 const App = () => {
   const dispatch = useDispatch();
@@ -17,11 +13,9 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <Provider store={store}>
-      <div className="flex justify-center w-full h-full md:h-full bg-background_main">
-        <AppRouter />
-      </div>
-    </Provider>
+    <div className="flex justify-center w-full h-full md:h-full bg-background_main">
+      <AppRouter />
+    </div>
   );
 };
 

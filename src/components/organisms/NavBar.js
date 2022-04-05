@@ -19,7 +19,7 @@ export const NavBar = () => {
   //Hago el dispatch de la apertura del modal de Login y Registro
   const dispatch = useDispatch();
 
-  const { checkingisAutho, username } = useSelector((state) => state.auth);
+  const { isAutho, username } = useSelector((state) => state.auth);
 
   const handleLogout = () => {
     dispatch(startLogout());
@@ -36,7 +36,6 @@ export const NavBar = () => {
     <>
       <LoginScreen />
       <RegisterScreen />
-
       <div className="fixed top-0 left-0 z-20 w-full shadow-md">
         <div className="md:flex items-center justify-between bg-[#3196DA] py-2 md:px-10 px-7">
           <div className="flex items-center text-2xl cursor-pointer ">
@@ -62,7 +61,7 @@ export const NavBar = () => {
             >
               {/* Dropdown User */}
 
-              {checkingisAutho === true ? (
+              {isAutho === true ? (
                 <>
                   <div className="flex mt-3 sm:hidden">
                     <img
@@ -121,7 +120,7 @@ export const NavBar = () => {
               {/* hr */}
               <hr className="mt-7" />
               {/* Navbar main */}
-              {checkingisAutho === true ? (
+              {isAutho === true ? (
                 <>
                   <li
                     key="crear-subasta"
@@ -177,13 +176,9 @@ export const NavBar = () => {
                     >
                       <Menu.Items
                         className={`absolute right-0 w-64 px-0 py-1 pt-3 pb-3 mt-2 origin-top-right rounded-md shadow-lg bg-background_main min-w-[500px] 
-                      ${
-                        checkingisAutho === true
-                          ? "min-w-[400px]"
-                          : "min-w-[500px]"
-                      }`}
+                      ${isAutho === true ? "min-w-[400px]" : "min-w-[500px]"}`}
                       >
-                        {checkingisAutho === true ? (
+                        {isAutho === true ? (
                           <>
                             <Menu.Item>
                               <div className="flex">
@@ -256,7 +251,8 @@ export const NavBar = () => {
             </ul>
           </div>
         </div>
-      </div>z-aut
+      </div>
+      z-aut
     </>
   );
 };
