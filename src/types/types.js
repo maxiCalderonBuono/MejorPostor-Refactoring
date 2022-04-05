@@ -3,6 +3,7 @@ export const types = {
   logout: "[Auth] Logout",
   startLogin: "[Auth] Start Login",
   startRegister: "[Auth] Start Register",
+  isAuthoFinish: "[Auth] Is Autho Finish",
 
   uiOpenLogin: "[UI] Open Login",
   uiCloseLogin: "[UI] Close Login",

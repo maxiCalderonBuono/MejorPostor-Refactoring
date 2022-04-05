@@ -1,4 +1,4 @@
-import { fetchSinToken } from "../helpers/fetch";
+import { fetchConToken, fetchSinToken } from "../helpers/fetch";
 import { types } from "../types/types";
 import { uiCloseLogin, uiCloseRegister } from "./modal";
 
@@ -11,8 +11,7 @@ export const startLogin = (email, password) => {
     console.log(body);
     if (res.status === 200) {
       localStorage.setItem("token", body.token);
-      localStorage.setItem("userid", body.userid);
-      localStorage.setItem("username", body.username);
+
       dispatch(login({ id: body.payload.id, username: body.payload.username }));
       dispatch(uiCloseLogin());
     } else {
@@ -46,3 +45,30 @@ export const startRegister = (username, password, email) => {
     }
   };
 };
+
+export const startIsAuth = () => {
+  return async (dispatch) => {
+    const res = await fetchConToken("auth/renew");
+    const body = await res.json();
+    console.log(body);
+    if (res.status === 200) {
+      localStorage.setItem("token", body.token);
+
+      dispatch(login({ id: body.id, username: body.username }));
+      dispatch(uiCloseLogin());
+    } else {
+      console.log("error", body);
+      dispatch(isAuthoFinish());
+    }
+  };
+};
+
+const isAuthoFinish = () => ({ type: types.isAuthoFinish });
+
+export const startLogout = () => {
+  return (dispatch) => {
+    localStorage.removeItem("token");
+    dispatch(logout());
+  };
+};
+const logout = () => ({ type: types.logout });

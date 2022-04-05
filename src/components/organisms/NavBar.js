@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { uiOpenLogin, uiOpenRegister } from "../../actions/modal";
 import LoginScreen from "./auth/LoginScreen";
 import RegisterScreen from "./auth/RegisterScreen";
+import { startLogout } from "../../actions/auth";
 
 export const NavBar = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -18,7 +19,11 @@ export const NavBar = () => {
   //Hago el dispatch de la apertura del modal de Login y Registro
   const dispatch = useDispatch();
 
-  const { isAutho, username } = useSelector((state) => state.auth);
+  const { checkingisAutho, username } = useSelector((state) => state.auth);
+
+  const handleLogout = () => {
+    dispatch(startLogout());
+  };
 
   const openLogin = () => {
     dispatch(uiOpenLogin());
@@ -57,7 +62,7 @@ export const NavBar = () => {
             >
               {/* Dropdown User */}
 
-              {isAutho === true ? (
+              {checkingisAutho === true ? (
                 <>
                   <div className="flex mt-3 sm:hidden">
                     <img
@@ -74,10 +79,12 @@ export const NavBar = () => {
                       styles={`${styles.SUCCESS_BUTTON} p-2 `}
                       content="Editar perfil"
                     />
-                    <Button
-                      styles={`${styles.DANGER_BUTTON} p-2 `}
-                      content="Cerrar sesión"
-                    />
+                    <button
+                      className="text-white rounded-[43px] bg-danger m-1  p-3 text-2xl"
+                      onClick={handleLogout}
+                    >
+                      Cerrar sesion
+                    </button>
                   </div>
                 </>
               ) : (
@@ -114,7 +121,7 @@ export const NavBar = () => {
               {/* hr */}
               <hr className="mt-7" />
               {/* Navbar main */}
-              {isAutho === true ? (
+              {checkingisAutho === true ? (
                 <>
                   <li
                     key="crear-subasta"
@@ -170,9 +177,13 @@ export const NavBar = () => {
                     >
                       <Menu.Items
                         className={`absolute right-0 w-64 px-0 py-1 pt-3 pb-3 mt-2 origin-top-right rounded-md shadow-lg bg-background_main min-w-[500px] 
-                      ${isAutho === true ? "min-w-[400px]" : "min-w-[500px]"}`}
+                      ${
+                        checkingisAutho === true
+                          ? "min-w-[400px]"
+                          : "min-w-[500px]"
+                      }`}
                       >
-                        {isAutho === true ? (
+                        {checkingisAutho === true ? (
                           <>
                             <Menu.Item>
                               <div className="flex ">
@@ -193,10 +204,12 @@ export const NavBar = () => {
                                   styles={`${styles.SUCCESS_BUTTON} p-3 text-2xl`}
                                   content="Editar perfil"
                                 />
-                                <Button
-                                  styles={`${styles.DANGER_BUTTON} p-3 text-2xl`}
-                                  content="Cerrar sesión"
-                                />
+                                <button
+                                  className="text-white rounded-[43px] bg-danger m-1  p-3 text-2xl"
+                                  onClick={handleLogout}
+                                >
+                                  Cerrar sesion
+                                </button>
                               </div>
                             </Menu.Item>
                           </>
