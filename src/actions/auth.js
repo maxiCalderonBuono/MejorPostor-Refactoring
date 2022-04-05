@@ -58,6 +58,7 @@ export const startIsAuth = () => {
       dispatch(uiCloseLogin());
     } else {
       console.log("error", body);
+      localStorage.removeItem("token");
       dispatch(isAuthoFinish());
     }
   };
