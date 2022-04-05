@@ -151,7 +151,7 @@ const RegisterScreen = (props) => {
                   <div className="flex flex-col w-full bg-white modal-1:flex-row modal-1:justify-center modal-1:mb-4">
                     <div className="flex flex-col items-center w-full modal-1:w-1/2">
                       <label
-                        htmlFor="email"
+                        htmlFor="password"
                         className="w-5/6 text-left t text-text-primary"
                       >
                         Password

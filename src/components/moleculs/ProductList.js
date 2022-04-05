@@ -39,11 +39,10 @@ const ProductList = ({ products }) => {
             className="mySwiper"
         >
                 { products.length > 0 ? (
-                    products.map(product => (
-                        <SwiperSlide>
+                    products.map((product, index) => (
+                    
+                        <SwiperSlide  key={index}>
                             <CardProduct
-                                key={product.id}
-                                id={product.id}
                                 title={product.title}
                                 price={product.price}
                                 image={product.thumbnail}

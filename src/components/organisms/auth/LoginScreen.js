@@ -1,5 +1,4 @@
-import React from "react";
-import { useRef, Fragment } from "react";
+import {  useRef, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -9,9 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
 import { startLogin } from "../../../actions/auth";
-import { uiCloseLogin, uiOpenRegister } from "../../../actions/modal";
+import { uiCloseLogin, uiOpenRegister} from "../../../actions/modal";
 
 const LoginScreen = () => {
+  
+  
   const firstInput = useRef(null);
 
   const [formValues, handleInputChange] = useForm({
@@ -29,7 +30,10 @@ const LoginScreen = () => {
   };
 
   //Tomo del estado global, el correspondiente a modalOpen para manejar la apertura y cierre.
-  const { ModalLogin } = useSelector((state) => state.ui);
+  const { ModalLogin, Animation } = useSelector((state) => state.ui);
+ 
+
+
 
   const onClosed = () => {
     dispatch(uiCloseLogin());
@@ -40,9 +44,10 @@ const LoginScreen = () => {
     dispatch(uiOpenRegister());
   };
 
+
   return (
     <>
-      <Transition show={ModalLogin} as={Fragment}>
+      <Transition show={ModalLogin} as={Fragment} >
         <Dialog
           as="div"
           className="fixed inset-0 z-30  flex flex-row items-center justify-center h-full overflow-y-auto backdrop-blur-[5px]"
@@ -63,12 +68,12 @@ const LoginScreen = () => {
 
           <Transition.Child
             as={Fragment}
-            enter="ease-out duration-500"
-            enterFrom="opacity-0 scale-50"
-            enterTo="opacity-100 scale-100"
-            leave="ease-in duration-300"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-50"
+            enter= "ease-out duration-500" 
+            enterFrom={(ModalLogin || Animation ) ?  "opacity-0 scale-50" : "-translate-x-full" } 
+            enterTo={(ModalLogin || Animation ) ?  "opacity-100 scale-100" : "translate-0" } 
+            leave=  {(ModalLogin || Animation ) ? "ease-in duration-300" : ""}
+            leaveFrom={(ModalLogin || Animation ) ? "-translate-x-full" : "opacity-0 scale-50" }
+            leaveTo={(ModalLogin || Animation ) ? "translate-0" : "opacity-100 scale-100" }
           >
             <div className="relative h-full flex modal-2:flex-row flex-col bg-white modal-2:rounded-2xl w-[1000px]  modal-2:h-[500px] modal-2:m-4">
               <div className="modal-2:rounded-[16px_0px_0px_16px] bg-background_main flex flex-col items-center justify-center w-full modal-2:w-1/2 py-3 px-2">
@@ -109,8 +114,8 @@ const LoginScreen = () => {
                   className="absolute flex flex-col items-center w-full top-28 modal-2:top-36"
                 >
                   <label
-                    hmtlFor="email"
                     className="w-4/5 text-left text-text-primary"
+                    htmlFor="email"
                   >
                     Email
                   </label>
@@ -126,12 +131,13 @@ const LoginScreen = () => {
                     ref={firstInput}
                   />
                   <label
-                    htmlFor="email"
                     className="w-4/5 text-left text-text-primary"
+                    htmlFor="password"
                   >
                     Password
                   </label>
                   <input
+                    id="password"
                     type="password"
                     name="password"
                     autoComplete="off"

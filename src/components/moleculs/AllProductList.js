@@ -6,10 +6,9 @@ const AllProductList = ({ products }) => {
         <>
           {
             products.length > 0 ? (
-                products.map(product => (
+                products.map((product, index) => (
                     <CardProduct
-                        key={product.id}
-                        id={product.id}
+                        key={index}
                         title={product.title}
                         price={product.price}
                         image={product.thumbnail}
