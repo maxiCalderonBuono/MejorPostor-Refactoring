@@ -10,7 +10,7 @@
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  height:  calc((100% - 30px) / 2) !important;;
+  height: 100%;
 
   /* Center slide text vertically */
   display: -webkit-box;

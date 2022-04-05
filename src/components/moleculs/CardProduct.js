@@ -11,7 +11,8 @@ const CardProduct = (props) => {
   const [{ bid }, handleInputChange] = useForm({ bid: "" });
 
   return (
-    <div className="items-center h-full  flex flex-col w-80 rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white" >
+    <div className="items-center h-fit flex flex-col w-72 rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white" >
+
       <div className="flex flex-col items-center content-center w-full">
         <img
           src={props.image}
@@ -54,6 +55,7 @@ const CardProduct = (props) => {
           />
         </div>
       </div>
+
     </div>
   );
 };
