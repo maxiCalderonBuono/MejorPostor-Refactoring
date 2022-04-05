@@ -1,6 +1,13 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../screens/Home";
+import AuthRouter from "./AuthRouter";
+
+
+//import { DashboardRouter } from "./DashboardRouter";
+//import { PrivateRoutes } from "./PrivateRoutes";
+//import { PublicRoutes } from "./PublicRoutes";
 
 export const AppRouter = () => {
   return (
