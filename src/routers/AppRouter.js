@@ -10,21 +10,14 @@ import {
 
 import { EditProfileScreen } from "../screens/EditProfileScreen";
 import Home from "../screens/Home";
+import { PrivateRoutes } from "./PrivateRoutes";
 // import { PrivateRoutes } from "./PrivateRoutes";
 
 //import { DashboardRouter } from "./DashboardRouter";
 //import { PrivateRoutes } from "./PrivateRoutes";
 //import { PublicRoutes } from "./PublicRoutes";
 
-const PrivateRoutes = ({ children }) => {
-  const { isAutho } = useSelector((state) => state.auth);
 
-  if (!isAutho) {
-    alert("You are not logged in");
-    return <Navigate to="/" />;
-  }
-  return children;
-};
 
 export const AppRouter = () => {
   return (

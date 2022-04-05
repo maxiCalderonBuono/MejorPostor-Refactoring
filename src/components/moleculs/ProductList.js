@@ -40,10 +40,9 @@ const ProductList = ({ products }) => {
         >
                 { products.length > 0 ? (
                     products.map(product => (
-                        <SwiperSlide>
+                        <SwiperSlide key={product.id}>
                             <CardProduct
                                 key={product.id}
-                                id={product.id}
                                 title={product.title}
                                 price={product.price}
                                 image={product.thumbnail}

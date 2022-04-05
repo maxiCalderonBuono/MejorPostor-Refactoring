@@ -126,7 +126,7 @@ const LoginScreen = () => {
                     ref={firstInput}
                   />
                   <label
-                    htmlFor="email"
+                    htmlFor="password"
                     className="w-4/5 text-left text-text-primary"
                   >
                     Password
