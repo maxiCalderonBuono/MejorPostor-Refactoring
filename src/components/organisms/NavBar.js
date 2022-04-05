@@ -186,7 +186,7 @@ export const NavBar = () => {
                         {checkingisAutho === true ? (
                           <>
                             <Menu.Item>
-                              <div className="flex ">
+                              <div className="flex">
                                 <img
                                   src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png"
                                   alt="icon-default"
@@ -256,7 +256,7 @@ export const NavBar = () => {
             </ul>
           </div>
         </div>
-      </div>
+      </div>z-aut
     </>
   );
 };
