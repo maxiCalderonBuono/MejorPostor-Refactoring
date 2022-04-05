@@ -13,17 +13,7 @@ export const AppRouter = () => {
   return (
     <Router>
       <Routes>
-        <Route
-          path="/"
-          element={
-              <Home />
-          }
-        />
-
-        <Route
-          path="/auth/*"
-          element = {<AuthRouter />}
-        />
+        <Route path="/" element={<Home />} />
 
         {/*<Route
           path="/*"
@@ -37,3 +27,5 @@ export const AppRouter = () => {
     </Router>
   );
 };
+
+export default AppRouter;
