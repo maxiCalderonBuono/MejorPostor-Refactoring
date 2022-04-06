@@ -1,6 +1,7 @@
 import React from "react";
 import ProductListContainer from "./ProductListContainer";
 import { Link } from "react-router-dom";
+import Loader from "../moleculs/Loader";
 
 const Novedades = () => {
   return (
@@ -23,9 +24,14 @@ const Novedades = () => {
           <p className="text-start text-slate-400">Subastas recién creadas</p>
         </div>
       </div>
-      <div className="flex items-center justify-center h-full">
-        <ProductListContainer />
-      </div>
+
+      {false ? (
+        <Loader />
+      ) : (
+        <div className="flex items-center justify-center h-full">
+          <ProductListContainer />
+        </div>
+      )}
     </div>
   );
 };
