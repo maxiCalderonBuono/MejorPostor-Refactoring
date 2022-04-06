@@ -1,6 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
-
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,12 +9,6 @@ import {
 import { EditProfileScreen } from "../screens/EditProfileScreen";
 import Home from "../screens/Home";
 import { PrivateRoutes } from "./PrivateRoutes";
-// import { PrivateRoutes } from "./PrivateRoutes";
-
-//import { DashboardRouter } from "./DashboardRouter";
-//import { PrivateRoutes } from "./PrivateRoutes";
-//import { PublicRoutes } from "./PublicRoutes";
-
 
 
 export const AppRouter = () => {
@@ -24,7 +16,14 @@ export const AppRouter = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/myprofile" element={<EditProfileScreen />} />
+        <Route
+          path="/myprofile"
+          element={
+            <PrivateRoutes>
+              <EditProfileScreen />
+            </PrivateRoutes>
+          }
+        />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </Router>
