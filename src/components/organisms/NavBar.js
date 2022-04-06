@@ -255,7 +255,6 @@ export const NavBar = () => {
           </div>
         </div>
       </div>
-      z-aut
     </>
   );
 };
