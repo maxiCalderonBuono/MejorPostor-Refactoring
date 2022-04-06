@@ -12,6 +12,7 @@ import { uiOpenLogin, uiOpenRegister } from "../../actions/modal";
 import LoginScreen from "./auth/LoginScreen";
 import RegisterScreen from "./auth/RegisterScreen";
 import { startLogout } from "../../actions/auth";
+import { Link } from "react-router-dom";
 
 export const NavBar = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -195,10 +196,12 @@ export const NavBar = () => {
 
                             <Menu.Item>
                               <div className="flex justify-center">
+                              <Link  to="/myprofile">
                                 <Button
                                   styles={`${styles.SUCCESS_BUTTON} p-3 text-2xl`}
                                   content="Editar perfil"
                                 />
+                                </Link>
                                 <button
                                   className="text-white rounded-[43px] bg-danger m-1  p-3 text-2xl"
                                   onClick={handleLogout}
