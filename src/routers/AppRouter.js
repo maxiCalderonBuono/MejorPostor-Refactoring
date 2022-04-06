@@ -31,14 +31,7 @@ export const AppRouter = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/myprofile"
-          element={
-            <PrivateRoutes>
-              <EditProfileScreen />
-            </PrivateRoutes>
-          }
-        />
+        <Route path="/myprofile" element={<EditProfileScreen />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </Router>
