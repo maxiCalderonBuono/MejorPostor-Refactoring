@@ -41,10 +41,11 @@ export const NavBar = () => {
         <div className="md:flex items-center justify-between bg-[#3196DA] py-2 md:px-10 px-7">
           <div className="flex items-center text-2xl cursor-pointer ">
             <img
-              src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648567242/Mejor%20postor/logo2_ehp6pn.png"
+              src="https://res.cloudinary.com/dvqlenul5/image/upload/v1649261563/logo_white_pbwilp.png"
               alt="Mejor postor"
               className="w-16"
             />
+            <p className="invisible ml-3 text-4xl font-bold text-white md:visible">Mejor postor</p>
           </div>
 
           <div
@@ -158,7 +159,7 @@ export const NavBar = () => {
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ">
                     <div>
-                      <Menu.Button className="flex text-sm bg-gray-800 rounded-full ">
+                      <Menu.Button className="flex text-sm text-white rounded-full ">
                         <img
                           src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png"
                           alt="icon-default"
@@ -196,7 +197,7 @@ export const NavBar = () => {
 
                             <Menu.Item>
                               <div className="flex justify-center">
-                              <Link  to="/myprofile">
+                              <Link   to="/myprofile">
                                 <Button
                                   styles={`${styles.SUCCESS_BUTTON} p-3 text-2xl`}
                                   content="Editar perfil"
@@ -255,6 +256,7 @@ export const NavBar = () => {
           </div>
         </div>
       </div>
+    
     </>
   );
 };
