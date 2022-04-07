@@ -8,16 +8,6 @@ const Home = () => {
   return (
     <div className="flex flex-col w-full">
       <NavBar />
-      {/* FALTAN LOS SIGUIENTES COMPONENTES
-
-      <Novedades />
-      <Último aviso />
-      Mientras queda ProductoListContainer en representación.
-      
-      Esto sería el total del Home, y lo que puede ver la persona sin logearse/registrarse
-
-       */}
-
       <MainScreen />
       <Footer />
       
