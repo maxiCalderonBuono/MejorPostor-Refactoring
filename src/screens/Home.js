@@ -2,11 +2,11 @@ import React from "react";
 import { NavBar } from "../components/organisms/NavBar";
 import MainScreen from "../screens/MainScreen";
 import Footer from "../components/organisms/Footer";
-import AllProductListContainer from "../components/moleculs/AllProductListContainer";
+
 
 const Home = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <NavBar />
       {/* FALTAN LOS SIGUIENTES COMPONENTES
 

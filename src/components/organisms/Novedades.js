@@ -1,11 +1,10 @@
-import React from "react";
 import ProductListContainer from "./ProductListContainer";
 import { Link } from "react-router-dom";
 import Loader from "../moleculs/Loader";
 
-const Novedades = () => {
+const Novedades = (props) => {
   return (
-    <div className="mt-20">
+    <div className="mt-20 md:min-w-full">
       <div className="grid grid-cols-3 grid-rows-2">
         <div className="col-span-2">
           <h3 className="text-4xl font-bold md:text-6xl text-start">
@@ -20,17 +19,16 @@ const Novedades = () => {
             Ver más.
           </Link>
         </div>
+
         <div className="col-span-2 mt-4">
           <p className="text-start text-slate-400">Subastas recién creadas</p>
         </div>
       </div>
 
-      {false ? (
+      {props.loading ? (
         <Loader />
       ) : (
-        <div className="flex items-center justify-center h-full">
-          <ProductListContainer />
-        </div>
+        <ProductListContainer products={props.data} />
       )}
     </div>
   );
