@@ -16,7 +16,7 @@ export const authReducer = (state = initialState, action) => {
     case types.isAuthoFinish:
       return {
         ...state,
-        isAutho: true,
+        isAutho: false,
       };
 
     case types.logout:
