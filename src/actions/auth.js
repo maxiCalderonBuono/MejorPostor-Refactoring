@@ -12,7 +12,13 @@ export const startLogin = (email, password) => {
     if (res.status === 200) {
       localStorage.setItem("token", body.token);
 
-      dispatch(login({ id: body.payload.id, username: body.payload.username }));
+      dispatch(
+        login({
+          id: body.payload.id,
+          username: body.payload.username,
+          email: body.payload.email,
+        })
+      );
       dispatch(uiCloseLogin());
     } else {
       console.log("error", body);
@@ -28,8 +34,8 @@ export const startRegister = (username, password, email) => {
         username,
         password,
         email,
-        name: "PruebaReg2",
-        surname: "reg2",
+        name: "HARCODED",
+        surname: "HARCODED",
         birthYear: 1990,
       },
       "POST"
@@ -50,9 +56,12 @@ export const startIsAuth = () => {
   return async (dispatch) => {
     const res = await fetchConToken("auth/renew");
     const body = await res.json();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 74c114db13616b1e0637105a5cff6dbf556779f9
     if (res.status === 200) {
       localStorage.setItem("token", body.token);
-
       dispatch(login({ id: body.id, username: body.username }));
       dispatch(uiCloseLogin());
     } else {

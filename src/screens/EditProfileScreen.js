@@ -1,14 +1,170 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
+import Button from "../components/atoms/Buttons/Button";
+import * as styles from "../components/atoms/Buttons/buttonStyles";
+import Footer from "../components/organisms/Footer";
 import { NavBar } from "../components/organisms/NavBar";
 
 export const EditProfileScreen = () => {
+  const { username: usernam, id, email } = useSelector((state) => state.auth);
+
+  const [username, setUsername] = useState(usernam);
+  const [emailchange, setEmail] = useState(email);
+  const [avatar, setAvatar] = useState(
+    "https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png"
+  );
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+
+  const handleSurnameChange = (e) => {
+    setSurname(e.target.value);
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handleAvatarChange = (e) => {
+    setAvatar(e.target.files[0]);
+  };
+
+  useEffect(() => {
+    async function getImageUrl() {
+      if (avatar) {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(avatar);
+        fileReader.onload = () => {
+          setAvatar(fileReader.result);
+        };
+      }
+    }
+    getImageUrl();
+  }, [avatar]);
+
+  const handleSubmitEdit = async (e) => {
+    e.preventDefault();
+
+    // const avatarURI = avatar ? await uploadimageFunction(avatar) : avatarUrl;
+
+    const profileUpdated = {
+      id,
+      username,
+      email,
+      avatar: "TODO: Subir avatar",
+      name,
+      surname,
+      birthYear: 1980,
+    };
+    console.log(profileUpdated);
+    // const res = await updateProfile(profileUpdated);
+
+    // if (res.data.ok) {
+    //   navigate(`/`);
+    // } else {
+    //   console.log("error")
+    // }
+  };
   return (
-    <div className="mt-20 flex flex-col">
-      <NavBar />
-      <div className="absolute top-20 left-0 right-0">
-        <h1>Editar mi informacion</h1>
+    <>
+      <div className="mt-40 mb-[17rem] flex flex-col">
+        <NavBar />
+        <div className="container bg-white my-5 rounded-lg p-8 shadow-lg">
+          <h1 className="text-black text-center text-4xl p-2 font-bold md:text-5xl mb-4">
+            Editar perfil
+          </h1>
+          <form className="" onSubmit={handleSubmitEdit}>
+            <div className="row">
+              <div className="flex items-center justify-center ">
+                <img
+                  src={avatar}
+                  alt="avatar"
+                  style={{
+                    width: "8rem",
+                    aspectRatio: "1",
+                    objectFit: "cover",
+                  }}
+                />
+                <input
+                  className="ml-3"
+                  id="fileAvatarid"
+                  name="fileAvatarid"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleAvatarChange}
+                />
+              </div>
+            </div>
+            <div className="flex my-3 items-center justify-center">
+              <input
+                className="w-full text-center rounded-lg focus:outline-none focus:border-2 focus:border-[#14ACDE] bg-background_main"
+                name="username"
+                placeholder={username || "Nombre de usuario"}
+                value={username}
+                id="username"
+                type="text"
+                onChange={handleUsernameChange}
+              />
+            </div>
+            <div className="flex my-3 items-center justify-center">
+              <input
+                className="w-full text-center rounded-lg focus:outline-none focus:border-2 focus:border-[#14ACDE] bg-background_main"
+                name="email"
+                placeholder={emailchange || "Email"}
+                value={emailchange}
+                id="email"
+                type="email"
+                onChange={handleEmailChange}
+              />
+            </div>
+            <div className="flex my-3 items-center justify-center">
+              <input
+                className="w-full text-center rounded-lg focus:outline-none focus:border-2 focus:border-[#14ACDE] bg-background_main"
+                name="name"
+                placeholder={name || "Nombre"}
+                value={name}
+                id="name"
+                type="text"
+                onChange={handleNameChange}
+              />
+            </div>
+            <div className="flex my-3 items-center justify-center">
+              <input
+                className="w-full text-center rounded-lg focus:outline-none focus:border-2 focus:border-[#14ACDE] bg-background_main"
+                name="surname"
+                placeholder={surname || "Apellido"}
+                value={surname}
+                id="surname"
+                type="text"
+                onChange={handleSurnameChange}
+              />
+            </div>
+            <div className="flex justify-evenly mt-5">
+              <Link to="/">
+                <Button
+                  styles={`${styles.DANGER_BUTTON} px-3 py-2`}
+                  type="button"
+                  content="Cancelar"
+                />
+              </Link>
+              <Button
+                styles={`${styles.SUCCESS_BUTTON} px-3 py-2`}
+                content="Guardar"
+                type="submit"
+              />
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
