@@ -8,17 +8,22 @@ import Footer from "../components/organisms/Footer";
 import { NavBar } from "../components/organisms/NavBar";
 
 export const EditProfileScreen = () => {
-  const { username: usernam, id } = useSelector((state) => state.auth);
+  const { username: usernam, id, email } = useSelector((state) => state.auth);
 
   const [username, setUsername] = useState(usernam);
-  const [email, setEmail] = useState("");
+  const [emailchange, setEmail] = useState(email);
   const [avatar, setAvatar] = useState(
     "https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png"
   );
-  const [newPassword, setNewPassword] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
 
-  const handlePasswordChange = (e) => {
-    setNewPassword(e.target.value);
+  const handleSurnameChange = (e) => {
+    setSurname(e.target.value);
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   };
 
   const handleEmailChange = (e) => {
@@ -48,18 +53,16 @@ export const EditProfileScreen = () => {
 
   const handleSubmitEdit = async (e) => {
     e.preventDefault();
-    console.log("submit");
 
     // const avatarURI = avatar ? await uploadimageFunction(avatar) : avatarUrl;
 
     const profileUpdated = {
       id,
       username,
-      password: newPassword,
       email,
-      avatar: "avatarURI",
-      name: "hardcoded",
-      surname: "hardcoded",
+      avatar: "TODO: Subir avatar",
+      name,
+      surname,
       birthYear: 1980,
     };
     console.log(profileUpdated);
@@ -86,7 +89,7 @@ export const EditProfileScreen = () => {
                   src={avatar}
                   alt="avatar"
                   style={{
-                    width: "10rem",
+                    width: "8rem",
                     aspectRatio: "1",
                     objectFit: "cover",
                   }}
@@ -110,52 +113,52 @@ export const EditProfileScreen = () => {
                 id="username"
                 type="text"
                 onChange={handleUsernameChange}
-                required
               />
             </div>
             <div className="flex my-3 items-center justify-center">
               <input
                 className="w-full text-center rounded-lg focus:outline-none focus:border-2 focus:border-[#14ACDE] bg-background_main"
                 name="email"
-                placeholder={email || "Email"}
-                value={email}
+                placeholder={emailchange || "Email"}
+                value={emailchange}
                 id="email"
                 type="email"
                 onChange={handleEmailChange}
-                required
               />
             </div>
             <div className="flex my-3 items-center justify-center">
               <input
                 className="w-full text-center rounded-lg focus:outline-none focus:border-2 focus:border-[#14ACDE] bg-background_main"
-                name="newpassword"
-                placeholder={newPassword || "Nueva contraseña"}
-                value={newPassword}
-                id="newpassword"
-                onChange={handlePasswordChange}
-                required
-                type="password"
+                name="name"
+                placeholder={name || "Nombre"}
+                value={name}
+                id="name"
+                type="text"
+                onChange={handleNameChange}
               />
             </div>
             <div className="flex my-3 items-center justify-center">
               <input
                 className="w-full text-center rounded-lg focus:outline-none focus:border-2 focus:border-[#14ACDE] bg-background_main"
-                name="passwordActual"
-                placeholder="Pone tu contraseña actual para confirmar los cambios"
-                id="passwordActual"
+                name="surname"
+                placeholder={surname || "Apellido"}
+                value={surname}
+                id="surname"
+                type="text"
+                onChange={handleSurnameChange}
               />
             </div>
-            <div className="flex justify-between mt-5">
+            <div className="flex justify-evenly mt-5">
               <Link to="/">
                 <Button
-                  styles={`${styles.DANGER_BUTTON} p-2`}
+                  styles={`${styles.DANGER_BUTTON} px-3 py-2`}
                   type="button"
                   content="Cancelar"
                 />
               </Link>
               <Button
-                styles={`${styles.SUCCESS_BUTTON} p-2 `}
-                content="Guardar cambios"
+                styles={`${styles.SUCCESS_BUTTON} px-3 py-2`}
+                content="Guardar"
                 type="submit"
               />
             </div>

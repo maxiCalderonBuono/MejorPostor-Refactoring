@@ -80,15 +80,15 @@ export const NavBar = () => {
                       {`Bienvenido ${username}`}
                     </h1>
                   </div>
-                  <div className="flex items-center justify-center mt-8 sm:hidden ">
+                  <div className="flex items-center justify-between mt-8 sm:hidden ">
                     <Link to="/myprofile">
                       <Button
-                        styles={`${styles.SUCCESS_BUTTON} p-2 `}
+                        styles={`${styles.SUCCESS_BUTTON} p-2 text-xl`}
                         content="Editar perfil"
                       />
                     </Link>
                     <button
-                      className="text-white rounded-[43px] bg-danger m-1  p-3 text-2xl"
+                      className="text-white rounded-[43px] bg-danger p-2 text-xl"
                       onClick={handleLogout}
                     >
                       Cerrar sesion
@@ -146,16 +146,20 @@ export const NavBar = () => {
                     key="mis-subastas"
                     className="text-xl sm:ml-4 sm:my-0 my-7"
                   >
-                    <button className="flex items-center text-gray-800 duration-500 cursor-pointer hover:text-gray-500 ">
-                      <FaBriefcase className="mr-1.5" />
-                      Mis subastas
-                    </button>
+                    <Link to="/myauctions">
+                      <button className="flex items-center text-gray-800 duration-500 cursor-pointer hover:text-gray-500 ">
+                        <FaBriefcase className="mr-1.5" />
+                        Mis subastas
+                      </button>
+                    </Link>
                   </li>
                   <li key="mis-pujas" className="text-xl sm:ml-4 sm:my-0 my-7">
-                    <button className="flex items-center text-gray-800 duration-500 cursor-pointer hover:text-gray-500">
-                      <GiTakeMyMoney className="mr-1.5" />
-                      Mis pujas
-                    </button>
+                    <Link to="/mybids">
+                      <button className="flex items-center text-gray-800 duration-500 cursor-pointer hover:text-gray-500">
+                        <GiTakeMyMoney className="mr-1.5" />
+                        Mis pujas
+                      </button>
+                    </Link>
                   </li>
                 </>
               ) : (
