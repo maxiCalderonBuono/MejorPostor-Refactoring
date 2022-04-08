@@ -157,6 +157,7 @@ const RegisterScreen = (props) => {
                         Password
                       </label>
                       <input
+                        id="password"
                         type="password"
                         name="rPassword"
                         autoComplete="off"

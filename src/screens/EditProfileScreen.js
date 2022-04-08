@@ -76,10 +76,9 @@ export const EditProfileScreen = () => {
   };
   return (
     <>
-      <div className="mt-40 mb-[17rem] flex flex-col">
-        <NavBar />
-        <div className="container bg-white my-5 rounded-lg p-8 shadow-lg">
-          <h1 className="text-black text-center text-4xl p-2 font-bold md:text-5xl mb-4">
+      <div className="mt-28 mb-[17rem] flex flex-col">
+        <div className="container p-8 my-5 bg-white rounded-lg shadow-lg">
+          <h1 className="p-2 mb-4 text-4xl font-bold text-center text-black md:text-5xl">
             Editar perfil
           </h1>
           <form className="" onSubmit={handleSubmitEdit}>
@@ -104,7 +103,7 @@ export const EditProfileScreen = () => {
                 />
               </div>
             </div>
-            <div className="flex my-3 items-center justify-center">
+            <div className="flex items-center justify-center my-3">
               <input
                 className="w-full text-center rounded-lg focus:outline-none focus:border-2 focus:border-[#14ACDE] bg-background_main"
                 name="username"
@@ -115,7 +114,7 @@ export const EditProfileScreen = () => {
                 onChange={handleUsernameChange}
               />
             </div>
-            <div className="flex my-3 items-center justify-center">
+            <div className="flex items-center justify-center my-3">
               <input
                 className="w-full text-center rounded-lg focus:outline-none focus:border-2 focus:border-[#14ACDE] bg-background_main"
                 name="email"
@@ -126,7 +125,7 @@ export const EditProfileScreen = () => {
                 onChange={handleEmailChange}
               />
             </div>
-            <div className="flex my-3 items-center justify-center">
+            <div className="flex items-center justify-center my-3">
               <input
                 className="w-full text-center rounded-lg focus:outline-none focus:border-2 focus:border-[#14ACDE] bg-background_main"
                 name="name"
@@ -137,7 +136,7 @@ export const EditProfileScreen = () => {
                 onChange={handleNameChange}
               />
             </div>
-            <div className="flex my-3 items-center justify-center">
+            <div className="flex items-center justify-center my-3">
               <input
                 className="w-full text-center rounded-lg focus:outline-none focus:border-2 focus:border-[#14ACDE] bg-background_main"
                 name="surname"
@@ -148,7 +147,7 @@ export const EditProfileScreen = () => {
                 onChange={handleSurnameChange}
               />
             </div>
-            <div className="flex justify-evenly mt-5">
+            <div className="flex mt-5 justify-evenly">
               <Link to="/">
                 <Button
                   styles={`${styles.DANGER_BUTTON} px-3 py-2`}

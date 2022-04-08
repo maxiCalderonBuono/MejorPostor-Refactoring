@@ -132,6 +132,7 @@ const LoginScreen = () => {
                     Password
                   </label>
                   <input
+                    id="password"
                     type="password"
                     name="password"
                     autoComplete="off"

@@ -64,11 +64,7 @@ export const NavBar = () => {
             shadow-xl rounded-lg bg-background_main absolute z-[-1] pr-5 pl-5 transition-all duration-500 ease-in ${
               openNav ? "top-20" : " top-[-490px]"
             }`}
-<<<<<<< HEAD
-
-=======
-              // onClick={(e) => console.log(e.target)}
->>>>>>> 74c114db13616b1e0637105a5cff6dbf556779f9
+              
             >
               {/* Dropdown User */}
 

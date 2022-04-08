@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 
-const controller = new AbortController();
-
-const signal = controller.signal;
-
 export const useFetch = (url) => {
-  
   const [state, setState] = useState({
     data: [],
     loading: true,
@@ -14,6 +9,10 @@ export const useFetch = (url) => {
 
   useEffect(() => {
     setState({ data: [], loading: true, error: null });
+
+    const controller = new AbortController();
+
+    const signal = controller.signal;
 
     fetch(url, { signal })
       .then((resp) => resp.json())
@@ -34,4 +33,5 @@ export const useFetch = (url) => {
   }, [url]);
 
   return state;
-};
+}; 
+
