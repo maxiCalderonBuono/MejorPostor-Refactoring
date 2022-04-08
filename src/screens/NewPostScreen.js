@@ -6,10 +6,10 @@ import Button from "../components/atoms/Buttons/Button";
 import * as styles from "../components/atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { SiGooglemaps } from "react-icons/si";
-import CardProduct from "../components/moleculs/CardProduct";
-import { useFetch } from "../hooks/useFetch";
+
+
 import { useForm } from "../hooks/userForm";
-import Footer from "../components/organisms/Footer";
+
 
 const NewPostScreen = () => {
   const URL = "https://apis.datos.gob.ar/georef/api/provincias";
@@ -28,6 +28,11 @@ const NewPostScreen = () => {
 
   const [showDate, setShowDate] = useState(() => false);
 
+  const [image, setImage] = useState(
+    () =>
+      "https://res.cloudinary.com/dvqlenul5/image/upload/v1649438952/My01MTIucG5n_y7qiqn.png"
+  );
+
   const [formValues, handleInputChange] = useForm({
     title: "",
     price: "",
@@ -38,12 +43,10 @@ const NewPostScreen = () => {
 
   const { title, price, location, aim, date } = formValues;
 
-  console.log(new Date(date));
   const vence = new Date(`${date}T00:00:00`).toLocaleDateString();
 
   const handleSubmit = (e) => {
     e.preventeDefault();
-    console.log("Hola");
   };
 
   const handleShowDate = () => {
@@ -55,6 +58,23 @@ const NewPostScreen = () => {
     setShowDate(false);
     setShowObjective(true);
   };
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  useEffect(() => {
+    async function getImageUrl() {
+      if (image) {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(image);
+        fileReader.onload = () => {
+          setImage(fileReader.result);
+        };
+      }
+    }
+    getImageUrl();
+  }, [image]);
 
   return (
     <>
@@ -200,19 +220,19 @@ const NewPostScreen = () => {
             </label>
             <input
               id="image"
-              type="file"
               name="image"
-              autoComplete="off"
-              placeholder="Subí una imagen"
+              type="file"
+              accept="image/*"
               className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
+              onChange={handleImageChange}
             />
           </form>
           <div className="mt-8 items-center h-1/2 flex flex-col w-[360px] rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
             <div className="flex flex-col items-center content-center w-full">
               <img
-                src="https://res.cloudinary.com/dvqlenul5/image/upload/v1649438952/My01MTIucG5n_y7qiqn.png"
+                src={image}
                 className="rounded-[12px_12px_30px_30px] mb-3 w-full h-38 object-fit"
-                alt="auto"
+                alt="product"
               />
               <h3 className="text-xl font-bold text-text-primary">{title}</h3>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
@@ -257,7 +277,6 @@ const NewPostScreen = () => {
           />
         </div>
       </div>
-     
     </>
   );
 };

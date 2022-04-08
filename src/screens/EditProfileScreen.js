@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 
 import Button from "../components/atoms/Buttons/Button";
 import * as styles from "../components/atoms/Buttons/buttonStyles";
-import Footer from "../components/organisms/Footer";
-import { NavBar } from "../components/organisms/NavBar";
+
 
 export const EditProfileScreen = () => {
   const { username: usernam, id, email } = useSelector((state) => state.auth);
