@@ -1,34 +1,36 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+
+const controller = new AbortController();
+
+const signal = controller.signal;
 
 export const useFetch = (url) => {
-  const isMounted = useRef(true);
-
-  useEffect(() => {
-    return () => {
-      isMounted.current = false;
-    };
-  }, []);
-
-  const [state, setState] = useState({
-    data: null,
-    loading: true,
-    error: null,
-  });
   
-  useEffect(() => {
-    setState({ data: null, loading: true, error: null });
+  const [state, setState] = useState({
+    data: [],
+    loading: true,
+    error: "Can not perform fetch request",
+  });
 
-    fetch(url)
+  useEffect(() => {
+    setState({ data: [], loading: true, error: null });
+
+    fetch(url, { signal })
       .then((resp) => resp.json())
-      .then((data) =>{
-        if (isMounted.current) {
-          setState({
-            loading: false,
-            error: null,
-            data: data.results,
-          });
-        }
+      .then((data) => {
+        setState({
+          loading: false,
+          error: null,
+          data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
+
+    return () => {
+      controller.abort();
+    };
   }, [url]);
 
   return state;

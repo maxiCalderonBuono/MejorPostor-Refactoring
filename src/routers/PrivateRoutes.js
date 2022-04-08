@@ -7,7 +7,6 @@ export const PrivateRoutes = ({ children }) => {
   const { isAutho } = useSelector((state) => state.auth);
 
   if (!isAutho) {
-    console.log(isAutho)
     alert("You are not logged in");
     return <Navigate to="/" />;
   }
