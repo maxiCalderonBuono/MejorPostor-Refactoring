@@ -10,13 +10,11 @@ export const MyBidsScreen = () => {
   const { data, loading, error } = useFetch(URL);
   return (
     <div className="flex flex-col w-full">
-      <NavBar />
       <div className="flex flex-col p-8">
         <div className="flex flex-col items-center justify-center">
           <MisOfertas data={data} loading={loading} />
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

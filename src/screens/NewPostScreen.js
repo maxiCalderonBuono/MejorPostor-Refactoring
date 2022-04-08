@@ -58,8 +58,8 @@ const NewPostScreen = () => {
 
   return (
     <>
-      <div className="w-3/4 p-8 mb-5 bg-white rounded-lg shadow-lg mt-28">
-        <h3 className="block w-full text-4xl font-bold">
+      <div className="w-3/4 p-8 mt-32 bg-white rounded-lg shadow-lg mb-14">
+        <h3 className="block w-full mb-8 text-4xl font-bold">
           <ImHammer2 className="mr-1.5 inline-block" />
           Crear nueva subasta
         </h3>

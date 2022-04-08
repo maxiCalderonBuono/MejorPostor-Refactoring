@@ -76,7 +76,7 @@ export const EditProfileScreen = () => {
   };
   return (
     <>
-      <div className="mt-28 mb-[17rem] flex flex-col">
+      <div className="flex flex-col w-1/2 mb-8 mt-28">
         <div className="container p-8 my-5 bg-white rounded-lg shadow-lg">
           <h1 className="p-2 mb-4 text-4xl font-bold text-center text-black md:text-5xl">
             Editar perfil

@@ -13,7 +13,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex justify-center w-full h-full md:h-full bg-background_main">
+    <div className="flex flex-col items-center justify-center w-full h-full md:h-full bg-background_main">
       <AppRouter />
     </div>
   );

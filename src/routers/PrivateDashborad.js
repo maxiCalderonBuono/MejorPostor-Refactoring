@@ -17,7 +17,7 @@ export const PrivateDashboard = () => {
         <Route path="/myauctions" element={<MyAuctionsScreen />} />
         <Route path="/mybids" element={<MyBidsScreen />} />
       </Routes>
-    
+      <Footer/>
     </>
   );
 };
