@@ -131,10 +131,6 @@ const LoginScreen = () => {
                     ref={firstInput}
                   />
                   <label
-<<<<<<< HEAD
-                    htmlFor="password"
-=======
->>>>>>> 6d6906c6814cfc3ba565b9ec3294a074d46b4a83
                     className="w-4/5 text-left text-text-primary"
                     htmlFor="password"
                   >
