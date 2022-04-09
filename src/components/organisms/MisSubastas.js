@@ -1,6 +1,6 @@
 import React from "react";
 import Loader from "../moleculs/Loader";
-import ProductListContainer from "./ProductListContainer";
+import ProductListContainer from "../moleculs/ProductListContainer";
 import { FaBriefcase } from "react-icons/fa";
 
 export const MisSubastas = (props) => {
