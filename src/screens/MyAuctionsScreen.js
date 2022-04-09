@@ -11,7 +11,7 @@ export const MyAuctionsScreen = () => {
     <div className="flex flex-col w-full">
       <div className="flex flex-col p-8">
         <div className="flex flex-col items-center justify-center">
-          <MisSubastas data={data} loading={loading} />
+          <MisSubastas data={data.results} loading={loading} />
         </div>
       </div>
     </div>
