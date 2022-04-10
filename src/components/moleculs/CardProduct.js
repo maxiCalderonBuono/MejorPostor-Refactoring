@@ -5,6 +5,7 @@ import * as styles from "../atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { FaPlusCircle } from "react-icons/fa";
 import { FaMinusCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 //Card de los productos. EN PROCESO.
 const CardProduct = (props) => {
@@ -53,6 +54,7 @@ const CardProduct = (props) => {
             styles={`${styles.SUCCESS_BUTTON} w-3/4 p-1`}
             content="Pujar"
           />
+          <Link className="text-lg text-right text-indigo-900 item-end hover:underline underline-offset-1" to={`/producto/${props.id}`}>Ver detalles</Link>
         </div>
       </div>
 
