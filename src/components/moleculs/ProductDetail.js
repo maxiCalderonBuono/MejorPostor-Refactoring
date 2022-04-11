@@ -5,14 +5,14 @@ const ProductDetail = ({ detail }) => {
         <>
     <div className="flex flex-col h-full w-full items-center justify-center p-10">
         <div className="flex flex-col w-full items-center justify-center m-20">
-            <img className="h-48 w-80 border-b-4 border-bg-lime-700" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="" />
+            <img className="h-48 w-80 border-b-4 border-bg-lime-700" src={detail.thumbnail} alt={detail.title} />
         </div>
         <div className="p-4 m-3  rounded-lg bg-lime-400 hover:bg-lime-200">
             <a className="text-lg font-bold text-right text-white item-end" href="">Ver galería de imágenes</a>
         </div>
         <div className="flex flex-wrap justify-center items-center">
             <div className="bg-lime-400 border border-bg-lime-700 text-white font-bold rounded-lg p-10 transform hover:scale-125 transition-all">
-                <h3 className="text-5xl">Detalles del producto:</h3>
+                <h3 className="text-5xl">Detalles del producto: {detail.title}</h3>
                 <div className="flex flex-wrap">
                     <div className="mr-20">
                         <p className="text-lg mt-5">detalle 1</p>

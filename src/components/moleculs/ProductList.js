@@ -46,6 +46,7 @@ const ProductList = ({ products }) => {
                                 title={product.title}
                                 price={product.price}
                                 image={product.thumbnail}
+                                id={product.id}
                             />
                         </SwiperSlide>
                     ))
