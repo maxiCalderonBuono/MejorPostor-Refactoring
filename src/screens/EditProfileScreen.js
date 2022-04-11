@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { startEditUser } from "../actions/users";
 
 import Button from "../components/atoms/Buttons/Button";
 import * as styles from "../components/atoms/Buttons/buttonStyles";
 
-
 export const EditProfileScreen = () => {
+  const dispatch = useDispatch();
   const { username: usernam, id, email } = useSelector((state) => state.auth);
 
   const [username, setUsername] = useState(usernam);
@@ -49,11 +51,15 @@ export const EditProfileScreen = () => {
     }
     getImageUrl();
   }, [avatar]);
-
+  const navigate = useNavigate();
   const handleSubmitEdit = async (e) => {
     e.preventDefault();
 
     // const avatarURI = avatar ? await uploadimageFunction(avatar) : avatarUrl;
+    if (!name || !surname || !username) {
+      toast.error("Por favor completa todos los campos");
+      return;
+    }
 
     const profileUpdated = {
       id,
@@ -64,7 +70,13 @@ export const EditProfileScreen = () => {
       surname,
       birthYear: 1980,
     };
-    console.log(profileUpdated);
+
+    if (profileUpdated) {
+      dispatch(startEditUser(profileUpdated));
+      const toastload = toast.loading("Actualizando perfil...");
+      navigate("/");
+      toast.dismiss(toastload);
+    }
     // const res = await updateProfile(profileUpdated);
 
     // if (res.data.ok) {

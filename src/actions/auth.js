@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { fetchConToken, fetchSinToken } from "../helpers/fetch";
 import { types } from "../types/types";
 import { uiCloseLogin, uiCloseRegister } from "./modal";
@@ -8,10 +9,9 @@ export const startLogin = (email, password) => {
   return async (dispatch) => {
     const res = await fetchSinToken("auth/signin", { email, password }, "POST");
     const body = await res.json();
-    console.log(body);
     if (res.status === 200) {
       localStorage.setItem("token", body.token);
-
+      const loginToast = toast.loading("Iniciando sesión...");
       dispatch(
         login({
           id: body.payload.id,
@@ -19,9 +19,11 @@ export const startLogin = (email, password) => {
           email: body.payload.email,
         })
       );
+      toast.dismiss(loginToast);
       dispatch(uiCloseLogin());
+      toast.success(`Bienvenido ${body.payload.username}`);
     } else {
-      console.log("error", body);
+      toast.error(body.message);
     }
   };
 };
@@ -45,10 +47,13 @@ export const startRegister = (username, password, email) => {
     if (res.status === 200) {
       localStorage.setItem("token", body.token);
       dispatch(login({ id: body.data.id, username: body.data.username }));
+      toast.success(`Bienvenido ${body.data.username}`);
+
       dispatch(uiCloseRegister());
     } else {
-      console.log("error", body);
+      toast.error(body.message);
     }
+    toast.info("Por favor verifica tu correo electronico");
   };
 };
 
@@ -74,6 +79,7 @@ export const startLogout = () => {
   return (dispatch) => {
     localStorage.removeItem("token");
     dispatch(logout());
+    toast.success("Sesión cerrada");
   };
 };
 const logout = () => ({ type: types.logout });

@@ -10,6 +10,7 @@ import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
 import { startLogin } from "../../../actions/auth";
 import { uiCloseLogin, uiOpenRegister } from "../../../actions/modal";
+import toast, { Toaster } from "react-hot-toast";
 
 const LoginScreen = () => {
   const firstInput = useRef(null);
@@ -25,6 +26,15 @@ const LoginScreen = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    if (!email) {
+      toast.error("El email es obligatorio");
+      return;
+    }
+    if (!password) {
+      toast.error("La contraseña es obligatoria");
+      return;
+    }
+
     dispatch(startLogin(email, password));
   };
 
@@ -169,6 +179,7 @@ const LoginScreen = () => {
           </Transition.Child>
         </Dialog>
       </Transition>
+      <Toaster />
     </>
   );
 };

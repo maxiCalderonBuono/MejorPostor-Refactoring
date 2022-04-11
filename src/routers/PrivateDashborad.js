@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Routes, Route } from "react-router-dom";
 import Footer from "../components/organisms/Footer";
 import { NavBar } from "../components/organisms/NavBar";
@@ -17,7 +18,7 @@ export const PrivateDashboard = () => {
         <Route path="/myauctions" element={<MyAuctionsScreen />} />
         <Route path="/mybids" element={<MyBidsScreen />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   );
 };

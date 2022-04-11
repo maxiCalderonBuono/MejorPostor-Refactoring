@@ -10,6 +10,7 @@ import * as styles from "../../atoms/Buttons/buttonStyles";
 import { uiCloseRegister, uiOpenLogin } from "../../../actions/modal";
 import { useForm } from "../../../hooks/userForm";
 import { startRegister } from "../../../actions/auth";
+import toast from "react-hot-toast";
 
 const RegisterScreen = (props) => {
   const firstInput = useRef(null);
@@ -38,7 +39,26 @@ const RegisterScreen = (props) => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+    if (rPassword !== rCPassword) {
+      toast.error("Las contraseñas no coinciden");
+      return;
+    }
+    if (!rName) {
+      toast.error("El nombre es obligatorio");
+      return;
+    }
+    if (!rEmail) {
+      toast.error("El email es obligatorio");
+      return;
+    }
+
+    if (rPassword.length < 6) {
+      toast.error("La contraseña debe tener al menos 6 caracteres");
+      return;
+    }
+    const registerToast = toast.loading("Registrando usuario...");
     dispatch(startRegister(rName, rPassword, rEmail));
+    toast.dismiss(registerToast);
   };
 
   return (
@@ -127,6 +147,7 @@ const RegisterScreen = (props) => {
                         onChange={handleRegisterInputChange}
                         value={rName}
                         name="rName"
+                        required
                       />
                     </div>
                     <div className="flex flex-col items-center w-full modal-1:w-1/2">
@@ -145,6 +166,7 @@ const RegisterScreen = (props) => {
                         className="w-5/6 t h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-4 p-2 text-sm"
                         onChange={handleRegisterInputChange}
                         value={rEmail}
+                        required
                       />
                     </div>
                   </div>
@@ -165,6 +187,7 @@ const RegisterScreen = (props) => {
                         className="w-5/6 t h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-4 p-2 text-sm"
                         onChange={handleRegisterInputChange}
                         value={rPassword}
+                        required
                       />
                     </div>
                     <div className="flex flex-col items-center w-full modal-1:w-1/2">
@@ -183,6 +206,7 @@ const RegisterScreen = (props) => {
                         className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-4 p-2 text-sm"
                         onChange={handleRegisterInputChange}
                         value={rCPassword}
+                        required
                       />
                     </div>
                   </div>
