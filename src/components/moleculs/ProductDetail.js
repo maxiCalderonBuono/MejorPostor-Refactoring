@@ -4,8 +4,9 @@ const ProductDetail = ({ detail }) => {
     return (
         <>
     <div className="flex flex-col h-full w-full items-center justify-center p-10">
+        <h1>{detail.title}</h1>
         <div className="flex flex-col w-full items-center justify-center m-20">
-            <img className="h-48 w-80 border-b-4 border-bg-lime-700" src={detail.thumbnail} alt={detail.title} />
+            <img className="h-60 w-full border-b-4 border-bg-lime-700" src={detail.thumbnail} alt={detail.title} />
         </div>
         <div className="p-4 m-3  rounded-lg bg-lime-400 hover:bg-lime-200">
             <a className="text-lg font-bold text-right text-white item-end" href="">Ver galería de imágenes</a>

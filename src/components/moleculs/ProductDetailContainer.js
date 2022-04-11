@@ -7,8 +7,7 @@ const ProductDetailContainer = () =>{
     const [data, setData] = useState([]);
     const [detail, setDetail] = useState({});
     const {id} = useParams();
-    console.log(detail);
-    console.log(id);
+    console.log("ESTOS SON LOS DETALLES: " + detail);
     const URL = "https://api.mercadolibre.com/sites/MLA/search?q=auto";
     
 
@@ -22,11 +21,10 @@ const ProductDetailContainer = () =>{
     }, []);
 
     useEffect(() => {
-        fetch(data.find(item => item.id === id))
-        .then(res => setDetail(res))
-        .then(console.log(detail))
-        .catch(err => alert(err))
-     },[])
+        const productDetail = data.filter(item=> item.id === id)
+        setDetail(productDetail)
+     },[data, id])
+
     return(
         <>
             <ProductDetail detail={detail}/>
