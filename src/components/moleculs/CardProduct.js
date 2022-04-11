@@ -5,13 +5,14 @@ import * as styles from "../atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { FaPlusCircle } from "react-icons/fa";
 import { FaMinusCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 //Card de los productos. EN PROCESO.
 const CardProduct = (props) => {
   const [{ bid }, handleInputChange] = useForm({ bid: "" });
 
   return (
-    <div className="items-center h-fit flex flex-col w-72 rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white" >
+    <div className="items-center h-fit flex flex-col w-72 rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
 
       <div className="flex flex-col items-center content-center w-full">
         <img
@@ -53,6 +54,7 @@ const CardProduct = (props) => {
             styles={`${styles.SUCCESS_BUTTON} w-3/4 p-1`}
             content="Pujar"
           />
+          <Link className="text-lg text-right text-indigo-900 item-end hover:underline underline-offset-1" to={`/producto/${props.id}`}>Ver detalles</Link>
         </div>
       </div>
 

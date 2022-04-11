@@ -20,6 +20,15 @@ module.exports = {
         "modal-2": "700px",
         "modal-1": "875px",
       },
+      animation: {
+        "pulse-fast" : "pulse 1.7s cubic-bezier(0.4, 0, 0.6, 1) infinite"
+      },
+      keyframes: {
+        pulse: {
+          '0%, 100%': { opacity: 0.4 },
+          '50%': { opacity: 0 },
+        }
+      }
     },
   },
   plugins: [],

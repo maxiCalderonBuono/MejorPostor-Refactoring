@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { uiOpenLogin, uiOpenRegister } from "../../actions/modal";
 import LoginScreen from "./auth/LoginScreen";
 import RegisterScreen from "./auth/RegisterScreen";
+import { startLogout } from "../../actions/auth";
+import { Link } from "react-router-dom";
 
 export const NavBar = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -19,6 +21,10 @@ export const NavBar = () => {
   const dispatch = useDispatch();
 
   const { isAutho, username } = useSelector((state) => state.auth);
+
+  const handleLogout = () => {
+    dispatch(startLogout());
+  };
 
   const openLogin = () => {
     dispatch(uiOpenLogin());
@@ -31,16 +37,20 @@ export const NavBar = () => {
     <>
       <LoginScreen />
       <RegisterScreen />
-
       <div className="fixed top-0 left-0 z-20 w-full shadow-md">
         <div className="md:flex items-center justify-between bg-[#3196DA] py-2 md:px-10 px-7">
-          <div className="flex items-center text-2xl cursor-pointer ">
-            <img
-              src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648567242/Mejor%20postor/logo2_ehp6pn.png"
-              alt="Mejor postor"
-              className="w-16"
-            />
-          </div>
+          <Link to="/">
+            <div className="flex items-center text-2xl cursor-pointer ">
+              <img
+                src="https://res.cloudinary.com/dvqlenul5/image/upload/v1649261563/logo_white_pbwilp.png"
+                alt="Mejor postor"
+                className="w-16"
+              />
+              <p className="invisible ml-3 text-4xl font-bold text-white md:visible">
+                Mejor postor
+              </p>
+            </div>
+          </Link>
 
           <div
             onClick={() => setOpenNav(!openNav)}
@@ -48,12 +58,13 @@ export const NavBar = () => {
           >
             {openNav ? <AiOutlineClose /> : <AiOutlineMenu />}
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center ">
             <ul
               className={`sm:flex sm:shadow-none sm:items-center sm:bg-[#3196DA] sm:pb-0 sm:static sm:z-auto sm:w-auto sm:pl-0
             shadow-xl rounded-lg bg-background_main absolute z-[-1] pr-5 pl-5 transition-all duration-500 ease-in ${
               openNav ? "top-20" : " top-[-490px]"
             }`}
+              
             >
               {/* Dropdown User */}
 
@@ -69,15 +80,19 @@ export const NavBar = () => {
                       {`Bienvenido ${username}`}
                     </h1>
                   </div>
-                  <div className="flex items-center justify-center mt-8 sm:hidden ">
-                    <Button
-                      styles={`${styles.SUCCESS_BUTTON} p-2 `}
-                      content="Editar perfil"
-                    />
-                    <Button
-                      styles={`${styles.DANGER_BUTTON} p-2 `}
-                      content="Cerrar sesión"
-                    />
+                  <div className="flex items-center justify-between mt-8 sm:hidden ">
+                    <Link to="/myprofile">
+                      <Button
+                        styles={`${styles.SUCCESS_BUTTON} p-2 text-xl`}
+                        content="Editar perfil"
+                      />
+                    </Link>
+                    <button
+                      className="text-white rounded-[43px] bg-danger p-2 text-xl"
+                      onClick={handleLogout}
+                    >
+                      Cerrar sesion
+                    </button>
                   </div>
                 </>
               ) : (
@@ -120,25 +135,31 @@ export const NavBar = () => {
                     key="crear-subasta"
                     className="text-xl sm:ml-4 sm:my-0 my-7 "
                   >
-                    <button className="flex items-center text-gray-800 duration-500 cursor-pointer hover:text-gray-500">
-                      <ImHammer2 className="mr-1.5" />
-                      Crear subasta
-                    </button>
+                    <Link to="/newbid">
+                      <button className="flex items-center text-gray-800 duration-500 cursor-pointer hover:text-gray-500">
+                        <ImHammer2 className="mr-1.5" />
+                        Crear subasta
+                      </button>
+                    </Link>
                   </li>
                   <li
                     key="mis-subastas"
                     className="text-xl sm:ml-4 sm:my-0 my-7"
                   >
-                    <button className="flex items-center text-gray-800 duration-500 cursor-pointer hover:text-gray-500 ">
-                      <FaBriefcase className="mr-1.5" />
-                      Mis subastas
-                    </button>
+                    <Link to="/myauctions">
+                      <button className="flex items-center text-gray-800 duration-500 cursor-pointer hover:text-gray-500 ">
+                        <FaBriefcase className="mr-1.5" />
+                        Mis subastas
+                      </button>
+                    </Link>
                   </li>
                   <li key="mis-pujas" className="text-xl sm:ml-4 sm:my-0 my-7">
-                    <button className="flex items-center text-gray-800 duration-500 cursor-pointer hover:text-gray-500">
-                      <GiTakeMyMoney className="mr-1.5" />
-                      Mis pujas
-                    </button>
+                    <Link to="/mybids">
+                      <button className="flex items-center text-gray-800 duration-500 cursor-pointer hover:text-gray-500">
+                        <GiTakeMyMoney className="mr-1.5" />
+                        Mis pujas
+                      </button>
+                    </Link>
                   </li>
                 </>
               ) : (
@@ -151,7 +172,7 @@ export const NavBar = () => {
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ">
                     <div>
-                      <Menu.Button className="flex text-sm bg-gray-800 rounded-full ">
+                      <Menu.Button className="flex text-sm text-white rounded-full ">
                         <img
                           src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png"
                           alt="icon-default"
@@ -189,14 +210,18 @@ export const NavBar = () => {
 
                             <Menu.Item>
                               <div className="flex justify-center">
-                                <Button
-                                  styles={`${styles.SUCCESS_BUTTON} p-3 text-2xl`}
-                                  content="Editar perfil"
-                                />
-                                <Button
-                                  styles={`${styles.DANGER_BUTTON} p-3 text-2xl`}
-                                  content="Cerrar sesión"
-                                />
+                                <Link to="/myprofile">
+                                  <Button
+                                    styles={`${styles.SUCCESS_BUTTON} p-3 text-2xl`}
+                                    content="Editar perfil"
+                                  />
+                                </Link>
+                                <button
+                                  className="text-white rounded-[43px] bg-danger m-1  p-3 text-2xl"
+                                  onClick={handleLogout}
+                                >
+                                  Cerrar sesion
+                                </button>
                               </div>
                             </Menu.Item>
                           </>
@@ -243,7 +268,7 @@ export const NavBar = () => {
             </ul>
           </div>
         </div>
-      </div>z-aut
+      </div>
     </>
   );
 };

@@ -13,8 +13,16 @@ export const authReducer = (state = initialState, action) => {
         ...action.payload,
       };
 
+    case types.isAuthoFinish:
+      return {
+        ...state,
+        isAutho: false,
+      };
+
     case types.logout:
-      return {};
+      return {
+        isAutho: false,
+      };
 
     default:
       return state;

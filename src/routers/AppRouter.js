@@ -1,28 +1,30 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Home from "../screens/Home";
-import AuthRouter from "./AuthRouter";
-
-
-//import { DashboardRouter } from "./DashboardRouter";
-//import { PrivateRoutes } from "./PrivateRoutes";
-//import { PublicRoutes } from "./PublicRoutes";
+import { PrivateRoutes } from "./PrivateRoutes";
+import { PrivateDashboard} from "./PrivateDashborad"
 
 export const AppRouter = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-
-        {/*<Route
+        <Route
           path="/*"
           element={
             <PrivateRoutes>
-              <DashboardRouter />
+             < PrivateDashboard />
             </PrivateRoutes>
           }
-        /> */}
+        />
+        <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </Router>
   );

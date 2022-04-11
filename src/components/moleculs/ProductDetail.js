@@ -5,7 +5,7 @@ const ProductDetail = ({ detail }) => {
         <>
     <div className="flex flex-col h-full w-full items-center justify-center p-10">
         <div className="flex flex-col w-full items-center justify-center m-20">
-            <img className="h-48 w-96 border-b-4 border-bg-lime-700" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="" />
+            <img className="h-48 w-80 border-b-4 border-bg-lime-700" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="" />
         </div>
         <div className="p-4 m-3  rounded-lg bg-lime-400 hover:bg-lime-200">
             <a className="text-lg font-bold text-right text-white item-end" href="">Ver galería de imágenes</a>
