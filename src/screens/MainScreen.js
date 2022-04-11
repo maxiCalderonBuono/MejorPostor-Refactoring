@@ -9,8 +9,6 @@ const MainScreen = () => {
 
   const { data, loading } = useFetch(URL);
 
-  console.log(data)
-
   return (
     <div className="flex flex-col p-8">
 

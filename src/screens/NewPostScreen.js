@@ -7,14 +7,20 @@ import * as styles from "../components/atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { SiGooglemaps } from "react-icons/si";
 
-
 import { useForm } from "../hooks/userForm";
-
+import { useFetch } from "../hooks/useFetch";
 
 const NewPostScreen = () => {
   const URL = "https://apis.datos.gob.ar/georef/api/provincias";
 
-  const [products, setProducts] = useState([]);
+  const { data, loading } = useFetch(URL);
+
+  console.log(data);
+  console.log(loading);
+
+  const provincias = data.provincias;
+
+  /*const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetch(URL)
@@ -22,7 +28,7 @@ const NewPostScreen = () => {
       .then((data) => {
         setProducts(data.provincias);
       });
-  }, []);
+  }, []);*/
 
   const [showObjective, setShowObjective] = useState(() => false);
 
@@ -117,14 +123,14 @@ const NewPostScreen = () => {
                 onChange={handleInputChange}
               >
                 <option value="">Selecciona una provincia</option>
-                {products.length > 0 ? (
-                  products.map((provincia) => (
+                {loading ? (
+                  <option>Cargando Productos...</option>
+                ) : (
+                  provincias.map((provincia) => (
                     <option key={provincia.id} value={provincia.nombre}>
                       {provincia.nombre}
                     </option>
                   ))
-                ) : (
-                  <option>Cargando Productos...</option>
                 )}
               </select>
             </label>
