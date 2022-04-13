@@ -119,7 +119,7 @@ const LoginScreen = () => {
                   className="absolute flex flex-col items-center w-full top-28 modal-2:top-36"
                 >
                   <label
-                    hmtlFor="email"
+                    htmlFor="email"
                     className="w-4/5 text-left text-text-primary"
                   >
                     Email

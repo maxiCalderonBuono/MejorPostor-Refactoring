@@ -1,5 +1,5 @@
 import { Menu, Transition } from "@headlessui/react";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect} from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { FaBriefcase } from "react-icons/fa";
 import { GiTakeMyMoney } from "react-icons/gi";
@@ -15,6 +15,8 @@ import { startLogout } from "../../actions/auth";
 import { Link } from "react-router-dom";
 
 export const NavBar = () => {
+
+
   const [openNav, setOpenNav] = useState(false);
 
   //Hago el dispatch de la apertura del modal de Login y Registro

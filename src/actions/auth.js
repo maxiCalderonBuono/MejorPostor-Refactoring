@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import { fetchConToken, fetchSinToken } from "../helpers/fetch";
 import { types } from "../types/types";
-import { uiCloseLogin, uiCloseRegister } from "./modal";
+import { uiCloseLogin, uiCloseRegister, uiIsNotLoading } from "./modal";
 
 const login = (user) => ({ type: types.login, payload: user });
 
@@ -28,7 +28,7 @@ export const startLogin = (email, password) => {
   };
 };
 
-export const startRegister = (username, password, email) => {
+export const startRegister = (username, password, email, reset) => {
   return async (dispatch) => {
     const res = await fetchSinToken(
       "auth/signup",
@@ -39,6 +39,7 @@ export const startRegister = (username, password, email) => {
         name: "HARCODED",
         surname: "HARCODED",
         birthYear: 1990,
+        image: "HARDCODE"
       },
       "POST"
     );
@@ -48,12 +49,13 @@ export const startRegister = (username, password, email) => {
       localStorage.setItem("token", body.token);
       dispatch(login({ id: body.data.id, username: body.data.username }));
       toast.success(`Bienvenido ${body.data.username}`);
-
+      dispatch(uiIsNotLoading());
       dispatch(uiCloseRegister());
     } else {
       toast.error(body.message);
     }
-    toast.info("Por favor verifica tu correo electronico");
+    reset();
+    toast.success("Por favor verifica tu correo electronico");
   };
 };
 

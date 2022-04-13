@@ -12,4 +12,7 @@ export const types = {
 
   uiOpenRegister: "[UI] Open Register",
   uiCloseRegister: "[UI] Close Register",
+
+  uiIsLoading: "[UI] Loading",
+  uiIsNotLoading: "[UI] Is Not Loading"
 };

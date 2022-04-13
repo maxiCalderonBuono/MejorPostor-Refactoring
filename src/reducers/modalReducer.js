@@ -3,6 +3,7 @@ import { types } from "../types/types";
 const initialState = {
   ModalLogin: false,
   ModalRegister: false,
+  Loading: false,
 };
 
 export const modalReducer = (state = initialState, action) => {
@@ -28,6 +29,18 @@ export const modalReducer = (state = initialState, action) => {
       return {
         ...state,
         ModalRegister: false,
+      };
+
+    case types.uiIsLoading:
+      return {
+        ...state,
+        Loading: true,
+      };
+
+    case types.uiIsNotLoading:
+      return {
+        ...state,
+        Loading: false,
       };
 
     default:

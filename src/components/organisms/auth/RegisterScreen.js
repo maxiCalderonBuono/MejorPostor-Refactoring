@@ -7,38 +7,48 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
-import { uiCloseRegister, uiOpenLogin } from "../../../actions/modal";
+import {
+  uiCloseRegister,
+  uiIsLoading,
+  uiOpenLogin,
+} from "../../../actions/modal";
 import { useForm } from "../../../hooks/userForm";
 import { startRegister } from "../../../actions/auth";
 import toast from "react-hot-toast";
+import ButtonSpinner from "../../atoms/ButtonSpinner";
 
 const RegisterScreen = (props) => {
   const firstInput = useRef(null);
 
   const dispatch = useDispatch();
 
-  const { ModalRegister } = useSelector((state) => state.ui);
+  const { ModalRegister, Loading } = useSelector((state) => state.ui);
 
-  const [formRegisterValues, handleRegisterInputChange] = useForm({
+  const [formRegisterValues, handleRegisterInputChange, reset] = useForm({
     rName: "",
     rEmail: "",
     rPassword: "",
     rCPassword: "",
   });
 
+
   const { rName, rEmail, rPassword, rCPassword } = formRegisterValues;
 
   const onClosed = () => {
     dispatch(uiCloseRegister());
+    reset();
   };
 
   const openLogin = () => {
     dispatch(uiCloseRegister());
+    reset();
     dispatch(uiOpenLogin());
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
+    dispatch(uiIsLoading());
+
     if (rPassword !== rCPassword) {
       toast.error("Las contraseñas no coinciden");
       return;
@@ -56,9 +66,9 @@ const RegisterScreen = (props) => {
       toast.error("La contraseña debe tener al menos 6 caracteres");
       return;
     }
-    const registerToast = toast.loading("Registrando usuario...");
-    dispatch(startRegister(rName, rPassword, rEmail));
-    toast.dismiss(registerToast);
+    /*const registerToast = toast.loading("Registrando usuario...");*/
+    dispatch(startRegister(rName, rPassword, rEmail, reset));
+    /*toast.dismiss(registerToast);*/
   };
 
   return (
@@ -213,8 +223,13 @@ const RegisterScreen = (props) => {
 
                   <div className="flex flex-col items-center w-full mt-4 bg-white modal-2:mt-4">
                     <Button
-                      styles={`${styles.PRIMARY_BUTTON} text-xl modal-2:text-2xl h-9 w-4/5`}
-                      content="Registrarse"
+                      styles={`${
+                        styles.PRIMARY_BUTTON
+                      } text-xl modal-2:text-2xl h-9 w-4/5 ${
+                        Loading ? "opacity-70" : ""
+                      }`}
+                      content={Loading ? <ButtonSpinner /> : "Registrar"}
+                      disabled={Loading}
                     />
                     <p className="mt-8 modal-2:mt-4 text-light-blue">
                       ¿Ya tienes una cuenta?
