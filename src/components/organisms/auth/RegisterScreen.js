@@ -7,38 +7,68 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
-import { uiCloseRegister, uiOpenLogin } from "../../../actions/modal";
+import {
+  uiCloseRegister,
+  uiIsLoading,
+  uiOpenLogin,
+} from "../../../actions/modal";
 import { useForm } from "../../../hooks/userForm";
 import { startRegister } from "../../../actions/auth";
+import toast from "react-hot-toast";
+import ButtonSpinner from "../../atoms/ButtonSpinner";
 
 const RegisterScreen = (props) => {
   const firstInput = useRef(null);
 
   const dispatch = useDispatch();
 
-  const { ModalRegister } = useSelector((state) => state.ui);
+  const { ModalRegister, Loading } = useSelector((state) => state.ui);
 
-  const [formRegisterValues, handleRegisterInputChange] = useForm({
+  const [formRegisterValues, handleRegisterInputChange, reset] = useForm({
     rName: "",
     rEmail: "",
     rPassword: "",
     rCPassword: "",
   });
 
+
   const { rName, rEmail, rPassword, rCPassword } = formRegisterValues;
 
   const onClosed = () => {
     dispatch(uiCloseRegister());
+    reset();
   };
 
   const openLogin = () => {
     dispatch(uiCloseRegister());
+    reset();
     dispatch(uiOpenLogin());
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    dispatch(startRegister(rName, rPassword, rEmail));
+    dispatch(uiIsLoading());
+
+    if (rPassword !== rCPassword) {
+      toast.error("Las contraseñas no coinciden");
+      return;
+    }
+    if (!rName) {
+      toast.error("El nombre es obligatorio");
+      return;
+    }
+    if (!rEmail) {
+      toast.error("El email es obligatorio");
+      return;
+    }
+
+    if (rPassword.length < 6) {
+      toast.error("La contraseña debe tener al menos 6 caracteres");
+      return;
+    }
+    /*const registerToast = toast.loading("Registrando usuario...");*/
+    dispatch(startRegister(rName, rPassword, rEmail, reset));
+    /*toast.dismiss(registerToast);*/
   };
 
   return (
@@ -127,6 +157,7 @@ const RegisterScreen = (props) => {
                         onChange={handleRegisterInputChange}
                         value={rName}
                         name="rName"
+                        required
                       />
                     </div>
                     <div className="flex flex-col items-center w-full modal-1:w-1/2">
@@ -145,6 +176,7 @@ const RegisterScreen = (props) => {
                         className="w-5/6 t h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-4 p-2 text-sm"
                         onChange={handleRegisterInputChange}
                         value={rEmail}
+                        required
                       />
                     </div>
                   </div>
@@ -165,6 +197,7 @@ const RegisterScreen = (props) => {
                         className="w-5/6 t h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-4 p-2 text-sm"
                         onChange={handleRegisterInputChange}
                         value={rPassword}
+                        required
                       />
                     </div>
                     <div className="flex flex-col items-center w-full modal-1:w-1/2">
@@ -183,14 +216,20 @@ const RegisterScreen = (props) => {
                         className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-4 p-2 text-sm"
                         onChange={handleRegisterInputChange}
                         value={rCPassword}
+                        required
                       />
                     </div>
                   </div>
 
                   <div className="flex flex-col items-center w-full mt-4 bg-white modal-2:mt-4">
                     <Button
-                      styles={`${styles.PRIMARY_BUTTON} text-xl modal-2:text-2xl h-9 w-4/5`}
-                      content="Registrarse"
+                      styles={`${
+                        styles.PRIMARY_BUTTON
+                      } text-xl modal-2:text-2xl h-9 w-4/5 ${
+                        Loading ? "opacity-70" : ""
+                      }`}
+                      content={Loading ? <ButtonSpinner /> : "Registrar"}
+                      disabled={Loading}
                     />
                     <p className="mt-8 modal-2:mt-4 text-light-blue">
                       ¿Ya tienes una cuenta?

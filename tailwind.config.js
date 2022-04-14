@@ -21,7 +21,8 @@ module.exports = {
         "modal-1": "875px",
       },
       animation: {
-        "pulse-fast" : "pulse 1.7s cubic-bezier(0.4, 0, 0.6, 1) infinite"
+        "pulse-fast" : "pulse 1.7s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        'spin-slow': 'spin 1.7s linear infinite',
       },
       keyframes: {
         pulse: {

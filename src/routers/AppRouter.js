@@ -6,10 +6,9 @@ import {
   Navigate,
 } from "react-router-dom";
 
-
 import Home from "../screens/Home";
 import { PrivateRoutes } from "./PrivateRoutes";
-import { PrivateDashboard} from "./PrivateDashborad"
+import { PrivateDashboard } from "./PrivateDashborad";
 
 export const AppRouter = () => {
   return (
@@ -20,7 +19,7 @@ export const AppRouter = () => {
           path="/*"
           element={
             <PrivateRoutes>
-             < PrivateDashboard />
+              <PrivateDashboard />
             </PrivateRoutes>
           }
         />

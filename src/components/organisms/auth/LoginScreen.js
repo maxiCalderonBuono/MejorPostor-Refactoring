@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../../atoms/Buttons/Button";
 import * as styles from "../../atoms/Buttons/buttonStyles";
 import { startLogin } from "../../../actions/auth";
-import { uiCloseLogin, uiOpenRegister} from "../../../actions/modal";
+import { uiCloseLogin, uiOpenRegister } from "../../../actions/modal";
+import toast, { Toaster } from "react-hot-toast";
 
 const LoginScreen = () => {
   
@@ -26,6 +27,15 @@ const LoginScreen = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    if (!email) {
+      toast.error("El email es obligatorio");
+      return;
+    }
+    if (!password) {
+      toast.error("La contraseña es obligatoria");
+      return;
+    }
+
     dispatch(startLogin(email, password));
   };
 
@@ -114,8 +124,8 @@ const LoginScreen = () => {
                   className="absolute flex flex-col items-center w-full top-28 modal-2:top-36"
                 >
                   <label
-                    className="w-4/5 text-left text-text-primary"
                     htmlFor="email"
+                    className="w-4/5 text-left text-text-primary"
                   >
                     Email
                   </label>
@@ -174,6 +184,7 @@ const LoginScreen = () => {
           </Transition.Child>
         </Dialog>
       </Transition>
+      <Toaster />
     </>
   );
 };

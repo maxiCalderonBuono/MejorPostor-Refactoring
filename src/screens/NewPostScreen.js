@@ -15,9 +15,6 @@ const NewPostScreen = () => {
 
   const { data, loading } = useFetch(URL);
 
-  console.log(data);
-  console.log(loading);
-
   const provincias = data.provincias;
 
   /*const [products, setProducts] = useState([]);

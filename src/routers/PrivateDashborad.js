@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Routes, Route } from "react-router-dom";
 import Footer from "../components/organisms/Footer";
 import { NavBar } from "../components/organisms/NavBar";
@@ -19,7 +20,7 @@ export const PrivateDashboard = () => {
         <Route path="/mybids" element={<MyBidsScreen />} />
         <Route path="/producto/:id" element={<ProductDetailContainer />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   );
 };

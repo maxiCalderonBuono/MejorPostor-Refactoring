@@ -5,9 +5,14 @@ export const types = {
   startRegister: "[Auth] Start Register",
   isAuthoFinish: "[Auth] Is Autho Finish",
 
+  editUser: "[User] Edit User",
+
   uiOpenLogin: "[UI] Open Login",
   uiCloseLogin: "[UI] Close Login",
 
   uiOpenRegister: "[UI] Open Register",
   uiCloseRegister: "[UI] Close Register",
+
+  uiIsLoading: "[UI] Loading",
+  uiIsNotLoading: "[UI] Is Not Loading"
 };
