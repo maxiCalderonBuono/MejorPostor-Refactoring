@@ -1,6 +1,9 @@
 import React from "react";
 
-const ProductDetail = ({ detail }) => {
+const ProductDetail = ({detail}) => {
+   
+    
+    
     return (
         <>
     <div className="flex flex-col h-full w-full items-center justify-center p-10">
@@ -13,7 +16,7 @@ const ProductDetail = ({ detail }) => {
         </div>
         <div className="flex flex-wrap justify-center items-center">
             <div className="bg-lime-400 border border-bg-lime-700 text-white font-bold rounded-lg p-10 transform hover:scale-125 transition-all">
-                <h3 className="text-5xl">Detalles del producto: {detail.title}</h3>
+                <h3 className="text-5xl">Detalles del producto:</h3>
                 <div className="flex flex-wrap">
                     <div className="mr-20">
                         <p className="text-lg mt-5">detalle 1</p>
@@ -42,7 +45,7 @@ const ProductDetail = ({ detail }) => {
                 <div className="flex flex-wrap">
                     <p className="text-lg mt-5 mr-3 text-green-500">1: PUJA ACTUAL:</p>
                     <p className="text-lg mt-5 mr-3 text-green-500">Miguel Ramón</p>
-                    <p className="text-lg mt-5 text-green-400">$400</p>
+                    <p className="text-lg mt-5 text-green-400">{detail.price}</p>
                 </div>
                 <div className="flex flex-wrap">
                     <p className="text-lg mt-5 mr-3 text-red-200">2: puja anterior:</p>
