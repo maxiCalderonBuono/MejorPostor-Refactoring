@@ -10,6 +10,7 @@ import * as styles from "../../atoms/Buttons/buttonStyles";
 import {
   uiCloseRegister,
   uiIsLoading,
+  uiIsNotLoading,
   uiOpenLogin,
 } from "../../../actions/modal";
 import { useForm } from "../../../hooks/userForm";
@@ -35,6 +36,7 @@ const RegisterScreen = (props) => {
   const { rName, rEmail, rPassword, rCPassword } = formRegisterValues;
 
   const onClosed = () => {
+    dispatch(uiIsNotLoading());
     dispatch(uiCloseRegister());
     reset();
   };
@@ -51,19 +53,23 @@ const RegisterScreen = (props) => {
 
     if (rPassword !== rCPassword) {
       toast.error("Las contraseñas no coinciden");
+      dispatch(uiIsNotLoading());
       return;
     }
     if (!rName) {
       toast.error("El nombre es obligatorio");
+      dispatch(uiIsNotLoading());
       return;
     }
     if (!rEmail) {
       toast.error("El email es obligatorio");
+      dispatch(uiIsNotLoading());
       return;
     }
 
     if (rPassword.length < 6) {
       toast.error("La contraseña debe tener al menos 6 caracteres");
+      dispatch(uiIsNotLoading());
       return;
     }
     /*const registerToast = toast.loading("Registrando usuario...");*/

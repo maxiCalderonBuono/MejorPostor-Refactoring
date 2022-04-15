@@ -79,8 +79,6 @@ const NewPostScreen = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(id);
-    console.log("disparo");
     dispatch(createProduct(productInfo));
   };
 

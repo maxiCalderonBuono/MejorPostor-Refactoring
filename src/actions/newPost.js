@@ -4,8 +4,6 @@ import { fetchSinToken } from "../helpers/fetch";
 
 export const createProduct = (productInfo) => {
 
-    console.log(productInfo)
-
   return async (dispatch) => {
     const res = await fetchSinToken("products/", productInfo, "POST");
     const body = await res.json();

@@ -16,12 +16,9 @@ export const UserActiveRouter = () => {
 
   const userState = async () => {
     const data = await fetchSinToken(`auth/verify/${param.uid}`);
-    if (data.status === 400) {
-      console.log(data.status);
-      toast.success(
-        "Tu cuenta ha sido verificada de forma correcta. Inicia sesión", {
-          duration: 4000}
-      );
+  
+    if (data.status === 200) {
+      toast.success("Tu cuenta ha sido verificada de forma correcta. Inicia sesión");
       dispatch(uiOpenLogin());
     } else {
       toast.error("No hemos podido verificar tu cuenta");

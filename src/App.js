@@ -10,7 +10,6 @@ const App = () => {
 
   const {ModalLogin} = useSelector((state) => state.ui);
 
-
   useEffect(() => {
 
     if(!ModalLogin){
