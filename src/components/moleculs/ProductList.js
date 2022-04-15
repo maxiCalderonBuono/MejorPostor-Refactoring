@@ -43,10 +43,9 @@ const ProductList = ({ products }) => {
                     
                         <SwiperSlide  key={index}>
                             <CardProduct
-                                title={product.title}
-                                price={product.price}
-                                image={product.thumbnail}
-                                id={product.id}
+                                name={product.name}
+                                
+                                _id={product._id}
                             />
                         </SwiperSlide>
                     ))
