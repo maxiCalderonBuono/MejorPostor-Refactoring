@@ -47,8 +47,7 @@ export const startRegister = (username, password, email, reset) => {
 
     if (res.status === 200) {
       localStorage.setItem("token", body.token);
-      dispatch(login({ id: body.data.id, username: body.data.username }));
-      toast.success(`Bienvenido ${body.data.username}`);
+      localStorage.setItem("uid", body.data.uid);
       dispatch(uiIsNotLoading());
       dispatch(uiCloseRegister());
     } else {
@@ -58,6 +57,7 @@ export const startRegister = (username, password, email, reset) => {
     toast.success("Por favor verifica tu correo electronico");
   };
 };
+
 
 export const startIsAuth = () => {
   return async (dispatch) => {
