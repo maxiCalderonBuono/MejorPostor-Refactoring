@@ -19,7 +19,8 @@ export const UserActiveRouter = () => {
     if (data.status === 400) {
       console.log(data.status);
       toast.success(
-        "Tu cuenta ha sido verificada de forma correcta. Inicia sesión"
+        "Tu cuenta ha sido verificada de forma correcta. Inicia sesión", {
+          duration: 4000}
       );
       dispatch(uiOpenLogin());
     } else {
