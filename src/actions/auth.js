@@ -50,11 +50,13 @@ export const startRegister = (username, password, email, reset) => {
       localStorage.setItem("uid", body.data.uid);
       dispatch(uiIsNotLoading());
       dispatch(uiCloseRegister());
+      toast.success("Por favor verifica tu correo electronico");
     } else {
       toast.error(body.message);
+      dispatch(uiIsNotLoading())
     }
     reset();
-    toast.success("Por favor verifica tu correo electronico");
+    
   };
 };
 
