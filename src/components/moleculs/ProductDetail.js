@@ -1,15 +1,15 @@
 import React from "react";
 
 const ProductDetail = ({detail}) => {
-   
+    console.log(detail+ ' detail');
     
     
     return (
         <>
     <div className="flex flex-col h-full w-full items-center justify-center p-10">
-        <h1>{detail.title}</h1>
+        <h1>{detail.name}</h1>
         <div className="flex flex-col w-full items-center justify-center m-20">
-            <img className="h-60 w-full border-b-4 border-bg-lime-700" src={detail.thumbnail} alt={detail.title} />
+            <img className="h-60 w-full border-b-4 border-bg-lime-700" src={detail.image} alt={detail.name} />
         </div>
         <div className="p-4 m-3  rounded-lg bg-lime-400 hover:bg-lime-200">
             <a className="text-lg font-bold text-right text-white item-end" href="">Ver galería de imágenes</a>
@@ -19,18 +19,18 @@ const ProductDetail = ({detail}) => {
                 <h3 className="text-5xl">Detalles del producto:</h3>
                 <div className="flex flex-wrap">
                     <div className="mr-20">
-                        <p className="text-lg mt-5">detalle 1</p>
+                        <p className="text-lg mt-5">{detail.description}</p>
                         <p className="text-lg mt-5">detalle 2</p>
                         <p className="text-lg mt-5">detalle 3</p>
                     </div>
                     <div className="mr-20">
-                        <p className="text-lg mt-5">detalle 4</p>
+                        <p className="text-lg mt-5">{detail.category}</p>
                         <p className="text-lg mt-5">detalle 5</p>
                         <p className="text-lg mt-5">detalle 6</p>
                     </div>
                     <div className="mr-20">
-                        <p className="text-lg mt-5">detalle 4</p>
-                        <p className="text-lg mt-5">detalle 5</p>
+                        <p className="text-lg mt-5">Publicación creada el: {detail.createdAt}</p>
+                        <p className="text-lg mt-5">Última actualización: {detail.updatedAt}</p>
                         <p className="text-lg mt-5">detalle 6</p>
                     </div>
                     <div className="mr-20">
@@ -45,7 +45,7 @@ const ProductDetail = ({detail}) => {
                 <div className="flex flex-wrap">
                     <p className="text-lg mt-5 mr-3 text-green-500">1: PUJA ACTUAL:</p>
                     <p className="text-lg mt-5 mr-3 text-green-500">Miguel Ramón</p>
-                    <p className="text-lg mt-5 text-green-400">{detail.price}</p>
+                    <p className="text-lg mt-5 text-green-400">{detail.initialPrice}</p>
                 </div>
                 <div className="flex flex-wrap">
                     <p className="text-lg mt-5 mr-3 text-red-200">2: puja anterior:</p>

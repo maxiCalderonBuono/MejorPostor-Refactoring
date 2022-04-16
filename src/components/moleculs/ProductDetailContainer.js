@@ -6,24 +6,28 @@ import { useParams } from "react-router-dom";
 const ProductDetailContainer = () =>{
     const [data, setData] = useState([]);
     const [detail, setDetail] = useState({});
-    const {id} = useParams();
-    const URL = "https://api.mercadolibre.com/sites/MLA/search?q=auto";
+    const {_id} = useParams();
+    const URL = "http://localhost:4000/api/products";
     
 
     useEffect(() => {
         fetch(URL)
             .then(response => response.json())
             .then(data => {
-                setData(data.results);
-                
+                console.log(data + ' Data solo');
+                setData(data.products);
             });
     }, []);
 
    useEffect(() => {
-        const productDetail = data.filter(item=> item.id === id)
-        setDetail(...productDetail);
+       if(data.length > 0){
+            const productDetail = data.filter(item=> item._id === _id);
+            setDetail(...productDetail);
+       }
+   }, [data, _id])
+
+    
         
-     },[data, id]);
 
     return(
         <>

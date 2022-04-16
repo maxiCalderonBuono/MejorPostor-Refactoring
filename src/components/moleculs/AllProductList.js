@@ -12,6 +12,7 @@ const AllProductList = ({ products }) => {
                         title={product.title}
                         price={product.price}
                         image={product.thumbnail}
+                        _id={product._id}
                     />
                 ))
             )

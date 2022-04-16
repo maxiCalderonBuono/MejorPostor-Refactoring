@@ -1,20 +1,26 @@
-import React from "react";
-import { Provider } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { store } from "./store/store";
 import { AppRouter } from "./routers/AppRouter";
 import "swiper/css/bundle";
-
-
-
+import { startIsAuth } from "./actions/auth";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  const {ModalLogin} = useSelector((state) => state.ui);
+
+  useEffect(() => {
+
+    if(!ModalLogin){
+      dispatch(startIsAuth());
+    }
+  }, [dispatch, ModalLogin]);
+
   return (
-    <Provider store={store}>
-      <div className="flex flex-col justify-center w-full h-full md:h-full bg-background_main">
-        <AppRouter />
-      </div>
-    </Provider>
+    <div className="flex flex-col items-center justify-center w-full h-full md:h-full bg-background_main">
+      <AppRouter />
+    </div>
   );
 };
 

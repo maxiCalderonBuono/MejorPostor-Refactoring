@@ -44,7 +44,11 @@ const ProductList = ({ products }) => {
                         <SwiperSlide  key={index}>
                             <CardProduct
                                 name={product.name}
-                                
+                                image={product.image}
+                                description={product.description}
+                                initialPrice={product.initialPrice}
+                                user={product.user}
+                                createdAt={product.createdAt}
                                 _id={product._id}
                             />
                         </SwiperSlide>

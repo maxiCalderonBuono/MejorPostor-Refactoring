@@ -1,5 +1,5 @@
 import { Menu, Transition } from "@headlessui/react";
-import React, { Fragment, useState, useEffect} from "react";
+import React, { Fragment, useState} from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { FaBriefcase } from "react-icons/fa";
 import { GiTakeMyMoney } from "react-icons/gi";
