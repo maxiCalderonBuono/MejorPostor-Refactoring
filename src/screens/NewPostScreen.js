@@ -7,48 +7,32 @@ import * as styles from "../components/atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { SiGooglemaps } from "react-icons/si";
 
-
 import { useForm } from "../hooks/userForm";
-import { useFetch } from "../hooks/useFetch";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../actions/newPost";
 import ImageLoader from "../components/atoms/ImageLoader";
 
 const NewPostScreen = () => {
-  const URL = "https://apis.datos.gob.ar/georef/api/provincias";
-
-  const bidUser= "6259c3c04240cc9d55377ec4"
+  const bidUser = "6259c3c04240cc9d55377ec4";
 
   const fileInput = useRef(null);
   const dragzone = useRef(null);
 
-  const onDrop= (e) => {
-    console.log("hola")
-    e.preventDefault();
-    fileInput.current.files= e.dataTransfer.files
-  }
+  const onDrop = (e) => {
+    dragzone.current.classList.remove("opacity-60");
+  };
 
   const onDragEnter = () => {
-    dragzone.current.classList.add("opacity-60")
-  }
+    dragzone.current.classList.add("opacity-60");
+  };
+
+  const onDragOver = () => {
+    dragzone.current.classList.add("opacity-60");
+  };
 
   const onDragLeave = () => {
-    dragzone.current.classList.remove("opacity-60")
-  }
-
-  const { data, loading } = useFetch(URL);
-
-  const provincias = data.provincias;
-
-  /*const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch(URL)
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data.provincias);
-      });
-  }, []);*/
+    dragzone.current.classList.remove("opacity-60");
+  };
 
   const [showObjective, setShowObjective] = useState(() => false);
 
@@ -56,8 +40,9 @@ const NewPostScreen = () => {
 
   const { id } = useSelector((state) => state.auth);
 
-  const [picture, setPicture] = useState(null);
-
+  const [picture, setPicture] = useState("https://res.cloudinary.com/dvqlenul5/image/upload/v1649438952/My01MTIucG5n_y7qiqn.png");
+  
+  console.log(picture)
   const [formValues, handleInputChange] = useForm({
     name: "",
     image: "",
@@ -93,8 +78,6 @@ const NewPostScreen = () => {
     bidUser,
   };
 
-
-
   const dispatch = useDispatch();
 
   const vence = new Date(`${duration}T00:00:00`).toLocaleDateString();
@@ -115,8 +98,9 @@ const NewPostScreen = () => {
   };
 
   const handlePictureChange = (e) => {
-    if(e.target.files[0]){
-    setPicture(e.target.files[0])};
+    if (e.target.files[0]) {
+      setPicture(e.target.files[0]);
+    }
   };
 
   useEffect(() => {
@@ -209,17 +193,6 @@ const NewPostScreen = () => {
               onChange={handleInputChange}
             >
               <option value="">Selecciona una provincia</option>
-
-              {loading ? (
-                <option>Cargando Productos...</option>
-              ) : (
-                provincias.map((provincia) => (
-                  <option key={provincia.id} value={provincia.nombre}>
-                    {provincia.nombre}
-                  </option>
-                ))
-                )}
-
             </select>
 
             <label
@@ -304,18 +277,9 @@ const NewPostScreen = () => {
                 </div>
               </div>
             </div>
-
-         
-            <input
-              id="image"
-              name="image"
-              type="file"
-              accept="image/*"
-              ref= {fileInput}
-              className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm hidden"
-              onChange={handlePictureChange}
-            />
-
+            <ImageLoader inputRef= {fileInput} action={handlePictureChange} onDragEnter={onDragEnter} onDragLeave={onDragLeave} onDrop={onDrop} onDragOver={onDragOver} reference={dragzone}></ImageLoader>
+          
+          
             <div className="flex w-full mt-5 justify-evenly">
               <Link to="/" className="w-1/3">
                 <Button
@@ -331,15 +295,18 @@ const NewPostScreen = () => {
             </div>
           </form>
           <div className="mt-8 items-center h-1/2 flex flex-col w-[360px] rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
-            <div className="flex flex-col items-center content-center w-full" onClick={()=> fileInput.current.click()}>
-
-            { !picture? <ImageLoader onDrop= {onDrop} ref={dragzone} onDragEnter= {onDragEnter} onDragLeave = {onDragLeave}/>  :
-              <img
-                src={picture}
-                className="rounded-[12px_12px_30px_30px] mb-3 w-full h-60 object-fit"
-                alt="product"
-              /> }
+            <div
+              className="flex flex-col items-center content-center w-full"
+          
+            >
               
+                <img
+                  src={picture}
+                  className="rounded-[12px_12px_30px_30px] mb-3 w-full h-60 object-fit"
+                  alt="product"
+                />
+             
+
               <h3 className="text-xl font-bold text-text-primary">{name}</h3>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
                 <AiOutlineFieldTime />

@@ -9,6 +9,8 @@ import ProductDetailContainer from "../components/moleculs/ProductDetailContaine
 
 
 export const PrivateDashboard = () => {
+
+
   return (
       <Routes>
         <Route path="/myprofile" element={<EditProfileScreen />} />

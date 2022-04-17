@@ -65,13 +65,13 @@ export const startRegister = (username, password, email, reset) => {
 };
 
 
-export const startIsAuth = () => {
+export const startIsAuth = (navigate) => {
   return async (dispatch) => {
     const res = await fetchConToken("auth/renew");
     const body = await res.json();
     if (res.status === 200) {
       localStorage.setItem("token", body.token);
-      dispatch(login({ id: body.id, username: body.username }));
+      dispatch(login({ id: body.id, username: body.username }))
       dispatch(uiCloseLogin());
     } else {
       console.log("error", body);
