@@ -7,48 +7,32 @@ import * as styles from "../components/atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { SiGooglemaps } from "react-icons/si";
 
-
 import { useForm } from "../hooks/userForm";
-import { useFetch } from "../hooks/useFetch";
+
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../actions/newPost";
 import ImageLoader from "../components/atoms/ImageLoader";
+import { Provincias } from "../assets/provincias";
 
 const NewPostScreen = () => {
-  const URL = "https://apis.datos.gob.ar/georef/api/provincias";
-
-  const bidUser= "6259c3c04240cc9d55377ec4"
+  const bidUser = "6259c3c04240cc9d55377ec4";
 
   const fileInput = useRef(null);
   const dragzone = useRef(null);
 
-  const onDrop= (e) => {
-    console.log("hola")
+  const onDrop = (e) => {
+    console.log("hola");
     e.preventDefault();
-    fileInput.current.files= e.dataTransfer.files
-  }
+    fileInput.current.files = e.dataTransfer.files;
+  };
 
   const onDragEnter = () => {
-    dragzone.current.classList.add("opacity-60")
-  }
+    dragzone.current.classList.add("opacity-60");
+  };
 
   const onDragLeave = () => {
-    dragzone.current.classList.remove("opacity-60")
-  }
-
-  const { data, loading } = useFetch(URL);
-
-  const provincias = data.provincias;
-
-  /*const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch(URL)
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data.provincias);
-      });
-  }, []);*/
+    dragzone.current.classList.remove("opacity-60");
+  };
 
   const [showObjective, setShowObjective] = useState(() => false);
 
@@ -93,8 +77,6 @@ const NewPostScreen = () => {
     bidUser,
   };
 
-
-
   const dispatch = useDispatch();
 
   const vence = new Date(`${duration}T00:00:00`).toLocaleDateString();
@@ -115,8 +97,9 @@ const NewPostScreen = () => {
   };
 
   const handlePictureChange = (e) => {
-    if(e.target.files[0]){
-    setPicture(e.target.files[0])};
+    if (e.target.files[0]) {
+      setPicture(e.target.files[0]);
+    }
   };
 
   useEffect(() => {
@@ -209,17 +192,11 @@ const NewPostScreen = () => {
               onChange={handleInputChange}
             >
               <option value="">Selecciona una provincia</option>
-
-              {loading ? (
-                <option>Cargando Productos...</option>
-              ) : (
-                provincias.map((provincia) => (
-                  <option key={provincia.id} value={provincia.nombre}>
-                    {provincia.nombre}
-                  </option>
-                ))
-                )}
-
+              {Provincias.map((provincia, index) => (
+                <option key={index} value={provincia}>
+                  {provincia}
+                </option>
+              ))}
             </select>
 
             <label
@@ -243,75 +220,23 @@ const NewPostScreen = () => {
               <p className="w-5/6 mb-3 text-2xl text-left text-text-primary">
                 Duración
               </p>
-
-              <div className="flex flex-row w-full">
-                <div className="flex flex-col w-full">
-                  <div className="flex items-center w-full mb-3">
-                    <label
-                      htmlFor="objective"
-                      className="order-1 mx-3 text-xl text-text-primary"
-                    >
-                      Por objetivo
-                    </label>
-                    <input
-                      id="objective"
-                      type="radio"
-                      name="start"
-                      className="w-6 h-6 border-2 border-solid outline-none border-text-secondary"
-                      onClick={handleShowObjective}
-                    />
-                  </div>
-                  <div className="flex items-center w-full">
-                    <label
-                      htmlFor="deadline"
-                      className="order-1 mx-3 text-xl text-text-primary"
-                    >
-                      Hasta fecha
-                    </label>
-                    <input
-                      id="deadline"
-                      type="radio"
-                      name="start"
-                      className="w-6 h-6 border-2 border-solid outline-none border-text-secondary"
-                      onClick={handleShowDate}
-                    />
-                  </div>
-                </div>
-
-                <div className="flex flex-row items-center justify-center w-full">
-                  <input
-                    id="aim"
-                    type="text"
-                    name="aim"
-                    autoComplete="off"
-                    placeholder="Objetivo ($)"
-                    className={`w-full border-2 border-solid outline-none border-text-secondary rounded-[43px] p-2 text-sm ${
-                      showObjective ? "" : "hidden"
-                    }`}
-                    onChange={handleInputChange}
-                    value={auctionnedPrice}
-                  />
-
-                  <input
-                    type="date"
-                    name="duration"
-                    className={`w-full border-2 border-solid outline-none border-text-secondary rounded-[43px] p-2 text-sm ${
-                      showDate ? "" : "hidden"
-                    }`}
-                    onChange={handleInputChange}
-                    value={duration}
-                  />
-                </div>
-              </div>
+              <input
+                type="date"
+                name="duration"
+                className={`w-full border-2 border-solid outline-none border-text-secondary rounded-[43px] p-2 text-sm ${
+                  showDate ? "" : "hidden"
+                }`}
+                onChange={handleInputChange}
+                value={duration}
+              />
             </div>
 
-         
             <input
               id="image"
               name="image"
               type="file"
               accept="image/*"
-              ref= {fileInput}
+              ref={fileInput}
               className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm hidden"
               onChange={handlePictureChange}
             />
@@ -331,15 +256,25 @@ const NewPostScreen = () => {
             </div>
           </form>
           <div className="mt-8 items-center h-1/2 flex flex-col w-[360px] rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
-            <div className="flex flex-col items-center content-center w-full" onClick={()=> fileInput.current.click()}>
+            <div
+              className="flex flex-col items-center content-center w-full"
+              onClick={() => fileInput.current.click()}
+            >
+              {!picture ? (
+                <ImageLoader
+                  onDrop={onDrop}
+                  ref={dragzone}
+                  onDragEnter={onDragEnter}
+                  onDragLeave={onDragLeave}
+                />
+              ) : (
+                <img
+                  src={picture}
+                  className="rounded-[12px_12px_30px_30px] mb-3 w-full h-60 object-fit"
+                  alt="product"
+                />
+              )}
 
-            { !picture? <ImageLoader onDrop= {onDrop} ref={dragzone} onDragEnter= {onDragEnter} onDragLeave = {onDragLeave}/>  :
-              <img
-                src={picture}
-                className="rounded-[12px_12px_30px_30px] mb-3 w-full h-60 object-fit"
-                alt="product"
-              /> }
-              
               <h3 className="text-xl font-bold text-text-primary">{name}</h3>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
                 <AiOutlineFieldTime />
