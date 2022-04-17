@@ -17,9 +17,9 @@ const CardProduct = (props) => {
         <img
           src={props.image}
           className="rounded-[12px_12px_30px_30px] mb-3 w-full h-44 object-fit"
-          alt={props.title}
+          alt={props.name}
         />
-        <h3 className="text-xl font-bold text-text-primary">Tu próximo auto</h3>
+        <h3 className="text-xl font-bold text-text-primary">{props.name}</h3>
         <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
           <AiOutlineFieldTime />
           <span className="text-sm">Quedan 20hs 59min 30seg</span>

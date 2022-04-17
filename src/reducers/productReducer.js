@@ -7,6 +7,12 @@ export const productReducer = (state = {}, action) => {
         ...state,
         ...action.payload,
       };
+      case types.createAuction:
+      return {
+        ...state,
+        ...action.payload,
+      };
+
     default:
       return state;
   }
