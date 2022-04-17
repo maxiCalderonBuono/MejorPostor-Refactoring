@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { ImHammer2 } from "react-icons/im";
 import { Link } from "react-router-dom";
@@ -7,13 +7,34 @@ import * as styles from "../components/atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { SiGooglemaps } from "react-icons/si";
 
+
 import { useForm } from "../hooks/userForm";
 import { useFetch } from "../hooks/useFetch";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../actions/newPost";
+import ImageLoader from "../components/atoms/ImageLoader";
 
 const NewPostScreen = () => {
   const URL = "https://apis.datos.gob.ar/georef/api/provincias";
+
+  const bidUser= "6259c3c04240cc9d55377ec4"
+
+  const fileInput = useRef(null);
+  const dragzone = useRef(null);
+
+  const onDrop= (e) => {
+    console.log("hola")
+    e.preventDefault();
+    fileInput.current.files= e.dataTransfer.files
+  }
+
+  const onDragEnter = () => {
+    dragzone.current.classList.add("opacity-60")
+  }
+
+  const onDragLeave = () => {
+    dragzone.current.classList.remove("opacity-60")
+  }
 
   const { data, loading } = useFetch(URL);
 
@@ -35,10 +56,7 @@ const NewPostScreen = () => {
 
   const { id } = useSelector((state) => state.auth);
 
-  const [picture, setPicture] = useState(
-    () =>
-      "https://res.cloudinary.com/dvqlenul5/image/upload/v1649438952/My01MTIucG5n_y7qiqn.png"
-  );
+  const [picture, setPicture] = useState(null);
 
   const [formValues, handleInputChange] = useForm({
     name: "",
@@ -49,7 +67,7 @@ const NewPostScreen = () => {
     auctionedPrice: "",
     aim: "",
     category: "",
-    date: "",
+    duration: "",
   });
 
   const {
@@ -60,7 +78,7 @@ const NewPostScreen = () => {
     location,
     auctionnedPrice,
     category,
-    date,
+    duration,
   } = formValues;
 
   const productInfo = {
@@ -70,12 +88,16 @@ const NewPostScreen = () => {
     initialPrice,
     category,
     location,
+    duration,
     id,
+    bidUser,
   };
+
+
 
   const dispatch = useDispatch();
 
-  const vence = new Date(`${date}T00:00:00`).toLocaleDateString();
+  const vence = new Date(`${duration}T00:00:00`).toLocaleDateString();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -186,6 +208,7 @@ const NewPostScreen = () => {
               onChange={handleInputChange}
             >
               <option value="">Selecciona una provincia</option>
+
               {loading ? (
                 <option>Cargando Productos...</option>
               ) : (
@@ -194,7 +217,8 @@ const NewPostScreen = () => {
                     {provincia.nombre}
                   </option>
                 ))
-              )}
+                )}
+
             </select>
 
             <label
@@ -205,7 +229,7 @@ const NewPostScreen = () => {
             </label>
             <input
               id="initialPrice"
-              type="text"
+              type="number"
               name="initialPrice"
               autoComplete="off"
               placeholder="Precio inicial"
@@ -223,13 +247,13 @@ const NewPostScreen = () => {
                 <div className="flex flex-col w-full">
                   <div className="flex items-center w-full mb-3">
                     <label
-                      htmlFor=""
+                      htmlFor="objective"
                       className="order-1 mx-3 text-xl text-text-primary"
                     >
                       Por objetivo
                     </label>
                     <input
-                      id="start"
+                      id="objective"
                       type="radio"
                       name="start"
                       className="w-6 h-6 border-2 border-solid outline-none border-text-secondary"
@@ -238,13 +262,13 @@ const NewPostScreen = () => {
                   </div>
                   <div className="flex items-center w-full">
                     <label
-                      htmlFor=""
+                      htmlFor="deadline"
                       className="order-1 mx-3 text-xl text-text-primary"
                     >
-                      Fecha de finalización
+                      Hasta fecha
                     </label>
                     <input
-                      id="start"
+                      id="deadline"
                       type="radio"
                       name="start"
                       className="w-6 h-6 border-2 border-solid outline-none border-text-secondary"
@@ -269,31 +293,28 @@ const NewPostScreen = () => {
 
                   <input
                     type="date"
-                    name="date"
+                    name="duration"
                     className={`w-full border-2 border-solid outline-none border-text-secondary rounded-[43px] p-2 text-sm ${
                       showDate ? "" : "hidden"
                     }`}
                     onChange={handleInputChange}
-                    value={date}
+                    value={duration}
                   />
                 </div>
               </div>
             </div>
 
-            <label
-              htmlFor="image"
-              className="w-5/6 text-2xl text-left text-text-primary"
-            >
-              Fotos del producto
-            </label>
+         
             <input
               id="image"
               name="image"
               type="file"
               accept="image/*"
-              className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
+              ref= {fileInput}
+              className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm hidden"
               onChange={handlePictureChange}
             />
+
             <div className="flex w-full mt-5 justify-evenly">
               <Link to="/" className="w-1/3">
                 <Button
@@ -309,19 +330,22 @@ const NewPostScreen = () => {
             </div>
           </form>
           <div className="mt-8 items-center h-1/2 flex flex-col w-[360px] rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
-            <div className="flex flex-col items-center content-center w-full">
+            <div className="flex flex-col items-center content-center w-full" onClick={()=> fileInput.current.click()}>
+
+            { !picture? <ImageLoader onDrop= {onDrop} ref={dragzone} onDragEnter= {onDragEnter} onDragLeave = {onDragLeave}/>  :
               <img
                 src={picture}
-                className="rounded-[12px_12px_30px_30px] mb-3 w-full h-38 object-fit"
+                className="rounded-[12px_12px_30px_30px] mb-3 w-full h-60 object-fit"
                 alt="product"
-              />
+              /> }
+              
               <h3 className="text-xl font-bold text-text-primary">{name}</h3>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
                 <AiOutlineFieldTime />
                 <span className={`${showObjective ? "" : "hidden"}text-sm`}>
                   {showObjective
                     ? "Esta subasta tiene un míno requerido"
-                    : `Vence el ${date ? vence : ""}`}
+                    : `Vence el ${duration ? vence : ""}`}
                 </span>
               </div>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">

@@ -7,6 +7,7 @@ import { MyBidsScreen } from "../screens/MyBidsScreen";
 import NewPostScreen from "../screens/NewPostScreen";
 import ProductDetailContainer from "../components/moleculs/ProductDetailContainer";
 
+
 export const PrivateDashboard = () => {
   return (
       <Routes>

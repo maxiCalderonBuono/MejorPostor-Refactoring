@@ -1,19 +1,22 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, {useEffect} from "react";
 import Home from "../screens/Home";
 import { PrivateRoutes } from "./PrivateRoutes";
 import { UserActiveRouter } from "./UserActiveRouter";
 import { PrivateDashboard } from "./PrivateDashborad";
 import Footer from "../components/organisms/Footer";
 import { NavBar } from "../components/organisms/NavBar";
+import { useDispatch } from "react-redux";
+import { startIsAuth } from "../actions/auth";
+
 
 export const AppRouter = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(startIsAuth());
+  }, [dispatch]);
+
   return (
     <Router>
       <NavBar />
@@ -21,11 +24,10 @@ export const AppRouter = () => {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route path="/api/auth/verify/:uid" element = {<UserActiveRouter />} />
+        <Route path="/api/auth/verify/:uid" element={<UserActiveRouter />} />
 
         <Route
           path="/*"
-          //"/api/auth/verify/:id"
           element={
             <PrivateRoutes>
               <PrivateDashboard />
