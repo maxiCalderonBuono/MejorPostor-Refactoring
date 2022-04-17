@@ -4,8 +4,13 @@ export const types = {
   startLogin: "[Auth] Start Login",
   startRegister: "[Auth] Start Register",
   isAuthoFinish: "[Auth] Is Autho Finish",
+  isValidationFinish: "[Auth] Is Validation Finish",
+
 
   editUser: "[User] Edit User",
+  
+  createProduct: "[Product] Create Product",
+  createAuction: "[Product] Create Auction",
 
   uiOpenLogin: "[UI] Open Login",
   uiCloseLogin: "[UI] Close Login",

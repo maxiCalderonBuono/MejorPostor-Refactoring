@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { ImHammer2 } from "react-icons/im";
 import { Link } from "react-router-dom";
@@ -7,11 +7,34 @@ import * as styles from "../components/atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { SiGooglemaps } from "react-icons/si";
 
+
 import { useForm } from "../hooks/userForm";
 import { useFetch } from "../hooks/useFetch";
+import { useDispatch, useSelector } from "react-redux";
+import { createProduct } from "../actions/newPost";
+import ImageLoader from "../components/atoms/ImageLoader";
 
 const NewPostScreen = () => {
   const URL = "https://apis.datos.gob.ar/georef/api/provincias";
+
+  const bidUser= "6259c3c04240cc9d55377ec4"
+
+  const fileInput = useRef(null);
+  const dragzone = useRef(null);
+
+  const onDrop= (e) => {
+    console.log("hola")
+    e.preventDefault();
+    fileInput.current.files= e.dataTransfer.files
+  }
+
+  const onDragEnter = () => {
+    dragzone.current.classList.add("opacity-60")
+  }
+
+  const onDragLeave = () => {
+    dragzone.current.classList.remove("opacity-60")
+  }
 
   const { data, loading } = useFetch(URL);
 
@@ -31,25 +54,54 @@ const NewPostScreen = () => {
 
   const [showDate, setShowDate] = useState(() => false);
 
-  const [image, setImage] = useState(
-    () =>
-      "https://res.cloudinary.com/dvqlenul5/image/upload/v1649438952/My01MTIucG5n_y7qiqn.png"
-  );
+  const { id } = useSelector((state) => state.auth);
+
+  const [picture, setPicture] = useState(null);
 
   const [formValues, handleInputChange] = useForm({
-    title: "",
-    price: "",
+    name: "",
+    image: "",
+    description: "",
     location: "",
+    initialPrice: "",
+    auctionedPrice: "",
     aim: "",
-    date: "",
+    category: "",
+    duration: "",
   });
 
-  const { title, price, location, aim, date } = formValues;
+  const {
+    name,
+    image,
+    description,
+    initialPrice,
+    location,
+    auctionnedPrice,
+    category,
+    duration,
+  } = formValues;
 
-  const vence = new Date(`${date}T00:00:00`).toLocaleDateString();
+  const productInfo = {
+    name,
+    image: "a",
+    description,
+    initialPrice,
+    category,
+    location,
+    duration,
+    id,
+    bidUser,
+  };
+
+
+
+  const dispatch = useDispatch();
+
+  const vence = new Date(`${duration}T00:00:00`).toLocaleDateString();
 
   const handleSubmit = (e) => {
-    e.preventeDefault();
+    e.preventDefault();
+    dispatch(createProduct(productInfo));
   };
 
   const handleShowDate = () => {
@@ -62,22 +114,22 @@ const NewPostScreen = () => {
     setShowObjective(true);
   };
 
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+  const handlePictureChange = (e) => {
+    setPicture(e.target.files[0]);
   };
 
   useEffect(() => {
     async function getImageUrl() {
-      if (image) {
+      if (picture) {
         const fileReader = new FileReader();
-        fileReader.readAsDataURL(image);
+        fileReader.readAsDataURL(picture);
         fileReader.onload = () => {
-          setImage(fileReader.result);
+          setPicture(fileReader.result);
         };
       }
     }
     getImageUrl();
-  }, [image]);
+  }, [picture]);
 
   return (
     <>
@@ -92,61 +144,98 @@ const NewPostScreen = () => {
             className="flex flex-col items-center w-full mt-8"
           >
             <label
-              htmlFor="title"
+              htmlFor="name"
               className="w-5/6 text-2xl text-left text-text-primary"
             >
               Título
             </label>
             <input
-              id="title"
+              id="name"
               type="text"
-              name="title"
+              name="name"
               autoComplete="off"
               placeholder="¿Qué deseas subastar?"
               className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
               onChange={handleInputChange}
-              value={title}
+              value={name}
             />
 
             <label
-              htmlFor="location"
-              className="w-5/6 text-left t text-text-primary"
+              htmlFor="description"
+              className="w-5/6 text-2xl text-left text-text-primary"
             >
-              <select
-                name="location"
-                id="location"
-                className="w-full h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
-                value={location}
-                onChange={handleInputChange}
-              >
-                <option value="">Selecciona una provincia</option>
-                {loading ? (
-                  <option>Cargando Productos...</option>
-                ) : (
-                  provincias.map((provincia) => (
-                    <option key={provincia.id} value={provincia.nombre}>
-                      {provincia.nombre}
-                    </option>
-                  ))
-                )}
-              </select>
+              Descripción
             </label>
+            <input
+              id="description"
+              type="text"
+              name="description"
+              autoComplete="off"
+              placeholder="Breve descripción del producto"
+              className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
+              onChange={handleInputChange}
+              value={description}
+            />
 
             <label
-              htmlFor="price"
+              htmlFor="category"
+              className="w-5/6 text-2xl text-left text-text-primary"
+            >
+              Categoría
+            </label>
+            <select
+              name="category"
+              id="category"
+              className="w-5/6 h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
+              value={category}
+              onChange={handleInputChange}
+            >
+              <option value="">Selecciona una categoria</option>
+              <option value="Autos">Autos</option>
+            </select>
+
+            <label
+              htmlFor="location"
+              className="w-5/6 text-2xl text-left text-text-primary"
+            >
+              Ubicación
+            </label>
+            <select
+              name="location"
+              id="location"
+              className="w-5/6 h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
+              value={location}
+              onChange={handleInputChange}
+            >
+              <option value="">Selecciona una provincia</option>
+
+              {loading ? (
+                <option>Cargando Productos...</option>
+              ) : (
+                provincias.map((provincia) => (
+                  <option key={provincia.id} value={provincia.nombre}>
+                    {provincia.nombre}
+                  </option>
+                ))
+                )}
+
+            </select>
+
+            <label
+              htmlFor="initialPrice"
               className="w-5/6 text-2xl text-left text-text-primary"
             >
               Puja inicial ($)
             </label>
             <input
-              id="price"
-              type="text"
-              name="price"
+              id="initialPrice"
+              type="number"
+              name="initialPrice"
               autoComplete="off"
               placeholder="Precio inicial"
               className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
               onChange={handleInputChange}
-              value={price}
+              value={initialPrice}
             />
 
             <div className="flex flex-col w-5/6 mb-6">
@@ -158,13 +247,13 @@ const NewPostScreen = () => {
                 <div className="flex flex-col w-full">
                   <div className="flex items-center w-full mb-3">
                     <label
-                      htmlFor=""
+                      htmlFor="objective"
                       className="order-1 mx-3 text-xl text-text-primary"
                     >
                       Por objetivo
                     </label>
                     <input
-                      id="start"
+                      id="objective"
                       type="radio"
                       name="start"
                       className="w-6 h-6 border-2 border-solid outline-none border-text-secondary"
@@ -173,13 +262,13 @@ const NewPostScreen = () => {
                   </div>
                   <div className="flex items-center w-full">
                     <label
-                      htmlFor=""
+                      htmlFor="deadline"
                       className="order-1 mx-3 text-xl text-text-primary"
                     >
-                      Fecha de finalización
+                      Hasta fecha
                     </label>
                     <input
-                      id="start"
+                      id="deadline"
                       type="radio"
                       name="start"
                       className="w-6 h-6 border-2 border-solid outline-none border-text-secondary"
@@ -199,51 +288,64 @@ const NewPostScreen = () => {
                       showObjective ? "" : "hidden"
                     }`}
                     onChange={handleInputChange}
-                    value={aim}
+                    value={auctionnedPrice}
                   />
 
                   <input
                     type="date"
-                    name="date"
+                    name="duration"
                     className={`w-full border-2 border-solid outline-none border-text-secondary rounded-[43px] p-2 text-sm ${
                       showDate ? "" : "hidden"
                     }`}
                     onChange={handleInputChange}
-                    value={date}
+                    value={duration}
                   />
                 </div>
               </div>
             </div>
 
-            <label
-              htmlFor="image"
-              className="w-5/6 text-2xl text-left text-text-primary"
-            >
-              Fotos del producto
-            </label>
+         
             <input
               id="image"
               name="image"
               type="file"
               accept="image/*"
-              className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
-              onChange={handleImageChange}
+              ref= {fileInput}
+              className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm hidden"
+              onChange={handlePictureChange}
             />
+
+            <div className="flex w-full mt-5 justify-evenly">
+              <Link to="/" className="w-1/3">
+                <Button
+                  styles={`${styles.DANGER_BUTTON} text-2xl w-full px-3 py-2`}
+                  type="button"
+                  content="Cancelar"
+                />
+              </Link>
+              <Button
+                styles={`${styles.SUCCESS_BUTTON} text-2xl w-1/3 px-3 py-2`}
+                content="Publicar"
+              />
+            </div>
           </form>
           <div className="mt-8 items-center h-1/2 flex flex-col w-[360px] rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
-            <div className="flex flex-col items-center content-center w-full">
+            <div className="flex flex-col items-center content-center w-full" onClick={()=> fileInput.current.click()}>
+
+            { !picture? <ImageLoader onDrop= {onDrop} ref={dragzone} onDragEnter= {onDragEnter} onDragLeave = {onDragLeave}/>  :
               <img
-                src={image}
-                className="rounded-[12px_12px_30px_30px] mb-3 w-full h-38 object-fit"
+                src={picture}
+                className="rounded-[12px_12px_30px_30px] mb-3 w-full h-60 object-fit"
                 alt="product"
-              />
-              <h3 className="text-xl font-bold text-text-primary">{title}</h3>
+              /> }
+              
+              <h3 className="text-xl font-bold text-text-primary">{name}</h3>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
                 <AiOutlineFieldTime />
                 <span className={`${showObjective ? "" : "hidden"}text-sm`}>
                   {showObjective
                     ? "Esta subasta tiene un míno requerido"
-                    : `Vence el ${date ? vence : ""}`}
+                    : `Vence el ${duration ? vence : ""}`}
                 </span>
               </div>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
@@ -256,28 +358,14 @@ const NewPostScreen = () => {
                 <p className="p-1 text-lg font-bold text-center">Puja actual</p>
                 <p
                   className={`${
-                    price ? "" : "hidden"
+                    initialPrice ? "" : "hidden"
                   } p-1 text-lg font-bold text-danger`}
                 >
-                  {price}
+                  {initialPrice}
                 </p>
               </div>
             </div>
           </div>
-        </div>
-        <div className="flex mt-5 justify-evenly">
-          <Link to="/" className="w-1/3">
-            <Button
-              styles={`${styles.DANGER_BUTTON} text-2xl w-full px-3 py-2`}
-              type="button"
-              content="Cancelar"
-            />
-          </Link>
-          <Button
-            styles={`${styles.SUCCESS_BUTTON} text-2xl w-1/3 px-3 py-2`}
-            content="Publicar"
-            type="submit"
-          />
         </div>
       </div>
     </>
