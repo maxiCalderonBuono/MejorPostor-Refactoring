@@ -115,7 +115,8 @@ const NewPostScreen = () => {
   };
 
   const handlePictureChange = (e) => {
-    setPicture(e.target.files[0]);
+    if(e.target.files[0]){
+    setPicture(e.target.files[0])};
   };
 
   useEffect(() => {
