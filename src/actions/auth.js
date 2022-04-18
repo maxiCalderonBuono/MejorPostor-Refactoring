@@ -21,6 +21,7 @@ export const startLogin = (email, password) => {
           id: body.payload.id,
           username: body.payload.username,
           email: body.payload.email,
+          image: body.payload.image,
         })
       );
       toast.dismiss(loginToast);
@@ -43,7 +44,8 @@ export const startRegister = (username, password, email, reset) => {
         name: "HARCODED",
         surname: "HARCODED",
         birthYear: 1990,
-        image: "HARDCODE"
+        image:
+          "https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png",
       },
       "POST"
     );
@@ -57,15 +59,13 @@ export const startRegister = (username, password, email, reset) => {
       toast.success("Por favor verifica tu correo electronico");
     } else {
       toast.error(body.message);
-      dispatch(uiIsNotLoading())
+      dispatch(uiIsNotLoading());
     }
     reset();
-    
   };
 };
 
-
-export const startIsAuth = (navigate) => {
+export const startIsAuth = () => {
   return async (dispatch) => {
     const res = await fetchConToken("auth/renew");
     const body = await res.json();
