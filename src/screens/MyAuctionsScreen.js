@@ -8,6 +8,7 @@ export const MyAuctionsScreen = () => {
 
   const { id } = useSelector((state) => state.auth);
 
+
   const URL= `http://localhost:4000/api/products/user/${id}`
 
   const {data, loading} = useFetch(URL)

@@ -63,7 +63,6 @@ const NewPostScreen = () => {
 
   const handlePictureChange = (e) => {
     if (e.target.files[0]) {
-      console.log("hello")
       setPicture(e.target.files[0]);
     }
   };
