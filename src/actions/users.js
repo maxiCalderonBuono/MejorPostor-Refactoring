@@ -8,7 +8,7 @@ export const startEditUser = (userInfo) => {
     const body = await res.json();
 
     if (res.status === 200) {
-      dispatch(editUser(body.updateUser));
+      console.log(dispatch(editUser(body.updatedUser)));
 
       toast.success("Usuario actualizado");
     } else {

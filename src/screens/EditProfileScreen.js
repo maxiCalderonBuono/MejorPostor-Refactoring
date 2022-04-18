@@ -2,20 +2,27 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { uploadImage } from "../actions/images";
 import { startEditUser } from "../actions/users";
 
 import Button from "../components/atoms/Buttons/Button";
 import * as styles from "../components/atoms/Buttons/buttonStyles";
 
 export const EditProfileScreen = () => {
+  const avatarDefault =
+    "https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png";
   const dispatch = useDispatch();
-  const { username: usernam, id, email } = useSelector((state) => state.auth);
+  const {
+    username: usernam,
+    id,
+    email,
+    image,
+  } = useSelector((state) => state.auth);
 
   const [username, setUsername] = useState(usernam);
   const [emailchange, setEmail] = useState(email);
-  const [avatar, setAvatar] = useState(
-    "https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png"
-  );
+  const [avatar, setAvatar] = useState("" || avatarDefault);
+  const [avatarUrl, setAvatarUrl] = useState(image);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
 
@@ -45,7 +52,7 @@ export const EditProfileScreen = () => {
         const fileReader = new FileReader();
         fileReader.readAsDataURL(avatar);
         fileReader.onload = () => {
-          setAvatar(fileReader.result);
+          setAvatarUrl(fileReader.result);
         };
       }
     }
@@ -55,28 +62,27 @@ export const EditProfileScreen = () => {
   const handleSubmitEdit = async (e) => {
     e.preventDefault();
 
-    // const avatarURI = avatar ? await uploadimageFunction(avatar) : avatarUrl;
     if (!name || !surname || !username) {
       toast.error("Por favor completa todos los campos");
       return;
     }
+    const avatarURI = avatar ? await uploadImage(avatar) : avatarUrl;
+    const toastload = toast.loading("Actualizando perfil...");
 
     const profileUpdated = {
       id,
       username,
       email,
-      avatar: "TODO: Subir avatar",
+      image: avatarURI,
       name,
       surname,
       birthYear: 1980,
     };
 
-    if (profileUpdated) {
-      dispatch(startEditUser(profileUpdated));
-      const toastload = toast.loading("Actualizando perfil...");
-      navigate("/");
-      toast.dismiss(toastload);
-    }
+    const res = await dispatch(startEditUser(profileUpdated));
+    // navigate("/");
+    toast.dismiss(toastload);
+
     // const res = await updateProfile(profileUpdated);
 
     // if (res.data.ok) {
@@ -96,7 +102,7 @@ export const EditProfileScreen = () => {
             <div className="row">
               <div className="flex items-center justify-center ">
                 <img
-                  src={avatar}
+                  src={avatarUrl || avatarDefault}
                   alt="avatar"
                   style={{
                     width: "8rem",
