@@ -1,5 +1,5 @@
 import { Menu, Transition } from "@headlessui/react";
-import React, { Fragment, useState} from "react";
+import React, { Fragment, useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { FaBriefcase } from "react-icons/fa";
 import { GiTakeMyMoney } from "react-icons/gi";
@@ -15,14 +15,12 @@ import { startLogout } from "../../actions/auth";
 import { Link } from "react-router-dom";
 
 export const NavBar = () => {
-
-
   const [openNav, setOpenNav] = useState(false);
 
   //Hago el dispatch de la apertura del modal de Login y Registro
   const dispatch = useDispatch();
 
-  const { isAutho, username } = useSelector((state) => state.auth);
+  const { isAutho, username, image } = useSelector((state) => state.auth);
 
   const handleLogout = () => {
     dispatch(startLogout());
@@ -66,7 +64,6 @@ export const NavBar = () => {
             shadow-xl rounded-lg bg-background_main absolute z-[-1] pr-5 pl-5 transition-all duration-500 ease-in ${
               openNav ? "top-20" : " top-[-490px]"
             }`}
-              
             >
               {/* Dropdown User */}
 
@@ -74,7 +71,10 @@ export const NavBar = () => {
                 <>
                   <div className="flex mt-3 sm:hidden">
                     <img
-                      src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png"
+                      src={
+                        image ||
+                        "https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png"
+                      }
                       alt="icon-default"
                       className="w-20"
                     />
@@ -176,7 +176,10 @@ export const NavBar = () => {
                     <div>
                       <Menu.Button className="flex text-sm text-white rounded-full ">
                         <img
-                          src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png"
+                          src={
+                            image ||
+                            "https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png"
+                          }
                           alt="icon-default"
                           className="w-8 h-8 rounded-full"
                         />
@@ -200,7 +203,10 @@ export const NavBar = () => {
                             <Menu.Item>
                               <div className="flex">
                                 <img
-                                  src="https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png"
+                                  src={
+                                    image ||
+                                    "https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png"
+                                  }
                                   alt="icon-default"
                                   className="w-16 ml-3.5 rounded-full"
                                 />

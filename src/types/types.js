@@ -8,7 +8,8 @@ export const types = {
 
 
   editUser: "[User] Edit User",
-  
+  uploadImage: "[Images] Upload Image",
+
   createProduct: "[Product] Create Product",
 
   uiOpenLogin: "[UI] Open Login",
@@ -18,5 +19,5 @@ export const types = {
   uiCloseRegister: "[UI] Close Register",
 
   uiIsLoading: "[UI] Loading",
-  uiIsNotLoading: "[UI] Is Not Loading"
+  uiIsNotLoading: "[UI] Is Not Loading",
 };
