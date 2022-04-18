@@ -15,7 +15,10 @@ import "../../screens/pujas.css";
 import { Grid, Pagination } from "swiper";
 
 // Función para mapear el componente Card con todas las popiedades que se le pasen. EN PROCESO.
-const ProductList = ({ products }) => {
+const ProductList = ( {products} ) => {
+
+
+
     return (
         <>
             <Swiper

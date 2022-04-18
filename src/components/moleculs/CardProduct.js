@@ -9,10 +9,10 @@ import { Link } from "react-router-dom";
 
 //Card de los productos. EN PROCESO.
 const CardProduct = (props) => {
-  const [{ bid }, handleInputChange] = useForm({ bid: "" });
-  console.log("Las props: " + props.name + " " + props._id);
-  const { name, _id, image, description, initialPrice, user, createdAt } = props;
   
+  const [{ bid }, handleInputChange] = useForm({ bid: "" });
+  const { name, _id, image, initialPrice } = props;
+
   return (
     <div className="items-center h-fit flex flex-col w-72 rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
 

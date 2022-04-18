@@ -4,12 +4,13 @@ import ProductListContainer from "../moleculs/ProductListContainer";
 import { FaBriefcase } from "react-icons/fa";
 
 export const MisSubastas = (props) => {
+
   return (
     <div className="mt-20 md:min-w-full">
       <div className="grid grid-cols-3 grid-rows-2">
-        <div className="col-span-3 flex items-center">
-          <FaBriefcase className="text-4xl font-bold md:text-6xl mr-2" />
-          <h3 className="sm:text-4xl text-3xl font-bold md:text-6xl text-start">
+        <div className="flex items-center col-span-3">
+          <FaBriefcase className="mr-2 text-4xl font-bold md:text-6xl" />
+          <h3 className="text-3xl font-bold sm:text-4xl md:text-6xl text-start">
             Mis subastas
           </h3>
         </div>

@@ -1,31 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 import { MisSubastas } from "../components/organisms/MisSubastas";
-import { fetchSinToken } from "../helpers/fetch";
+import {useFetch} from "../hooks/useFetch"
 
 export const MyAuctionsScreen = () => {
 
-  const { userId } = useSelector((state) => state.auth);
+  const { id } = useSelector((state) => state.auth);
 
-  const [auctions, setAuctions] = useState(()=> [])
+  const URL= `http://localhost:4000/api/products/user/${id}`
 
- useEffect(()=>{
+  const {data, loading} = useFetch(URL)
 
-  const getAuctionsById = async() => {
-   const data= await fetchSinToken(`products/${userId}`)
-  console.log(data) }
-
-   getAuctionsById();
-
- })
-
- 
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col p-8">
         <div className="flex flex-col items-center justify-center">
-          <MisSubastas data={[]} />
+          <MisSubastas data={data.products} loading={loading}/>
         </div>
       </div>
     </div>
