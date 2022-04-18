@@ -224,13 +224,12 @@ export const NavBar = () => {
                                     content="Editar perfil"
                                   />
                                 </Link>
-                                <Button
-                                  styles={`${styles.DANGER_BUTTON} p-3 text-2xl`}
-                                  content="Cerrar sesion"
-                                  onClick={() => handleLogout}
+                                <button
+                                  className="text-white rounded-[43px] bg-danger p-3 text-2xl"
+                                  onClick={handleLogout}
                                 >
                                   Cerrar sesion
-                                </Button>
+                                </button>
                               </div>
                             </Menu.Item>
                           </>
