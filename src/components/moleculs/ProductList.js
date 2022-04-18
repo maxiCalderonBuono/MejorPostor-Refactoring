@@ -15,7 +15,10 @@ import "../../screens/pujas.css";
 import { Grid, Pagination } from "swiper";
 
 // Función para mapear el componente Card con todas las popiedades que se le pasen. EN PROCESO.
-const ProductList = ({ products }) => {
+const ProductList = ( {products} ) => {
+
+
+
     return (
         <>
             <Swiper
@@ -39,13 +42,17 @@ const ProductList = ({ products }) => {
             className="mySwiper"
         >
                 { products.length > 0 ? (
-                    products.map(product => (
-                        <SwiperSlide key={product._id}>
+                    products.map((product, index) => (
+                    
+                        <SwiperSlide  key={index}>
                             <CardProduct
-                                id={product._id}
                                 name={product.name}
-                                price={product.initialPrice}
                                 image={product.image}
+                                description={product.description}
+                                initialPrice={product.initialPrice}
+                                user={product.user}
+                                createdAt={product.createdAt}
+                                _id={product._id}
                             />
                         </SwiperSlide>
                     ))

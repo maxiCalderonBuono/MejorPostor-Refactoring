@@ -11,7 +11,6 @@ export const types = {
   uploadImage: "[Images] Upload Image",
 
   createProduct: "[Product] Create Product",
-  createAuction: "[Product] Create Auction",
 
   uiOpenLogin: "[UI] Open Login",
   uiCloseLogin: "[UI] Close Login",

@@ -1,6 +1,6 @@
 import React from "react";
 import Loader from "../moleculs/Loader";
-import ProductListContainer from "./ProductListContainer";
+import ProductListContainer from "../moleculs/ProductListContainer";
 import { GiTakeMyMoney } from "react-icons/gi";
 
 export const MisOfertas = (props) => {

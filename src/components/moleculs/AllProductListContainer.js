@@ -4,7 +4,7 @@ import AllProductList from "./AllProductList";
 
 const ProductListContainer = () => {
     const [products, setProducts] = useState([]);
-    const URL = "https://api.mercadolibre.com/sites/MLA/search?q=auto";
+    const URL = "http://localhost:4000/api/products";
 
     useEffect(() => {
         fetch(URL)

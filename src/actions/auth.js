@@ -3,11 +3,7 @@ import { fetchConToken, fetchSinToken } from "../helpers/fetch";
 import { types } from "../types/types";
 import { uiCloseLogin, uiCloseRegister, uiIsNotLoading } from "./modal";
 
-
-
 const login = (user) => ({ type: types.login, payload: user });
-
-
 
 export const startLogin = (email, password) => {
   return async (dispatch) => {
