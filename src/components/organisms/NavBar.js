@@ -91,7 +91,7 @@ export const NavBar = () => {
                     </Link>
                     <button
                       className="text-white rounded-[43px] bg-danger p-2 text-xl"
-                      onClick={handleLogout}
+                      onClick={() => handleLogout}
                     >
                       Cerrar sesion
                     </button>
@@ -224,12 +224,13 @@ export const NavBar = () => {
                                     content="Editar perfil"
                                   />
                                 </Link>
-                                <button
-                                  className="text-white rounded-[43px] bg-danger m-1  p-3 text-2xl"
-                                  onClick={handleLogout}
+                                <Button
+                                  styles={`${styles.DANGER_BUTTON} p-3 text-2xl`}
+                                  content="Cerrar sesion"
+                                  onClick={() => handleLogout}
                                 >
                                   Cerrar sesion
-                                </button>
+                                </Button>
                               </div>
                             </Menu.Item>
                           </>

@@ -66,7 +66,6 @@ export const startIsAuth = () => {
   return async (dispatch) => {
     const res = await fetchConToken("auth/renew");
     const body = await res.json();
-    console.log(body);
     if (res.status === 200) {
       localStorage.setItem("token", body.token);
       dispatch(
