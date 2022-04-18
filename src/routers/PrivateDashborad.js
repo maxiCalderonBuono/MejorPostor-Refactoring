@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Routes, Route } from "react-router-dom";
 import { EditProfileScreen } from "../screens/EditProfileScreen";
 import { MyAuctionsScreen } from "../screens/MyAuctionsScreen";
