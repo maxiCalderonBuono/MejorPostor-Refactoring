@@ -2,6 +2,7 @@ import { types } from "../types/types";
 
 const initialState = {
   isAutho: false,
+  isValidationFinish: true,
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -17,6 +18,12 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isAutho: false,
+      };
+
+      case types.isValidationFinish:
+      return {
+        ...state,
+        isValidationFinish: true,
       };
 
     case types.logout:
