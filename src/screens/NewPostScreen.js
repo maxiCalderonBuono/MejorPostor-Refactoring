@@ -9,7 +9,7 @@ import { SiGooglemaps } from "react-icons/si";
 import Button from "../components/atoms/Buttons/Button";
 import * as styles from "../components/atoms/Buttons/buttonStyles";
 import { useForm } from "../hooks/userForm";
-import { createProduct } from "../actions/newPost";
+import { createProduct } from "../actions/product";
 import ImageLoader from "../components/atoms/ImageLoader";
 import { Provincias } from "../assets/provincias";
 

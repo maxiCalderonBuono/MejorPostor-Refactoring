@@ -10,7 +10,6 @@ export const types = {
   editUser: "[User] Edit User",
   
   createProduct: "[Product] Create Product",
-  createAuction: "[Product] Create Auction",
 
   uiOpenLogin: "[UI] Open Login",
   uiCloseLogin: "[UI] Close Login",

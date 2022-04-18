@@ -1,17 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import { MisSubastas } from "../components/organisms/MisSubastas";
-import { useFetch } from "../hooks/useFetch";
+import { fetchSinToken } from "../helpers/fetch";
 
 export const MyAuctionsScreen = () => {
-  const URL = "https://api.mercadolibre.com/sites/MLA/search?q=auto";
 
-  const { data, loading } = useFetch(URL);
+  const { userId } = useSelector((state) => state.auth);
+
+  const [auctions, setAuctions] = useState(()=> [])
+
+ useEffect(()=>{
+
+  const getAuctionsById = async() => {
+   const data= await fetchSinToken(`products/${userId}`)
+  console.log(data) }
+
+   getAuctionsById();
+
+ })
+
+ 
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col p-8">
         <div className="flex flex-col items-center justify-center">
-          <MisSubastas data={data.results} loading={loading} />
+          <MisSubastas data={[]} />
         </div>
       </div>
     </div>

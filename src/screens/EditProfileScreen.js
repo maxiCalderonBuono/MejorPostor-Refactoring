@@ -94,10 +94,11 @@ export const EditProfileScreen = () => {
           </h1>
           <form className="" onSubmit={handleSubmitEdit}>
             <div className="row">
-              <div className="flex items-center justify-center ">
+              <div className="flex items-center justify-center">
                 <img
                   src={avatar}
                   alt="avatar"
+                  className="border-2 rounded-full border-light-blue"
                   style={{
                     width: "8rem",
                     aspectRatio: "1",
