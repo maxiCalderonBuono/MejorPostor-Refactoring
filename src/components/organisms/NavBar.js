@@ -91,7 +91,7 @@ export const NavBar = () => {
                     </Link>
                     <button
                       className="text-white rounded-[43px] bg-danger p-2 text-xl"
-                      onClick={handleLogout}
+                      onClick={() => handleLogout}
                     >
                       Cerrar sesion
                     </button>
@@ -225,7 +225,7 @@ export const NavBar = () => {
                                   />
                                 </Link>
                                 <button
-                                  className="text-white rounded-[43px] bg-danger m-1  p-3 text-2xl"
+                                  className="text-white rounded-[43px] bg-danger p-3 text-2xl"
                                   onClick={handleLogout}
                                 >
                                   Cerrar sesion

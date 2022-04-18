@@ -14,7 +14,6 @@ const ProductDetailContainer = () =>{
         fetch(URL)
             .then(response => response.json())
             .then(data => {
-                console.log(data + ' Data solo');
                 setData(data.products);
             });
     }, []);

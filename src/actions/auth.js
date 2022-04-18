@@ -3,16 +3,13 @@ import { fetchConToken, fetchSinToken } from "../helpers/fetch";
 import { types } from "../types/types";
 import { uiCloseLogin, uiCloseRegister, uiIsNotLoading } from "./modal";
 
-
-
 const login = (user) => ({ type: types.login, payload: user });
-
-
 
 export const startLogin = (email, password) => {
   return async (dispatch) => {
     const res = await fetchSinToken("auth/signin", { email, password }, "POST");
     const body = await res.json();
+
     if (res.status === 200) {
       localStorage.setItem("token", body.token);
       const loginToast = toast.loading("Iniciando sesión...");
@@ -71,7 +68,15 @@ export const startIsAuth = () => {
     const body = await res.json();
     if (res.status === 200) {
       localStorage.setItem("token", body.token);
-      dispatch(login({ id: body.id, username: body.username }))
+      dispatch(
+        login({
+          id: body.payload.id,
+          username: body.payload.username,
+          email: body.payload.email,
+          image: body.payload.image,
+        })
+      );
+
       dispatch(uiCloseLogin());
     } else {
       console.log("error", body);
