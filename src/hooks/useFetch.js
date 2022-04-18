@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
-export const useFetch = (url) => {
+export const useFetch = (url, token) => {
   const [state, setState] = useState({
     data: [],
     loading: "hello",
     error: "Can not perform fetch request",
+    headers: { token: token },
   });
 
   useEffect(() => {
-
     setState({ data: [], loading: true, error: null });
 
     const controller = new AbortController();
@@ -31,9 +31,7 @@ export const useFetch = (url) => {
     return () => {
       controller.abort();
     };
-
   }, [url]);
 
   return state;
-}; 
-
+};
