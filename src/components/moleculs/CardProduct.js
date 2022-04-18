@@ -18,11 +18,11 @@ const CardProduct = (props) => {
 
       <div className="flex flex-col items-center content-center w-full">
         <img
-          src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+          src={image}
           className="rounded-[12px_12px_30px_30px] mb-3 w-full h-44 object-fit"
           alt={name}
         />
-        <h3 className="text-xl font-bold text-text-primary">Tu próximo auto: {name}</h3>
+        <h3 className="text-xl font-bold text-text-primary">{name}</h3>
         <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
           <AiOutlineFieldTime />
           <span className="text-sm">Quedan 20hs 59min 30seg</span>

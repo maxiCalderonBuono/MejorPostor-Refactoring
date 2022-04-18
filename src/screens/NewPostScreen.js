@@ -1,75 +1,48 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import { ImHammer2 } from "react-icons/im";
-import { Link } from "react-router-dom";
-import Button from "../components/atoms/Buttons/Button";
-import * as styles from "../components/atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { SiGooglemaps } from "react-icons/si";
 
+import Button from "../components/atoms/Buttons/Button";
+import * as styles from "../components/atoms/Buttons/buttonStyles";
 import { useForm } from "../hooks/userForm";
-import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../actions/newPost";
 import ImageLoader from "../components/atoms/ImageLoader";
 import { Provincias } from "../assets/provincias";
 
 const NewPostScreen = () => {
+  
   const bidUser = "6259c3c04240cc9d55377ec4";
-
-  const fileInput = useRef(null);
-  const dragzone = useRef(null);
-
-  const onDrop = (e) => {
-    dragzone.current.classList.remove("opacity-60");
-  };
-
-  const onDragEnter = () => {
-    dragzone.current.classList.add("opacity-60");
-  };
-
-  const onDragOver = () => {
-    dragzone.current.classList.add("opacity-60");
-  };
-
-  const onDragLeave = () => {
-    dragzone.current.classList.remove("opacity-60");
-  };
-
-  const [showObjective, setShowObjective] = useState(() => false);
-
-  const [showDate, setShowDate] = useState(() => false);
 
   const { id } = useSelector((state) => state.auth);
 
   const [picture, setPicture] = useState("https://res.cloudinary.com/dvqlenul5/image/upload/v1649438952/My01MTIucG5n_y7qiqn.png");
   
-  console.log(picture)
-  const [formValues, handleInputChange] = useForm({
+
+  const [formValues, handleInputChange, reset] = useForm({
     name: "",
-    image: "",
     description: "",
     location: "",
     initialPrice: "",
-    auctionedPrice: "",
-    aim: "",
     category: "",
     duration: "",
   });
 
   const {
     name,
-    image,
     description,
     initialPrice,
     location,
-    auctionnedPrice,
     category,
     duration,
   } = formValues;
 
-  const productInfo = {
+  const newAuction = {
     name,
-    image: "a",
+    image: "HARDCODE",
     description,
     initialPrice,
     category,
@@ -85,21 +58,12 @@ const NewPostScreen = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createProduct(productInfo));
-  };
-
-  const handleShowDate = () => {
-    setShowObjective(false);
-    setShowDate(true);
-  };
-
-  const handleShowObjective = () => {
-    setShowDate(false);
-    setShowObjective(true);
+    dispatch(createProduct(newAuction, reset));
   };
 
   const handlePictureChange = (e) => {
     if (e.target.files[0]) {
+      console.log("hello")
       setPicture(e.target.files[0]);
     }
   };
@@ -225,14 +189,12 @@ const NewPostScreen = () => {
               <input
                 type="date"
                 name="duration"
-                className={`w-full border-2 border-solid outline-none border-text-secondary rounded-[43px] p-2 text-sm ${
-                  showDate ? "" : "hidden"
-                }`}
+                className="w-full border-2 border-solid outline-none border-text-secondary rounded-[43px] p-2 text-sm"
                 onChange={handleInputChange}
                 value={duration}
               />
             </div>
-            <ImageLoader inputRef= {fileInput} action={handlePictureChange} onDragEnter={onDragEnter} onDragLeave={onDragLeave} onDrop={onDrop} onDragOver={onDragOver} reference={dragzone}></ImageLoader>
+            <ImageLoader uploadPhoto = {handlePictureChange}/>
           
           
             <div className="flex w-full mt-5 justify-evenly">
@@ -265,10 +227,8 @@ const NewPostScreen = () => {
               <h3 className="text-xl font-bold text-text-primary">{name}</h3>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
                 <AiOutlineFieldTime />
-                <span className={`${showObjective ? "" : "hidden"}text-sm`}>
-                  {showObjective
-                    ? "Esta subasta tiene un míno requerido"
-                    : `Vence el ${duration ? vence : ""}`}
+                <span className="text-sm">
+                 {`Vence el ${vence}`}
                 </span>
               </div>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
