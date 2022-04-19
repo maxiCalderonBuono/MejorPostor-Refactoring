@@ -21,7 +21,7 @@ export const EditProfileScreen = () => {
 
   const [username, setUsername] = useState(usernam);
   const [emailchange, setEmail] = useState(email);
-  const [avatar, setAvatar] = useState("" || avatarDefault);
+  const [avatar, setAvatar] = useState("");
   const [avatarUrl, setAvatarUrl] = useState(image);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -80,16 +80,9 @@ export const EditProfileScreen = () => {
     };
 
     const res = await dispatch(startEditUser(profileUpdated));
-    // navigate("/");
     toast.dismiss(toastload);
-
-    // const res = await updateProfile(profileUpdated);
-
-    // if (res.data.ok) {
-    //   navigate(`/`);
-    // } else {
-    //   console.log("error")
-    // }
+    navigate("/");
+    window.location.reload(true);
   };
   return (
     <>

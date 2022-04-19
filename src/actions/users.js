@@ -1,10 +1,10 @@
 import toast from "react-hot-toast";
-import { fetchSinToken } from "../helpers/fetch";
+import { fetchConToken, fetchSinToken } from "../helpers/fetch";
 import { types } from "../types/types";
 
 export const startEditUser = (userInfo) => {
   return async (dispatch) => {
-    const res = await fetchSinToken(`users/${userInfo.id}`, userInfo, "PUT");
+    const res = await fetchConToken(`users/${userInfo.id}`, userInfo, "PUT");
     const body = await res.json();
 
     if (res.status === 200) {
