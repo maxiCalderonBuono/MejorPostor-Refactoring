@@ -11,13 +11,13 @@ const ProductListContainer = () => {
             .then(response => response.json())
             .then(data => {
                 setProducts(data.results);
-                console.log(data.results)
+              
             });
     }, []);
  
     
     return(
-        <div className="flex flex-wrap gap-8 items-center justify-center">
+        <div className="flex flex-wrap items-center justify-center gap-8">
             <AllProductList products={products}/>
         </div>
     );

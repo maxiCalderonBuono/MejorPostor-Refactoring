@@ -1,51 +1,41 @@
 import React from "react";
 
 const ProductDetail = ({detail}) => {
-    console.log(detail+ ' detail');
+   
     
     
     return (
         <>
-    <div className="flex flex-col h-full w-full items-center justify-center p-10">
+    <div className="flex flex-col items-center justify-center w-full h-full p-8">
         <h1>{detail.name}</h1>
-        <div className="flex flex-col w-full items-center justify-center m-20">
-            <img className="h-60 w-full border-b-4 border-bg-lime-700" src={detail.image} alt={detail.name} />
+        <div className="flex flex-col items-center justify-center w-full m-20">
+            <img className="w-auto rounded-md border-8 border-[#3196DA] h-60" src={detail.image} alt={detail.name} />
         </div>
-        <div className="p-4 m-2 mb-5 rounded-lg bg-black-400">
-            <a className="text-5xl text-lime-500 font-bold text-right item-end" href="">{detail.name}</a>
+        <div className="px-4 m-2 mb-5 rounded-lg bg-black-400">
+            <a className="text-5xl font-bold text-right text-[#3196DA] item-end" href="">{detail.name}</a>
         </div>
-        <div className="flex flex-wrap justify-center items-center">
-            <div className="mt-5 bg-lime-400 border border-bg-lime-700 text-white font-bold rounded-lg p-10 transform hover:scale-125 transition-all">
-                <h3 className="text-lg md:text-5xl">Detalles del producto:</h3>
+        <div className="flex flex-wrap items-center justify-center">
+            <div className="p-10 mt-5 font-bold text-white transition-all transform border rounded-lg bg-[#3196DA] border-bg-lime-700 hover:scale-125">
+                <h3 className="text-2xl text-center border-b-4  md:text-5xl">Detalles del producto:</h3>
                 <div className="flex flex-wrap">
                     <div className="mr-20">
-                        <p className="text-sm md:text-lg mt-5">Descripción: {detail.description}</p>
-                        <p className="text-sm md:text-lg mt-5">Ubicación: {detail.location}</p>
-                        <p className="text-sm md:text-lg mt-5">Categoría: {detail.category}</p>
+                        <p className="mt-5 text-sm md:text-lg">Descripción: {detail.description}</p>
+                        <p className="mt-5 text-sm md:text-lg">Ubicación: {detail.location}</p>
+                        <p className="mt-5 text-sm md:text-lg">Categoría: {detail.category}</p>
                     </div>
-                    <div className="mr-20">
-                        <p className="text-sm md:text-lg mt-5">Publicación iniciada el: {detail.createdAt}</p>
-                        <p className="text-sm md:text-lg mt-5">Última actualización: {detail.updatedAt}</p>
-                        <p className="text-sm md:text-lg mt-5">Fecha de finalización: EN PROCESO</p>
+                    <div className="mr-10">
+                        <p className="mt-5 text-sm text-red-300 md:text-lg">Publicación iniciada el: {detail.createdAt}</p>
+                        <p className="mt-5 text-sm text-red-300 md:text-lg">Última actualización: {detail.updatedAt}</p>
+                        <p className="mt-5 text-sm text-red-300 md:text-lg">Fecha de finalización: {detail.duration}</p>
                     </div>
                 </div>
             </div>
-            <div className="mt-5 bg-slate-100 border border-bg-lime-700 text-black font-bold rounded-lg p-10 items-center justify-center transform hover:scale-125 transition-all">
-                <h3 className="text-lg md:text-5xl">Últimas pujas</h3>
+            <div className="items-center justify-center p-10 mt-5 font-bold text-black transition-all transform border rounded-lg bg-slate-100 border-bg-lime-700 hover:scale-125">
+                <h3 className="text-2xl text-center text-[#3196DA] border-b-4 border-indigo-500 md:text-5xl">PUJA ACTUAL</h3>
                 <div className="flex flex-col md:flex-wrap">
-                    <p className="text-sm mt-2 md:text-lg md:mt-5 mr-3 text-green-500">1: PUJA ACTUAL:</p>
-                    <p className="text-sm md:text-lg mt-5 mr-3 text-green-500">Miguel Ramón</p>
-                    <p className="text-sm md:text-lg mt-5 mr-3 text-green-400">${detail.initialPrice}</p>
-                </div>
-                <div className="flex flex-col md:flex-wrap">
-                    <p className="text-sm md:text-lg mt-5 mr-3 text-red-200">2: puja anterior:</p>
-                    <p className="text-sm md:text-lg mt-5 mr-3 text-gray-300">Juan Maquinola</p>
-                    <p className="text-sm md:text-lg mt-5 text-green-200">$300</p>
-                </div>
-                <div className="flex flex-wrap">
-                    <p className="text-sm md:text-lg mt-5 mr-3 text-red-200">3: puja anterior:</p>
-                    <p className="text-sm md:text-lg mt-5 mr-3 text-gray-300">Lalo Landa</p>
-                    <p className="text-sm md:text-lg mt-5 text-green-200">$200</p>
+                    <p className="mt-5 mr-3 text-sm text-[#3196DA] md:text-lg">USUARIO: Miguel Ramón</p>
+                    <p className="mt-5 mr-3 text-sm text-[#3196DA] md:text-lg">FINALIZA EL: {detail.duration}</p>
+                    <p className="mt-5 mr-3 text-sm text-green-400 md:text-lg">CANTIDAD: ${detail.highestBid}</p>
                 </div>
             </div>
         </div>

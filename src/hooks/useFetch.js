@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export const useFetch = (url, token) => {
   const [state, setState] = useState({
     data: [],
-    loading: "hello",
+    loading: true,
     error: "Can not perform fetch request",
     headers: { token: token },
   });
