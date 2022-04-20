@@ -20,15 +20,19 @@ const {
     updatedAt
 } =detail
 
-console.log(_id)
-    
+const startAt = new Date(createdAt).toLocaleDateString()
+
+const renewAt = new Date(updatedAt).toLocaleDateString()
+
+const endAt = new Date(duration).toLocaleDateString()
+
   const dispatch = useDispatch();
 
   const { id:bidUser } = useSelector((state) => state.auth);
 
   const [{ bid }, handleInputChange, reset] = useForm({ bid: "" });
 
-  console.log(bidUser)
+  
   const pushNewBid = (e) => {
 
     e.preventDefault();
@@ -72,13 +76,13 @@ console.log(_id)
               </div>
               <div className="mr-10">
                 <p className="mt-5 text-sm text-red-300 md:text-lg">
-                  Publicación iniciada el: {createdAt}
+                  Publicación iniciada el: {startAt}
                 </p>
                 <p className="mt-5 text-sm text-red-300 md:text-lg">
-                  Última actualización: {updatedAt}
+                  Última actualización: {renewAt}
                 </p>
                 <p className="mt-5 text-sm text-red-300 md:text-lg">
-                  Fecha de finalización: {duration}
+                  Fecha de finalización: {endAt}
                 </p>
               </div>
             </div>
@@ -92,7 +96,7 @@ console.log(_id)
                 USUARIO: Miguel Ramón
               </p>
               <p className="mt-5 mr-3 text-sm text-[#3196DA] md:text-lg">
-                FINALIZA EL: {duration}
+                FINALIZA EL: {endAt}
               </p>
               <p className="mt-5 mr-3 text-sm text-green-400 md:text-lg">
                 CANTIDAD: ${highestBid}
