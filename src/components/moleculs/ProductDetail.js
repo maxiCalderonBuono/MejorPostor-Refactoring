@@ -36,7 +36,8 @@ console.log(_id)
   };
   return (
     <>
-      <div className="flex flex-col items-center justify-center w-full h-full p-8">
+    
+    <div className="flex flex-col items-center justify-center w-full h-full p-8">
         <h1>{name}</h1>
         <div className="flex flex-col items-center justify-center w-full m-20">
           <img
@@ -54,7 +55,7 @@ console.log(_id)
           </a>
         </div>
         <div className="flex flex-wrap items-center justify-center">
-          <div className="p-10 mt-5 font-bold text-white transition-all transform border rounded-lg bg-[#3196DA] border-bg-lime-700 hover:scale-125">
+          <div className="p-5 mt-5 font-bold text-white md:p-10 md:border rounded-lg bg-[#3196DA]">
             <h3 className="text-2xl text-center border-b-4 md:text-5xl">
               Detalles del producto:
             </h3>
@@ -71,13 +72,13 @@ console.log(_id)
                 </p>
               </div>
               <div className="mr-10">
-                <p className="mt-5 text-sm text-red-300 md:text-lg">
+                <p className="mt-5 text-sm text-red-100 md:text-lg">
                   Publicación iniciada el: {createdAt}
                 </p>
-                <p className="mt-5 text-sm text-red-300 md:text-lg">
+                <p className="mt-5 text-sm text-red-100 md:text-lg">
                   Última actualización: {updatedAt}
                 </p>
-                <p className="mt-5 text-sm text-red-300 md:text-lg">
+                <p className="mt-5 text-sm text-red-200 md:text-lg">
                   Fecha de finalización: {duration}
                 </p>
               </div>
