@@ -3,15 +3,27 @@ import { useForm } from "../../hooks/userForm";
 import Button from "../atoms/Buttons/Button";
 import * as styles from "../atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
-import { FaPlusCircle } from "react-icons/fa";
-import { FaMinusCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProduct } from "../../actions/product";
 
 //Card de los productos. EN PROCESO.
 const CardProduct = (props) => {
   
-  const [{ bid }, handleInputChange] = useForm({ bid: "" });
+  const [{ bid }, handleInputChange, reset] = useForm({ bid: "" });
+
   const { name, _id, image, initialPrice } = props;
+
+  const dispatch = useDispatch();
+
+  const { bidUser } = useSelector((state) => state.auth);
+
+
+  const pushNewBid = (e) => {
+    console.log("hello")
+    e.preventDefault();
+    dispatch(updateProduct(bid, _id, bidUser, reset))
+  }
 
   return (
     <div className="items-center h-fit flex flex-col w-72 rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
@@ -35,29 +47,25 @@ const CardProduct = (props) => {
           <p className="p-1 text-lg font-bold text-danger">{initialPrice}</p>
         </div>
 
-        <div className="flex flex-col items-center justify-center w-full">
-          <div className="flex flex-row items-center mb-3 space-x-3">
-            <button>
-              <FaMinusCircle size="28px" />
-            </button>
+        <form onSubmit = {pushNewBid} className="flex flex-col items-center justify-center w-full">
+          <div className="w-5/6 mb-3 space-x-3">
+          
             <input
               name="bid"
               autoComplete="off"
               placeholder="tu apuesta"
               value={bid}
               onChange={handleInputChange}
-              className="rounded-[43px] border text-text-primary border-text-secondary w-36 h-9 text-center"
+              className="rounded-[43px] border text-text-primary border-text-secondary w-full h-9 text-center"
             />
-            <button>
-              <FaPlusCircle size="28px" />
-            </button>
+     
           </div>
           <Button
-            styles={`${styles.SUCCESS_BUTTON} w-3/4 p-1`}
+            styles={`${styles.SUCCESS_BUTTON} w-5/6 p-1`}
             content="Pujar"
           />
           <Link className="text-lg text-right text-indigo-900 item-end hover:underline underline-offset-1" to={`/producto/${_id}`}>Ver detalles</Link>
-        </div>
+        </form>
       </div>
 
     </div>

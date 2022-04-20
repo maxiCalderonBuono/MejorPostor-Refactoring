@@ -20,3 +20,22 @@ export const createProduct = (newAuction, reset) => {
     }
   };
 };
+
+export const updateProduct = (bid, id, bidUser, reset) => {
+  return async (dispatch) => {
+    const res = await fetchConToken(
+      `products/${id}`,
+      { highestBid: bid },
+      "PUT"
+    );
+    const body = await res.json();
+
+    if (res.status === 200) {
+      toast.success("Tu oferta fue enviada con éxito");
+      reset();
+    } else {
+      toast.error(body.message);
+    }
+  };
+};
+
