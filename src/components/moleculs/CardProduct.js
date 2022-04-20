@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const CardProduct = (props) => {
   
   const [{ bid }, handleInputChange] = useForm({ bid: "" });
-  const { name, _id, image, initialPrice } = props;
+  const { name, _id, image, initialPrice, duration } = props;
 
   return (
     <div className="items-center h-fit flex flex-col w-72 rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
@@ -25,7 +25,7 @@ const CardProduct = (props) => {
         <h3 className="text-xl font-bold text-text-primary">{name}</h3>
         <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
           <AiOutlineFieldTime />
-          <span className="text-sm">Quedan 20hs 59min 30seg</span>
+          <span className="text-sm">Duración: {duration}</span>
         </div>
       </div>
 
