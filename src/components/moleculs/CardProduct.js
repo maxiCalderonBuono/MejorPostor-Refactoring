@@ -1,29 +1,14 @@
 import React from "react";
-import { useForm } from "../../hooks/userForm";
 import Button from "../atoms/Buttons/Button";
 import * as styles from "../atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { updateProduct } from "../../actions/product";
+
 
 //Card de los productos. EN PROCESO.
 const CardProduct = (props) => {
   
-  const [{ bid }, handleInputChange, reset] = useForm({ bid: "" });
-
   const { name, _id, image, initialPrice } = props;
-
-  const dispatch = useDispatch();
-
-  const { bidUser } = useSelector((state) => state.auth);
-
-
-  const pushNewBid = (e) => {
-    console.log("hello")
-    e.preventDefault();
-    dispatch(updateProduct(bid, _id, bidUser, reset))
-  }
 
   return (
     <div className="items-center h-fit flex flex-col w-72 rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
@@ -47,25 +32,15 @@ const CardProduct = (props) => {
           <p className="p-1 text-lg font-bold text-danger">{initialPrice}</p>
         </div>
 
-        <form onSubmit = {pushNewBid} className="flex flex-col items-center justify-center w-full">
-          <div className="w-5/6 mb-3 space-x-3">
-          
-            <input
-              name="bid"
-              autoComplete="off"
-              placeholder="tu apuesta"
-              value={bid}
-              onChange={handleInputChange}
-              className="rounded-[43px] border text-text-primary border-text-secondary w-full h-9 text-center"
-            />
-     
-          </div>
+        <div  className="flex flex-col items-center justify-center w-full">
+    
+          <Link className="w-full" to={`/producto/${_id}`}>
           <Button
             styles={`${styles.SUCCESS_BUTTON} w-5/6 p-1`}
             content="Pujar"
           />
-          <Link className="text-lg text-right text-indigo-900 item-end hover:underline underline-offset-1" to={`/producto/${_id}`}>Ver detalles</Link>
-        </form>
+          </Link>
+        </div>
       </div>
 
     </div>
