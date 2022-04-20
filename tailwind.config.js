@@ -7,10 +7,29 @@ module.exports = {
         "text-secondary": "#a4a4a4",
         danger: "#ec4b28",
         background_main: "#eaeaea",
-        green: "#32a42b",
+        background_nav: "3196DA",
+        success: "#32a42b",
         "dark-blue": "#05a297",
         "light-blue": "#14acde",
       },
+      fontFamily: {
+        poppins: "Poppins",
+        sans: "Helvetica, Arial, sans-serif",
+      },
+      screens: {
+        "modal-2": "700px",
+        "modal-1": "875px",
+      },
+      animation: {
+        "pulse-fast" : "pulse 1.7s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        'spin-slow': 'spin 1.7s linear infinite',
+      },
+      keyframes: {
+        pulse: {
+          '0%, 100%': { opacity: 0.4 },
+          '50%': { opacity: 0 },
+        }
+      }
     },
   },
   plugins: [],

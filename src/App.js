@@ -1,11 +1,16 @@
-import React from "react";
+import { store } from "./store/store";
+import { AppRouter } from "./routers/AppRouter";
+import "swiper/css/bundle";
+import { Provider } from "react-redux";
 
-function App() {
+const App = () => {
   return (
-    <div className= "h-screen bg-dark">
-      <h1 className= "text-center bg-primary">Front End mejor postor</h1>
-    </div>
+    <Provider store={store}>
+      <div className="flex flex-col items-center justify-center w-full h-full md:h-full bg-background_main">
+        <AppRouter />
+      </div>
+    </Provider>
   );
-}
+};
 
 export default App;
