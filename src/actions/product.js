@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { fetchConToken, fetchSinToken } from "../helpers/fetch";
+import { fetchConToken } from "../helpers/fetch";
 
 export const createProduct = (newAuction, reset) => {
   return async (dispatch) => {
