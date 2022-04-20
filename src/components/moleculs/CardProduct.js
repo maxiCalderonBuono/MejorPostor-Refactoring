@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const CardProduct = (props) => {
   
   const [{ bid }, handleInputChange] = useForm({ bid: "" });
-  const { name, _id, image, initialPrice, duration } = props;
+  const { name, _id, image, initialPrice, duration, highestBid } = props;
 
   return (
     <div className="items-center h-fit flex flex-col w-72 rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
@@ -32,7 +32,7 @@ const CardProduct = (props) => {
       <div className="flex flex-col items-center content-center w-full mb-4">
         <div className="flex items-center justify-center my-2 space-x-4 text-center">
           <p className="p-1 text-lg font-bold">Puja actual</p>
-          <p className="p-1 text-lg font-bold text-danger">{initialPrice}</p>
+          <p className="p-1 text-lg font-bold text-danger">{highestBid}</p>
         </div>
 
         <div className="flex flex-col items-center justify-center w-full">
