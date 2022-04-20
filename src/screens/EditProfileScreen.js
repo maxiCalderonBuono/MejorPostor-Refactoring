@@ -66,8 +66,8 @@ export const EditProfileScreen = () => {
       toast.error("Por favor completa todos los campos");
       return;
     }
-    const avatarURI = avatar ? await uploadImage(avatar) : avatarUrl;
     const toastload = toast.loading("Actualizando perfil...");
+    const avatarURI = avatar ? await uploadImage(avatar) : avatarUrl;
 
     const profileUpdated = {
       id,

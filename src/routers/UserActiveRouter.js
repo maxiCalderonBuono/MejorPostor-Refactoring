@@ -23,7 +23,6 @@ export const UserActiveRouter = (props) => {
     
       if (data.status === 200) {
         toast.success("Tu cuenta ha sido verificada de forma correcta. Inicia sesión");
-        dispatch(uiOpenLogin())
         }
       } 
       catch (err) {
