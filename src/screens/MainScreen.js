@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React  from "react";
 import Novedades from "../components/organisms/Novedades";
 import UltimoAviso from "../components/organisms/UltimoAviso";
 import { useFetch } from "../hooks/useFetch";

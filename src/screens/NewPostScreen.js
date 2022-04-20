@@ -12,15 +12,18 @@ import { useForm } from "../hooks/userForm";
 import { createProduct } from "../actions/product";
 import ImageLoader from "../components/atoms/ImageLoader";
 import { Provincias } from "../assets/provincias";
+import { uploadImage } from "../actions/images";
 
 const NewPostScreen = () => {
-  
   const bidUser = "6259c3c04240cc9d55377ec4";
 
   const { id } = useSelector((state) => state.auth);
 
-  const [picture, setPicture] = useState("https://res.cloudinary.com/dvqlenul5/image/upload/v1649438952/My01MTIucG5n_y7qiqn.png");
-  
+  const pictureDefault =
+    "https://res.cloudinary.com/dvqlenul5/image/upload/v1649438952/My01MTIucG5n_y7qiqn.png";
+
+  const [picture, setPicture] = useState("");
+  const [pictureUrl, setPictureUrl] = useState(pictureDefault);
 
   const [formValues, handleInputChange, reset] = useForm({
     name: "",
@@ -31,18 +34,12 @@ const NewPostScreen = () => {
     duration: "",
   });
 
-  const {
-    name,
-    description,
-    initialPrice,
-    location,
-    category,
-    duration,
-  } = formValues;
+  const { name, description, initialPrice, location, category, duration } =
+    formValues;
 
   const newAuction = {
     name,
-    image: "HARDCODE",
+    image: "",
     description,
     initialPrice,
     category,
@@ -56,8 +53,10 @@ const NewPostScreen = () => {
 
   const vence = new Date(`${duration}T00:00:00`).toLocaleDateString();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const pictureURI = picture ? await uploadImage(picture) : pictureUrl;
+    newAuction.image = pictureURI;
     dispatch(createProduct(newAuction, reset));
   };
 
@@ -73,7 +72,7 @@ const NewPostScreen = () => {
         const fileReader = new FileReader();
         fileReader.readAsDataURL(picture);
         fileReader.onload = () => {
-          setPicture(fileReader.result);
+          setPictureUrl(fileReader.result);
         };
       }
     }
@@ -193,9 +192,8 @@ const NewPostScreen = () => {
                 value={duration}
               />
             </div>
-            <ImageLoader uploadPhoto = {handlePictureChange}/>
-          
-          
+            <ImageLoader uploadPhoto={handlePictureChange} />
+
             <div className="flex w-full mt-5 justify-evenly">
               <Link to="/" className="w-1/3">
                 <Button
@@ -211,24 +209,17 @@ const NewPostScreen = () => {
             </div>
           </form>
           <div className="mt-8 items-center h-1/2 flex flex-col w-[360px] rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
-            <div
-              className="flex flex-col items-center content-center w-full"
-          
-            >
-              
-                <img
-                  src={picture}
-                  className="rounded-[12px_12px_30px_30px] mb-3 w-full h-60 object-fit"
-                  alt="product"
-                />
-             
+            <div className="flex flex-col items-center content-center w-full">
+              <img
+                src={pictureUrl || pictureDefault}
+                className="rounded-[12px_12px_30px_30px] mb-3 w-full h-60 object-fit"
+                alt="product"
+              />
 
               <h3 className="text-xl font-bold text-text-primary">{name}</h3>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
                 <AiOutlineFieldTime />
-                <span className="text-sm">
-                 {`Vence el ${vence}`}
-                </span>
+                <span className="text-sm">{`Vence el ${vence}`}</span>
               </div>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
                 <SiGooglemaps />

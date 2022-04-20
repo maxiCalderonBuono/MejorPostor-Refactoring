@@ -13,6 +13,7 @@ export const MyAuctionsScreen = () => {
 
   const { data, loading } = useFetch(URL, token);
 
+  
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col p-8">

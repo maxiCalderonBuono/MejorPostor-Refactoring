@@ -5,7 +5,7 @@ export const useFetch = (url, token) => {
     data: [],
     loading: true,
     error: "Can not perform fetch request",
-    headers: { token: token },
+  
   });
 
   useEffect(() => {
@@ -15,7 +15,9 @@ export const useFetch = (url, token) => {
 
     const signal = controller.signal;
 
-    fetch(url, { signal })
+    fetch(url, {
+      method: "GET",
+      headers: { token: token },  signal })
       .then((resp) => resp.json())
       .then((data) => {
         setState({
@@ -31,7 +33,7 @@ export const useFetch = (url, token) => {
     return () => {
       controller.abort();
     };
-  }, [url]);
+  }, [url, token]);
 
   return state;
 };

@@ -5,6 +5,8 @@ import { FaBriefcase } from "react-icons/fa";
 
 export const MisSubastas = (props) => {
 
+  
+
   return (
     <div className="mt-20 md:min-w-full">
       <div className="grid grid-cols-3 grid-rows-2">
