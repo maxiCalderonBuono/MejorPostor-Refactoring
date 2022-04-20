@@ -4,6 +4,7 @@ import * as styles from "../atoms/Buttons/buttonStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../actions/product";
 import { useForm } from "../../hooks/userForm";
+import toast from "react-hot-toast";
 
 const ProductDetail = ({ detail }) => {
   const {
@@ -33,6 +34,15 @@ const ProductDetail = ({ detail }) => {
 
   const pushNewBid = (e) => {
     e.preventDefault();
+    if (bid < 0) {
+      toast.error("El precio debe ser mayor a 0");
+      return;
+    }
+    if (bid < highestBid) {
+      toast.error("El precio debe ser mayor al actual");
+      return;
+    }
+
     dispatch(updateProduct(bid, bidUser, _id, reset));
   };
   return (
@@ -68,14 +78,14 @@ const ProductDetail = ({ detail }) => {
                 <p className="mt-5 text-sm md:text-lg">Categoría: {category}</p>
               </div>
               <div className="mr-10">
-                <p className="mt-5 text-sm text-red-300 md:text-lg">
-                  Publicación iniciada el: {startAt}
+                <p className="mt-5 text-sm text-red-100 md:text-lg">
+                  Publicación iniciada el: {createdAt}
                 </p>
-                <p className="mt-5 text-sm text-red-300 md:text-lg">
-                  Última actualización: {renewAt}
+                <p className="mt-5 text-sm text-red-100 md:text-lg">
+                  Última actualización: {updatedAt}
                 </p>
-                <p className="mt-5 text-sm text-red-300 md:text-lg">
-                  Fecha de finalización: {endAt}
+                <p className="mt-5 text-sm text-red-200 md:text-lg">
+                  Fecha de finalización: {duration}
                 </p>
               </div>
             </div>

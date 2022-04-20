@@ -225,7 +225,7 @@ export const NavBar = () => {
                                   />
                                 </Link>
                                 <button
-                                  className="text-white rounded-[43px] bg-danger p-3 text-2xl"
+                                  className="text-white rounded-[43px] bg-danger px-3 my-1 text-xl"
                                   onClick={handleLogout}
                                 >
                                   Cerrar sesion

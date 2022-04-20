@@ -13,6 +13,7 @@ import { createProduct } from "../actions/product";
 import ImageLoader from "../components/atoms/ImageLoader";
 import { Provincias } from "../assets/provincias";
 import { uploadImage } from "../actions/images";
+import toast from "react-hot-toast";
 
 const NewPostScreen = () => {
   const bidUser = "6259c3c04240cc9d55377ec4";
@@ -55,6 +56,29 @@ const NewPostScreen = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const today = new Date().getTime();
+
+    if (
+      !picture ||
+      !name ||
+      !description ||
+      !initialPrice ||
+      !location ||
+      !category ||
+      !duration
+    ) {
+      return toast.error("Todos los campos son obligatorios");
+    }
+
+    if (initialPrice < 0) {
+      return toast.error("El precio debe ser mayor a 0");
+    }
+
+    if (new Date(duration).getTime() <= today) {
+      return toast.error("La fecha debe ser mayor al dia de hoy");
+    }
+
     const pictureURI = picture ? await uploadImage(picture) : pictureUrl;
     newAuction.image = pictureURI;
     dispatch(createProduct(newAuction, reset));
@@ -81,8 +105,8 @@ const NewPostScreen = () => {
 
   return (
     <>
-      <div className="w-3/4 p-8 mt-32 bg-white rounded-lg shadow-lg mb-14">
-        <h3 className="block w-full mb-8 text-4xl font-bold">
+      <div className="w-11/12 p-6 mt-28 bg-white rounded-lg shadow-lg mb-14">
+        <h3 className="block w-full mb-4 text-4xl font-bold text-center">
           <ImHammer2 className="mr-1.5 inline-block" />
           Crear nueva subasta
         </h3>
@@ -195,7 +219,7 @@ const NewPostScreen = () => {
             <ImageLoader uploadPhoto={handlePictureChange} />
 
             <div className="flex w-full mt-5 justify-evenly">
-              <Link to="/" className="w-1/3">
+              <Link to="/" className="sm:w-1/3">
                 <Button
                   styles={`${styles.DANGER_BUTTON} text-2xl w-full px-3 py-2`}
                   type="button"
@@ -208,7 +232,7 @@ const NewPostScreen = () => {
               />
             </div>
           </form>
-          <div className="mt-8 items-center h-1/2 flex flex-col w-[360px] rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
+          <div className="mt-8 items-center h-1/2 sm:flex flex-col sm:w-[360px] hidden rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
             <div className="flex flex-col items-center content-center w-full">
               <img
                 src={pictureUrl || pictureDefault}
