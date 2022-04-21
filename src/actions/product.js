@@ -42,3 +42,21 @@ export const updateProduct = (bid, bidUser, _id, reset) => {
     }
   };
 };
+
+export const purchaseProduct = (highestBid, username, email) => {
+
+  const unit_price = highestBid
+ 
+  return async (dispatch) => {
+    const res = await fetchConToken(`payment/`, { unit_price, username, email },"POST");
+
+    const body = await res.json();
+
+    if (res.status === 200) {
+      toast.success("Salió bien");
+    } else {
+      console.log("Salio por el else");
+      toast.error(body.message);
+    }
+  };
+};

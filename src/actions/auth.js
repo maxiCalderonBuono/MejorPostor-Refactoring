@@ -12,6 +12,8 @@ export const startLogin = (email, password) => {
 
     if (res.status === 200) {
       localStorage.setItem("token", body.token);
+      localStorage.setItem("email", body.email);
+      localStorage.setItem("username", body.username);
       const loginToast = toast.loading("Iniciando sesión...");
       dispatch(
         login({

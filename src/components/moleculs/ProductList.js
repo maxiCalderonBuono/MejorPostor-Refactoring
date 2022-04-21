@@ -56,6 +56,7 @@ const ProductList = ( {products} ) => {
                                 _id={product._id}
                                 duration={product.duration}
                                 highestBid={product.highestBid}
+                                bidUser= {product.bidUser}
                             />
                         </SwiperSlide>
                     ))
