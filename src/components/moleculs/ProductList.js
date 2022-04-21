@@ -3,7 +3,6 @@ import CardProduct from "./CardProduct";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/grid";
@@ -32,6 +31,7 @@ const ProductList = ( {products} ) => {
                 width: 768,
                 slidesPerView: 2,
                 },
+               
             }}
 
             spaceBetween={30}
@@ -55,6 +55,7 @@ const ProductList = ( {products} ) => {
                                 _id={product._id}
                                 duration={product.duration}
                                 highestBid={product.highestBid}
+                                bidUser= {product.bidUser}
                             />
                         </SwiperSlide>
                     ))
