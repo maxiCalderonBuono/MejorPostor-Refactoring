@@ -31,7 +31,7 @@ const CardProduct = (props) => {
       <div className="flex flex-col items-center content-center w-full mb-4">
         <div className="flex items-center justify-center my-2 space-x-4 text-center">
           <p className="p-1 text-lg font-bold">Puja actual</p>
-          <p className="p-1 text-lg font-bold text-danger">{new Intl.NumberFormat('en-US', {style: 'currency' , currency: 'USD',minimumFractionDigits: 0,maximumFractionDigits: 0}).format(highestBid)}</p>
+          <p className="p-1 text-lg font-bold text-danger">{new Intl.NumberFormat('de-DE', {style: 'currency' , currency: 'USD',minimumFractionDigits: 0,maximumFractionDigits: 0, currencyDisplay : 'code'}).format(highestBid)}</p>
         </div>
 
         <div  className="flex flex-col items-center justify-center w-full">

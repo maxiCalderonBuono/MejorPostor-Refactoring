@@ -3,6 +3,7 @@ import { fetchConToken } from "../helpers/fetch";
 
 export const createProduct = (newAuction, reset) => {
   return async (dispatch) => {
+
     const duration = Date(newAuction.duration);
 
     const res = await fetchConToken(

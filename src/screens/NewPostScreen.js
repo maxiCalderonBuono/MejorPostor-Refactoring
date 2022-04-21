@@ -23,6 +23,7 @@ const NewPostScreen = () => {
     "https://res.cloudinary.com/dvqlenul5/image/upload/v1649438952/My01MTIucG5n_y7qiqn.png";
 
   const [picture, setPicture] = useState("");
+  
   const [pictureUrl, setPictureUrl] = useState(pictureDefault);
 
   const [formValues, handleInputChange, reset] = useForm({
@@ -36,6 +37,8 @@ const NewPostScreen = () => {
 
   const { name, description, initialPrice, location, category, duration } =
     formValues;
+ 
+  const dueDate = new Date(`${duration}T00:00:00`).toLocaleDateString();
 
   const newAuction = {
     name,
@@ -50,8 +53,6 @@ const NewPostScreen = () => {
   };
 
   const dispatch = useDispatch();
-
-  const vence = new Date(`${duration}T00:00:00`).toLocaleDateString();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -219,7 +220,7 @@ const NewPostScreen = () => {
               <h3 className="text-xl font-bold text-text-primary">{name}</h3>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
                 <AiOutlineFieldTime />
-                <span className="text-sm">{`Vence el ${vence}`}</span>
+                <span className="text-sm">{`Vence el ${duration? dueDate: ""}`}</span>
               </div>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
                 <SiGooglemaps />
@@ -234,7 +235,7 @@ const NewPostScreen = () => {
                     initialPrice ? "" : "hidden"
                   } p-1 text-lg font-bold text-danger`}
                 >
-                  {initialPrice}
+                  {new Intl.NumberFormat('de-DE', {style: 'currency' , currency: 'USD',minimumFractionDigits: 0,maximumFractionDigits: 0, currencyDisplay : 'code'}).format(initialPrice)}
                 </p>
               </div>
             </div>

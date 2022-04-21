@@ -99,7 +99,7 @@ const endAt = new Date(duration).toLocaleDateString()
                 FINALIZA EL: {endAt}
               </p>
               <p className="mt-5 mr-3 text-sm text-green-400 md:text-lg">
-                CANTIDAD: {new Intl.NumberFormat('en-US', {style: 'currency' , currency: 'USD',minimumFractionDigits: 0,maximumFractionDigits: 0}).format(highestBid)}
+                CANTIDAD: {new Intl.NumberFormat('de-DE', {style: 'currency' , currency: 'USD',minimumFractionDigits: 0,maximumFractionDigits: 0, currencyDisplay : 'code'}).format(highestBid)}
               </p>
               <form onSubmit={pushNewBid} className="flex flex-col items-center">
                 <input

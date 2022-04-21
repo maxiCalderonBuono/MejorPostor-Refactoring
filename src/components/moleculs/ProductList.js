@@ -32,6 +32,7 @@ const ProductList = ( {products} ) => {
                 width: 768,
                 slidesPerView: 2,
                 },
+               
             }}
 
             spaceBetween={30}
