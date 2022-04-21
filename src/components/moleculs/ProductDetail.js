@@ -24,7 +24,13 @@ const ProductDetail = ({ detail }) => {
 
   const renewAt = new Date(updatedAt).toLocaleDateString();
 
-  const endAt = new Date(duration).toLocaleDateString();
+  // const endAt = new Date(duration).toLocaleDateString();
+
+  let endAt2 = duration;
+
+  if (endAt2) {
+    endAt2 = endAt2.slice(0, 10).replace(/-/g, "/");
+  }
 
   const dispatch = useDispatch();
 
@@ -85,7 +91,7 @@ const ProductDetail = ({ detail }) => {
                   Última actualización: {renewAt}
                 </p>
                 <p className="mt-5 text-sm text-red-300 md:text-lg">
-                  Fecha de finalización: {endAt}
+                  Fecha de finalización: {endAt2}
                 </p>
               </div>
             </div>
@@ -99,7 +105,7 @@ const ProductDetail = ({ detail }) => {
                 USUARIO: Miguel Ramón
               </p>
               <p className="mt-5 mr-3 text-sm text-[#3196DA] md:text-lg">
-                FINALIZA EL: {endAt}
+                FINALIZA EL: {endAt2}
               </p>
               <p className="mt-5 mr-3 text-sm text-green-400 md:text-lg">
                 CANTIDAD:{" "}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ImHammer2 } from "react-icons/im";
@@ -18,13 +18,15 @@ import toast from "react-hot-toast";
 const NewPostScreen = () => {
   const bidUser = "6259c3c04240cc9d55377ec4";
 
+  const navigate = useNavigate();
+
   const { id } = useSelector((state) => state.auth);
 
   const pictureDefault =
     "https://res.cloudinary.com/dvqlenul5/image/upload/v1649438952/My01MTIucG5n_y7qiqn.png";
 
   const [picture, setPicture] = useState("");
-  
+
   const [pictureUrl, setPictureUrl] = useState(pictureDefault);
 
   const [formValues, handleInputChange, reset] = useForm({
@@ -38,7 +40,7 @@ const NewPostScreen = () => {
 
   const { name, description, initialPrice, location, category, duration } =
     formValues;
- 
+
   const dueDate = new Date(`${duration}T00:00:00`).toLocaleDateString();
 
   const newAuction = {
@@ -83,6 +85,7 @@ const NewPostScreen = () => {
     const pictureURI = picture ? await uploadImage(picture) : pictureUrl;
     newAuction.image = pictureURI;
     dispatch(createProduct(newAuction, reset));
+    navigate("/");
   };
 
   const handlePictureChange = (e) => {
@@ -244,7 +247,9 @@ const NewPostScreen = () => {
               <h3 className="text-xl font-bold text-text-primary">{name}</h3>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
                 <AiOutlineFieldTime />
-                <span className="text-sm">{`Vence el ${duration? dueDate: ""}`}</span>
+                <span className="text-sm">{`Vence el ${
+                  duration ? dueDate : ""
+                }`}</span>
               </div>
               <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
                 <SiGooglemaps />
@@ -259,7 +264,13 @@ const NewPostScreen = () => {
                     initialPrice ? "" : "hidden"
                   } p-1 text-lg font-bold text-danger`}
                 >
-                  {new Intl.NumberFormat('de-DE', {style: 'currency' , currency: 'USD',minimumFractionDigits: 0,maximumFractionDigits: 0, currencyDisplay : 'code'}).format(initialPrice)}
+                  {new Intl.NumberFormat("de-DE", {
+                    style: "currency",
+                    currency: "USD",
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0,
+                    currencyDisplay: "code",
+                  }).format(initialPrice)}
                 </p>
               </div>
             </div>

@@ -15,9 +15,7 @@ export const UserActiveRouter = (props) => {
         const data = await fetchSinToken(`auth/verify/${param.uid}`);
 
         if (data.status === 200) {
-          toast.success(
-            "Tu cuenta ha sido verificada de forma correcta. Inicia sesión"
-          );
+          toast.success("Tu cuenta ha sido verificada de forma correcta");
         }
       } catch (err) {
         console.error(err);

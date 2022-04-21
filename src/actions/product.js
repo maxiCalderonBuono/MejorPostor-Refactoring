@@ -3,12 +3,9 @@ import { fetchConToken } from "../helpers/fetch";
 
 export const createProduct = (newAuction, reset) => {
   return async (dispatch) => {
-
-    const duration = Date(newAuction.duration);
-
     const res = await fetchConToken(
       "products/",
-      { ...newAuction, duration, highestBid: newAuction.initialPrice },
+      { ...newAuction, highestBid: newAuction.initialPrice },
       "POST"
     );
     const body = await res.json();
@@ -16,6 +13,8 @@ export const createProduct = (newAuction, reset) => {
     if (res.status === 200) {
       toast.success("Publicación creada con éxito");
       reset();
+
+      window.location.reload(true);
     } else {
       toast.error(body.message);
     }
