@@ -62,7 +62,13 @@ export const startRegister = (username, password, email, reset) => {
   };
 };
 
+
+
+
+
 export const startIsAuth = () => {
+
+
   return async (dispatch) => {
     const res = await fetchConToken("auth/renew");
     const body = await res.json();

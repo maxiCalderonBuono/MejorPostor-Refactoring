@@ -10,6 +10,8 @@ const CardProduct = (props) => {
   
   const { name, _id, image, initialPrice, highestBid, duration } = props;
 
+  const endAt = new Date(duration).toLocaleDateString()
+
   return (
     <div className="items-center h-fit flex flex-col w-72 rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
 
@@ -22,14 +24,14 @@ const CardProduct = (props) => {
         <h3 className="text-xl font-bold text-text-primary">{name}</h3>
         <div className="flex flex-row mt-2 space-x-2 text-text-secondary">
           <AiOutlineFieldTime />
-          <span className="text-sm">Duración: {duration}</span>
+          <span className="text-sm">Termina el: {endAt}</span>
         </div>
       </div>
 
       <div className="flex flex-col items-center content-center w-full mb-4">
         <div className="flex items-center justify-center my-2 space-x-4 text-center">
           <p className="p-1 text-lg font-bold">Puja actual</p>
-          <p className="p-1 text-lg font-bold text-danger">{highestBid}</p>
+          <p className="p-1 text-lg font-bold text-danger">{new Intl.NumberFormat('de-DE', {style: 'currency' , currency: 'USD',minimumFractionDigits: 0,maximumFractionDigits: 0, currencyDisplay : 'code'}).format(highestBid)}</p>
         </div>
 
         <div  className="flex flex-col items-center justify-center w-full">

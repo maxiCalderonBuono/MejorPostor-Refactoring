@@ -65,7 +65,7 @@ const ProductDetail = ({ detail }) => {
           </a>
         </div>
         <div className="flex flex-wrap items-center justify-center">
-          <div className="p-5 mt-5 font-bold text-white md:p-10 md:border rounded-lg bg-[#3196DA]">
+          <div className="p-10 mt-5 font-bold text-white transition-all transform border rounded-lg bg-[#3196DA] border-bg-lime-700 hover:scale-125">
             <h3 className="text-2xl text-center border-b-4 md:text-5xl">
               Detalles del producto:
             </h3>
@@ -78,14 +78,14 @@ const ProductDetail = ({ detail }) => {
                 <p className="mt-5 text-sm md:text-lg">Categoría: {category}</p>
               </div>
               <div className="mr-10">
-                <p className="mt-5 text-sm text-red-100 md:text-lg">
-                  Publicación iniciada el: {createdAt}
+                <p className="mt-5 text-sm text-red-300 md:text-lg">
+                  Publicación iniciada el: {startAt}
                 </p>
-                <p className="mt-5 text-sm text-red-100 md:text-lg">
-                  Última actualización: {updatedAt}
+                <p className="mt-5 text-sm text-red-300 md:text-lg">
+                  Última actualización: {renewAt}
                 </p>
-                <p className="mt-5 text-sm text-red-200 md:text-lg">
-                  Fecha de finalización: {duration}
+                <p className="mt-5 text-sm text-red-300 md:text-lg">
+                  Fecha de finalización: {endAt}
                 </p>
               </div>
             </div>
@@ -102,7 +102,14 @@ const ProductDetail = ({ detail }) => {
                 FINALIZA EL: {endAt}
               </p>
               <p className="mt-5 mr-3 text-sm text-green-400 md:text-lg">
-                CANTIDAD: ${highestBid}
+                CANTIDAD:{" "}
+                {new Intl.NumberFormat("de-DE", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 0,
+                  maximumFractionDigits: 0,
+                  currencyDisplay: "code",
+                }).format(highestBid)}
               </p>
               <form
                 onSubmit={pushNewBid}
