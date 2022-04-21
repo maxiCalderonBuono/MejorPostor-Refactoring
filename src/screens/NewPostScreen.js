@@ -117,7 +117,7 @@ const NewPostScreen = () => {
           >
             <label
               htmlFor="name"
-              className="w-5/6 text-2xl text-left text-text-primary"
+              className="w-5/6 sm:w-4/6  text-2xl text-left text-text-primary"
             >
               Título
             </label>
@@ -127,14 +127,14 @@ const NewPostScreen = () => {
               name="name"
               autoComplete="off"
               placeholder="¿Qué deseas subastar?"
-              className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
+              className="w-5/6 sm:w-4/6 h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
               onChange={handleInputChange}
               value={name}
             />
 
             <label
               htmlFor="description"
-              className="w-5/6 text-2xl text-left text-text-primary"
+              className="w-5/6 sm:w-4/6 text-2xl text-left text-text-primary"
             >
               Descripción
             </label>
@@ -144,21 +144,21 @@ const NewPostScreen = () => {
               name="description"
               autoComplete="off"
               placeholder="Breve descripción del producto"
-              className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
+              className="w-5/6 sm:w-4/6 h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
               onChange={handleInputChange}
               value={description}
             />
 
             <label
               htmlFor="category"
-              className="w-5/6 text-2xl text-left text-text-primary"
+              className="w-5/6 sm:w-4/6 text-2xl text-left text-text-primary"
             >
               Categoría
             </label>
             <select
               name="category"
               id="category"
-              className="w-5/6 h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
+              className="w-5/6 sm:w-4/6 h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
               value={category}
               onChange={handleInputChange}
             >
@@ -168,14 +168,14 @@ const NewPostScreen = () => {
 
             <label
               htmlFor="location"
-              className="w-5/6 text-2xl text-left text-text-primary"
+              className="w-5/6 sm:w-4/6 text-2xl text-left text-text-primary"
             >
               Ubicación
             </label>
             <select
               name="location"
               id="location"
-              className="w-5/6 h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
+              className="w-5/6 sm:w-4/6 h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
               value={location}
               onChange={handleInputChange}
             >
@@ -189,7 +189,7 @@ const NewPostScreen = () => {
 
             <label
               htmlFor="initialPrice"
-              className="w-5/6 text-2xl text-left text-text-primary"
+              className="w-5/6 sm:w-4/6 text-2xl text-left text-text-primary"
             >
               Puja inicial ($)
             </label>
@@ -199,13 +199,13 @@ const NewPostScreen = () => {
               name="initialPrice"
               autoComplete="off"
               placeholder="Precio inicial"
-              className="w-5/6  h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
+              className="w-5/6 sm:w-4/6 h-10 border-2 border-solid outline-none border-text-secondary rounded-[43px] mb-6 p-2 text-sm"
               onChange={handleInputChange}
               value={initialPrice}
             />
 
-            <div className="flex flex-col w-5/6 mb-6">
-              <p className="w-5/6 mb-3 text-2xl text-left text-text-primary">
+            <div className="flex flex-col w-5/6  sm:w-4/6 mb-6 items-center">
+              <p className="w-full mb-3 text-2xl text-left text-text-primary">
                 Duración
               </p>
               <input
@@ -219,7 +219,7 @@ const NewPostScreen = () => {
             <ImageLoader uploadPhoto={handlePictureChange} />
 
             <div className="flex w-full mt-5 justify-evenly">
-              <Link to="/" className="sm:w-1/3">
+              <Link to="/" className="sm:w-1/4">
                 <Button
                   styles={`${styles.DANGER_BUTTON} text-2xl w-full px-3 py-2`}
                   type="button"
@@ -227,12 +227,12 @@ const NewPostScreen = () => {
                 />
               </Link>
               <Button
-                styles={`${styles.SUCCESS_BUTTON} text-2xl w-1/3 px-3 py-2`}
+                styles={`${styles.SUCCESS_BUTTON} text-2xl w-1/4 px-3 py-2`}
                 content="Publicar"
               />
             </div>
           </form>
-          <div className="mt-8 items-center h-1/2 sm:flex flex-col sm:w-[360px] hidden rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
+          <div className="mt-8 items-center h-1/2 sm:flex flex-col sm:w-[360px] sm:mr-10 hidden rounded-xl shadow-[3px_3px_2px_3px_rgba(0,0,0,0.25)] bg-white">
             <div className="flex flex-col items-center content-center w-full">
               <img
                 src={pictureUrl || pictureDefault}
