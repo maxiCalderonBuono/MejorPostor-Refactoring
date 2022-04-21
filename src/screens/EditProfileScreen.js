@@ -21,7 +21,7 @@ export const EditProfileScreen = () => {
 
   const [username, setUsername] = useState(usernam);
   const [emailchange, setEmail] = useState(email);
-  const [avatar, setAvatar] = useState("" || avatarDefault);
+  const [avatar, setAvatar] = useState("");
   const [avatarUrl, setAvatarUrl] = useState(image);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -80,20 +80,13 @@ export const EditProfileScreen = () => {
     };
 
     const res = await dispatch(startEditUser(profileUpdated));
-    // navigate("/");
     toast.dismiss(toastload);
-
-    // const res = await updateProfile(profileUpdated);
-
-    // if (res.data.ok) {
-    //   navigate(`/`);
-    // } else {
-    //   console.log("error")
-    // }
+    navigate("/");
+    window.location.reload(true);
   };
   return (
     <>
-      <div className="flex flex-col w-1/2 mb-8 mt-28">
+      <div className="flex flex-col sm:w-1/3 w-11/12 my-28">
         <div className="container p-8 my-5 bg-white rounded-lg shadow-lg">
           <h1 className="p-2 mb-4 text-4xl font-bold text-center text-black md:text-5xl">
             Editar perfil
