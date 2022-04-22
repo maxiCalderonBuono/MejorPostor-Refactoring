@@ -11,14 +11,6 @@ const Novedades = (props) => {
             Novedades
           </h3>
         </div>
-        <div className="flex items-center justify-end col-span-1">
-          <Link
-            to={"AllProducts"}
-            className="text-lg text-right text-indigo-900 item-end hover:underline underline-offset-1"
-          >
-            Ver más.
-          </Link>
-        </div>
 
         <div className="col-span-2 mt-4">
           <p className="text-start text-slate-400">Subastas recién creadas</p>

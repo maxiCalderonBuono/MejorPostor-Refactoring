@@ -12,6 +12,11 @@ export const productReducer = (state = {}, action) => {
         ...state,
         ...action.payload,
       };
+      case types.purchaseProduct:
+        return {
+          ...state,
+          ...action.payload,
+        };
     default:
       return state;
   }

@@ -11,6 +11,7 @@ export const types = {
 
   createProduct: "[Product] Create Product",
   updateProduct: "[Product] Update Product",
+  purchaseProduct: "[Product] Pruchase Product",
  
 
   uiOpenLogin: "[UI] Open Login",
