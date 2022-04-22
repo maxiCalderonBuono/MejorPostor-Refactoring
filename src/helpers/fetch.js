@@ -28,11 +28,9 @@ const fetchConToken = (endpoint, data, method = "GET") => {
       method,
       headers: {
         token: token,
-        email: data.email,
-        surname: data.username,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data.highestBid),
+      body: JSON.stringify(data),
     });
   }
 };

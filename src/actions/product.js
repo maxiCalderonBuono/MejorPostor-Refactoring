@@ -23,17 +23,20 @@ export const createProduct = (newAuction, reset) => {
 };
 
 export const updateProduct = (bid, bidUser, _id, reset) => {
+  console.log(bid, bidUser, _id, reset);
   return async (dispatch) => {
     const res = await fetchConToken(
       `products/${_id}`,
       { highestBid: bid, bidUser },
       "PUT"
     );
+
     const body = await res.json();
 
     if (res.status === 200) {
       toast.success("Tu oferta fue enviada con éxito");
       reset();
+      window.location.reload(true);
     } else {
       console.log("Salio por el else");
       toast.error(body.message);

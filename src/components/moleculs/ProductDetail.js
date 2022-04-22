@@ -18,6 +18,7 @@ const ProductDetail = ({ detail }) => {
     highestBid,
     createdAt,
     updatedAt,
+    bidUserData,
   } = detail;
 
   const startAt = new Date(createdAt).toLocaleDateString();
@@ -25,6 +26,8 @@ const ProductDetail = ({ detail }) => {
   const renewAt = new Date(updatedAt).toLocaleDateString();
 
   // const endAt = new Date(duration).toLocaleDateString();
+
+  // console.log(bidUserData[0]);
 
   let endAt2 = duration;
 
@@ -102,7 +105,8 @@ const ProductDetail = ({ detail }) => {
             </h3>
             <div className="flex flex-col md:flex-wrap">
               <p className="mt-5 mr-3 text-sm text-[#3196DA] md:text-lg">
-                USUARIO: Miguel Ramón
+                USUARIO:{" "}
+                {bidUserData ? bidUserData[0].username : "No hay usuario"}
               </p>
               <p className="mt-5 mr-3 text-sm text-[#3196DA] md:text-lg">
                 FINALIZA EL: {endAt2}
