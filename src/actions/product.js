@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { fetchConToken } from "../helpers/fetch";
+import { fetchConToken, fetchConTokenMP } from "../helpers/fetch";
 
 export const createProduct = (newAuction, reset) => {
   return async (dispatch) => {
@@ -43,14 +43,17 @@ export const updateProduct = (bid, bidUser, _id, reset) => {
 };
 
 export const purchaseProduct = (highestBid, username, email) => {
+  const unit_price = highestBid;
 
-  const unit_price = highestBid
- 
   return async (dispatch) => {
-    const res = await fetchConToken(`payment/`, { unit_price, username, email },"POST");
-
+    const res = await fetchConTokenMP(
+      `payment/`,
+      { unit_price, username, email },
+      "POST"
+    );
     const body = await res.json();
 
+    console.log(body);
     if (res.status === 200) {
       toast.success("Salió bien");
     } else {
