@@ -14,8 +14,8 @@ export const createProduct = (newAuction, reset) => {
     if (res.status === 200) {
       toast.success("Publicación creada con éxito");
       reset();
-
       window.location.reload(true);
+      return redirect("/");
     } else {
       toast.error(body.message);
     }

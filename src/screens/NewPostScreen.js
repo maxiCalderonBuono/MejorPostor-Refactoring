@@ -85,7 +85,6 @@ const NewPostScreen = () => {
     const pictureURI = picture ? await uploadImage(picture) : pictureUrl;
     newAuction.image = pictureURI;
     dispatch(createProduct(newAuction, reset));
-    navigate("/");
   };
 
   const handlePictureChange = (e) => {
@@ -109,7 +108,7 @@ const NewPostScreen = () => {
 
   return (
     <>
-      <div className="w-11/12 p-6 mt-28 bg-white rounded-lg shadow-lg mb-14">
+      <div className="w-11/12 p-6 bg-white rounded-lg shadow-lg mt-28 mb-14">
         <h3 className="block w-full mb-4 text-4xl font-bold text-center">
           <ImHammer2 className="mr-1.5 inline-block" />
           Crear nueva subasta
@@ -121,7 +120,7 @@ const NewPostScreen = () => {
           >
             <label
               htmlFor="name"
-              className="w-5/6 sm:w-4/6  text-2xl text-left text-text-primary"
+              className="w-5/6 text-2xl text-left sm:w-4/6 text-text-primary"
             >
               Título
             </label>
@@ -138,7 +137,7 @@ const NewPostScreen = () => {
 
             <label
               htmlFor="description"
-              className="w-5/6 sm:w-4/6 text-2xl text-left text-text-primary"
+              className="w-5/6 text-2xl text-left sm:w-4/6 text-text-primary"
             >
               Descripción
             </label>
@@ -155,7 +154,7 @@ const NewPostScreen = () => {
 
             <label
               htmlFor="category"
-              className="w-5/6 sm:w-4/6 text-2xl text-left text-text-primary"
+              className="w-5/6 text-2xl text-left sm:w-4/6 text-text-primary"
             >
               Categoría
             </label>
@@ -172,7 +171,7 @@ const NewPostScreen = () => {
 
             <label
               htmlFor="location"
-              className="w-5/6 sm:w-4/6 text-2xl text-left text-text-primary"
+              className="w-5/6 text-2xl text-left sm:w-4/6 text-text-primary"
             >
               Ubicación
             </label>
@@ -193,7 +192,7 @@ const NewPostScreen = () => {
 
             <label
               htmlFor="initialPrice"
-              className="w-5/6 sm:w-4/6 text-2xl text-left text-text-primary"
+              className="w-5/6 text-2xl text-left sm:w-4/6 text-text-primary"
             >
               Puja inicial ($)
             </label>
@@ -208,7 +207,7 @@ const NewPostScreen = () => {
               value={initialPrice}
             />
 
-            <div className="flex flex-col w-5/6  sm:w-4/6 mb-6 items-center">
+            <div className="flex flex-col items-center w-5/6 mb-6 sm:w-4/6">
               <p className="w-full mb-3 text-2xl text-left text-text-primary">
                 Duración
               </p>
