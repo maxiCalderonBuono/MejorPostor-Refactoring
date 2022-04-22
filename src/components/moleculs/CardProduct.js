@@ -34,11 +34,12 @@ const CardProduct = (props) => {
 
         <div  className="flex flex-col items-center justify-center w-full">
     
-        <Link className="text-lg text-right text-indigo-900 item-end hover:underline underline-offset-1" to={`/producto/${_id}`}>Ver detalles</Link>
-          <Button
-            styles={`${styles.SUCCESS_BUTTON} w-5/6 p-1`}
-            content="Pujar"
-          />
+        <Link to={`/producto/${_id}`}>
+            <Button
+              styles={`${styles.SUCCESS_BUTTON} w-6/6 p-1`}
+              content="Pujar"
+            />
+       </Link>
           
         </div>
       </div>

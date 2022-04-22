@@ -4,10 +4,10 @@ import * as styles from "../atoms/Buttons/buttonStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../actions/product";
 import { useForm } from "../../hooks/userForm";
+import toast from "react-hot-toast";
 
 const ProductDetail = ({ detail }) => {
-
-const {
+  const {
     _id,
     name,
     image,
@@ -17,27 +17,46 @@ const {
     duration,
     highestBid,
     createdAt,
-    updatedAt
-} =detail
+    updatedAt,
+    bidUserData,
+  } = detail;
 
-console.log(_id)
-    
+  const startAt = new Date(createdAt).toLocaleDateString();
+
+  const renewAt = new Date(updatedAt).toLocaleDateString();
+
+  // const endAt = new Date(duration).toLocaleDateString();
+
+  // console.log(bidUserData[0]);
+
+  let endAt2 = duration;
+
+  if (endAt2) {
+    endAt2 = endAt2.slice(0, 10).replace(/-/g, "/");
+  }
+
   const dispatch = useDispatch();
 
-  const { id:bidUser } = useSelector((state) => state.auth);
+  const { id: bidUser } = useSelector((state) => state.auth);
 
   const [{ bid }, handleInputChange, reset] = useForm({ bid: "" });
 
-  console.log(bidUser)
   const pushNewBid = (e) => {
-
     e.preventDefault();
+    if (bid < 0) {
+      toast.error("El precio debe ser mayor a 0");
+      return;
+    }
+    if (bid < highestBid) {
+      toast.error("El precio debe ser mayor al actual");
+      return;
+    }
+
     dispatch(updateProduct(bid, bidUser, _id, reset));
   };
   return (
     <>
-    
-    <div className="flex flex-col items-center justify-center w-full h-full p-8">
+      <div className="flex flex-col items-center justify-center w-full h-full p-8">
         <h1>{name}</h1>
         <div className="flex flex-col items-center justify-center w-full m-20">
           <img
@@ -55,7 +74,7 @@ console.log(_id)
           </a>
         </div>
         <div className="flex flex-wrap items-center justify-center">
-          <div className="p-5 mt-5 font-bold text-white md:p-10 md:border rounded-lg bg-[#3196DA]">
+          <div className="p-10 mt-5 font-bold text-white  border rounded-lg bg-[#3196DA]">
             <h3 className="text-2xl text-center border-b-4 md:text-5xl">
               Detalles del producto:
             </h3>
@@ -64,22 +83,18 @@ console.log(_id)
                 <p className="mt-5 text-sm md:text-lg">
                   Descripción: {description}
                 </p>
-                <p className="mt-5 text-sm md:text-lg">
-                  Ubicación: {location}
-                </p>
-                <p className="mt-5 text-sm md:text-lg">
-                  Categoría: {category}
-                </p>
+                <p className="mt-5 text-sm md:text-lg">Ubicación: {location}</p>
+                <p className="mt-5 text-sm md:text-lg">Categoría: {category}</p>
               </div>
               <div className="mr-10">
                 <p className="mt-5 text-sm text-red-100 md:text-lg">
-                  Publicación iniciada el: {createdAt}
+                  Publicación iniciada el: {startAt}
                 </p>
                 <p className="mt-5 text-sm text-red-100 md:text-lg">
-                  Última actualización: {updatedAt}
+                  Última actualización: {renewAt}
                 </p>
-                <p className="mt-5 text-sm text-red-200 md:text-lg">
-                  Fecha de finalización: {duration}
+                <p className="mt-5 text-sm text-red-100 md:text-lg">
+                  Fecha de finalización: {endAt2}
                 </p>
               </div>
             </div>
@@ -90,15 +105,26 @@ console.log(_id)
             </h3>
             <div className="flex flex-col md:flex-wrap">
               <p className="mt-5 mr-3 text-sm text-[#3196DA] md:text-lg">
-                USUARIO: Miguel Ramón
+                USUARIO:{" "}
+                {bidUserData ? bidUserData[0].username : "No hay usuario"}
               </p>
               <p className="mt-5 mr-3 text-sm text-[#3196DA] md:text-lg">
-                FINALIZA EL: {duration}
+                FINALIZA EL: {endAt2}
               </p>
               <p className="mt-5 mr-3 text-sm text-green-400 md:text-lg">
-                CANTIDAD: ${highestBid}
+                CANTIDAD:{" "}
+                {new Intl.NumberFormat("de-DE", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 0,
+                  maximumFractionDigits: 0,
+                  currencyDisplay: "code",
+                }).format(highestBid)}
               </p>
-              <form onSubmit={pushNewBid} className="flex flex-col items-center">
+              <form
+                onSubmit={pushNewBid}
+                className="flex flex-col items-center"
+              >
                 <input
                   name="bid"
                   autoComplete="off"
