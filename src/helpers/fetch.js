@@ -40,8 +40,6 @@ const fetchConToken = (endpoint, data, method = "GET") => {
 const fetchConTokenMP = (endpoint, data, method = "GET") => {
   const url = `${baseUrl}/${endpoint}`;
   const token = localStorage.getItem("token");
-  console.log(data.unit_price);
-  console.log(JSON.stringify({ unit_price: data.unit_price }));
   if (method === "GET") {
     return fetch(url, {
       method,

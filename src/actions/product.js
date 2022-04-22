@@ -1,4 +1,5 @@
 import toast from "react-hot-toast";
+
 import { fetchConToken, fetchConTokenMP } from "../helpers/fetch";
 
 export const createProduct = (newAuction, reset) => {
@@ -22,14 +23,12 @@ export const createProduct = (newAuction, reset) => {
 };
 
 export const updateProduct = (bid, bidUser, _id, reset) => {
-  console.log(_id);
   return async (dispatch) => {
     const res = await fetchConToken(
       `products/${_id}`,
       { highestBid: bid, bidUser },
       "PUT"
     );
-
     const body = await res.json();
 
     if (res.status === 200) {
@@ -53,12 +52,15 @@ export const purchaseProduct = (highestBid, username, email) => {
     );
     const body = await res.json();
 
-    console.log(body);
     if (res.status === 200) {
-      toast.success("Salió bien");
+      toast.success("Compra realizada con éxito");
+      return redirect(body);
     } else {
-      console.log("Salio por el else");
       toast.error(body.message);
     }
   };
+};
+
+const redirect = (redirectUrl) => {
+  window.location = redirectUrl;
 };
