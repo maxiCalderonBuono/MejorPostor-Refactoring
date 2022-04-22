@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -15,7 +16,7 @@ const Footer = () => {
             <div className="mb-5">
               <h4>INFORMACIÓN:</h4> <br />
               <ul>
-                <li>Sobre nosotros</li>
+                <Link className="hover:border-b-2 border-indigo-500 hover:text-indigo-500" to="/aboutUS">Sobre nosotros</Link>
                 <li>Nuestros servicios</li>
                 <li>Políticas de privacidad</li>
               </ul>
