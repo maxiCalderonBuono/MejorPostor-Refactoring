@@ -4,7 +4,7 @@ import * as styles from "../atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { purchaseProduct } from "../../actions/product";
+import { purchaseProduct, deleteProduct } from "../../actions/product";
 
 //Card de los productos. EN PROCESO.
 const CardProduct = (props) => {
@@ -25,8 +25,11 @@ const CardProduct = (props) => {
   }
 
   const finishPurchase = () => {
-    console.log("entrando");
     dispatch(purchaseProduct(highestBid, username, email));
+  };
+
+  const deleteAuction = () => {
+    dispatch(deleteProduct(_id));
   };
 
   return (
@@ -60,7 +63,11 @@ const CardProduct = (props) => {
 
         <div className="flex flex-col items-center justify-center w-full">
           {location.pathname === "/myauctions" ? (
-            ""
+            <Button
+            styles={`${styles.DANGER_BUTTON} w-5/6 p-1 opacity-80`}
+            content="Eliminar subasta"
+            setFunction={() => deleteAuction()}
+          />
           ) : new Date() > new Date(duration) ? (
             <Button
               styles={`${styles.SUCCESS_BUTTON} w-5/6 p-1 ${

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { deleteProduct } from "../actions/product";
 import Novedades from "../components/organisms/Novedades";
 import UltimoAviso from "../components/organisms/UltimoAviso";
 import { getDiffDate } from "../helpers/getDiffDate";
@@ -17,7 +18,7 @@ const MainScreen = () => {
 
     if (!loading) {
       const productDetail = data.products.filter(
-        (product) => getDiffDate(product.duration, now) === 1
+        (product) => (getDiffDate(product.duration, now) === 1 && !product.deleted)
       );
       setLatest([...productDetail]);
     }
@@ -28,7 +29,7 @@ const MainScreen = () => {
 
     if (!loading) {
       const productDetail = data.products.filter(
-        (product) => getDiffDate(product.duration, now) > 0
+        (product) => ( getDiffDate(product.duration, now) > 0 && !product.deleted )
       );
       setActive([...productDetail]);
     }
