@@ -16,8 +16,6 @@ const CardProduct = (props) => {
 
   const { id, username, email } = useSelector((state) => state.auth);
 
-  const endAt = new Date(duration).toLocaleDateString();
-
   let endAt2 = duration;
 
   if (endAt2) {
