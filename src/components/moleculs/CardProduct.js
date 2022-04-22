@@ -2,12 +2,14 @@ import React from "react";
 import Button from "../atoms/Buttons/Button";
 import * as styles from "../atoms/Buttons/buttonStyles";
 import { AiOutlineFieldTime } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { purchaseProduct } from "../../actions/product";
 
 //Card de los productos. EN PROCESO.
 const CardProduct = (props) => {
+  const location = useLocation();
+
   const { name, _id, image, highestBid, duration, bidUser } = props;
 
   const dispatch = useDispatch();
@@ -57,13 +59,20 @@ const CardProduct = (props) => {
         </div>
 
         <div className="flex flex-col items-center justify-center w-full">
-          {new Date() > new Date(duration) ? (
+          {location.pathname === "/myauctions" ? (
+            ""
+          ) : new Date() > new Date(duration) ? (
             <Button
               styles={`${styles.SUCCESS_BUTTON} w-5/6 p-1 ${
                 winner === id ? "" : "cursor-not-allowed opacity-50"
               }`}
               content="Finalizar Compra"
               setFunction={() => finishPurchase()}
+            />
+          ) : location.pathname === "/mybids" ? (
+            <Button
+              styles={`${styles.OUTLINE_BUTTON} w-5/6 p-1 cursor-default`}
+              content="¡Estás ganando!"
             />
           ) : (
             <Link

@@ -5,3 +5,5 @@ export const PRIMARY_BUTTON = "text-white rounded-[43px] bg-dark-blue  text-xl m
 export const SUCCESS_BUTTON = "text-white rounded-[43px] bg-success text-xl m-1";
 
 export const DANGER_BUTTON = "text-white rounded-[43px] bg-danger text-xl m-1";
+
+export const OUTLINE_BUTTON = "text-success rounded-[43px] bg-white text-xl m-1 border-[1px] border-success";
