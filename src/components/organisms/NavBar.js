@@ -24,6 +24,7 @@ export const NavBar = () => {
 
   const handleLogout = () => {
     dispatch(startLogout());
+    localStorage.clear();
   };
 
   const openLogin = () => {

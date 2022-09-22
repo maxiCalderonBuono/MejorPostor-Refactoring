@@ -6,9 +6,11 @@ import { getDiffDate } from "../helpers/getDiffDate";
 import { useFetch } from "../hooks/useFetch";
 
 const MainScreen = () => {
-  const URL = "http://localhost:4000/api/products";
+  const URL = "https://mejor-postor.herokuapp.com/api/products";
 
   const { data, loading } = useFetch(URL);
+
+  console.log(data);
 
   const [latest, setLatest] = useState([]);
   const [active, setActive] = useState([]);
@@ -18,22 +20,27 @@ const MainScreen = () => {
 
     if (!loading) {
       const productDetail = data.products.filter(
-        (product) => (getDiffDate(product.duration, now) === 1 && !product.deleted)
+        (product) =>
+          getDiffDate(product.duration, now) === 1 && !product.deleted
       );
       setLatest([...productDetail]);
     }
   }, [data, loading]);
+
+  console.log(latest);
 
   useEffect(() => {
     const now = new Date();
 
     if (!loading) {
       const productDetail = data.products.filter(
-        (product) => ( getDiffDate(product.duration, now) > 0 && !product.deleted )
+        (product) => getDiffDate(product.duration, now) > 0 && !product.deleted
       );
       setActive([...productDetail]);
     }
   }, [data, loading]);
+
+  console.log(active);
 
   return (
     <div className="flex flex-col p-8">

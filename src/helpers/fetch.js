@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:4000/api";
+const baseUrl = "https://mejor-postor.herokuapp.com/api";
 
 const fetchSinToken = (endpoint, data, method = "GET") => {
   const url = `${baseUrl}/${endpoint}`;
