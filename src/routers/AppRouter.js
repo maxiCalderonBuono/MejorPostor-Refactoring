@@ -11,7 +11,6 @@ import { startIsAuth } from "../actions/auth";
 import { AboutUs } from "../components/organisms/aboutUs";
 import NotFound from "../screens/NotFound";
 import { Toaster } from "react-hot-toast";
-import BeLogged from "../screens/BeLogged";
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
