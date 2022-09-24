@@ -4,7 +4,7 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { FaBriefcase } from "react-icons/fa";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { ImHammer2 } from "react-icons/im";
-import * as styles from "../atoms/Buttons/buttonStyles";
+import * as styles from "../atoms/buttonStyles";
 import Button from "../atoms/Buttons/Button";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -40,18 +40,7 @@ export const NavBar = () => {
       <RegisterScreen />
       <div className="fixed top-0 left-0 z-20 w-full shadow-md">
         <div className="md:flex items-center justify-between bg-[#3196DA] py-2 md:px-10 px-7">
-          <Link to="/">
-            <div className="flex items-center text-2xl cursor-pointer ">
-              <img
-                src="https://res.cloudinary.com/dvqlenul5/image/upload/v1649261563/logo_white_pbwilp.png"
-                alt="Mejor postor"
-                className="w-16"
-              />
-              <p className="invisible ml-3 text-4xl font-bold text-white md:visible">
-                Mejor postor
-              </p>
-            </div>
-          </Link>
+ 
 
           <div
             onClick={() => setOpenNav(!openNav)}

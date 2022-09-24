@@ -43,7 +43,7 @@ const MainScreen = () => {
   console.log(active);
 
   return (
-    <div className="flex flex-col p-8">
+    <div className="flex flex-col px-20">
       <div className="flex flex-col items-center justify-center">
         <Novedades data={active} loading={loading} />
       </div>

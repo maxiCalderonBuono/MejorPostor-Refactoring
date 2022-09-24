@@ -32,7 +32,6 @@ const RegisterScreen = (props) => {
     rCPassword: "",
   });
 
-
   const { rName, rEmail, rPassword, rCPassword } = formRegisterValues;
 
   const onClosed = () => {

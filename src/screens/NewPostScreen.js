@@ -10,7 +10,7 @@ import Button from "../components/atoms/Buttons/Button";
 import * as styles from "../components/atoms/Buttons/buttonStyles";
 import { useForm } from "../hooks/userForm";
 import { createProduct } from "../actions/product";
-import ImageLoader from "../components/atoms/ImageLoader";
+import ImageLoader from "../components/moleculs/ImageLoader";
 import { Provincias } from "../assets/provincias";
 import { uploadImage } from "../actions/images";
 import toast from "react-hot-toast";

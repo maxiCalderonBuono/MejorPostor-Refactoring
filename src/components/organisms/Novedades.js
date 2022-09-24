@@ -7,7 +7,7 @@ const Novedades = (props) => {
     <div className="mt-20 md:min-w-full">
       <div className="grid grid-cols-3 grid-rows-2">
         <div className="col-span-2">
-          <h3 className="text-4xl font-bold md:text-6xl text-start">
+          <h3 className="text-4xl font-bold md:text-5xl text-start">
             Novedades
           </h3>
         </div>
