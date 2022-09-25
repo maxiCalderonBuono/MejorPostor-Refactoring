@@ -47,15 +47,15 @@ export const NavBar = () => {
     <header>
       <LoginScreen />
       <RegisterScreen />
-      <nav className="flex justify-between items-center w-full shadow-md h-[88px] bg-dark-gray py-2 px-5 md:px-20">
-        <Link to="/" className="md:w-1/3">
+      <nav className="flex justify-between items-center w-full shadow-md h-[88px] bg-dark-gray py-2 px-5 sm:px-12 md:px-14 lg:px-20">
+        <Link to="/" className="md:w-1/2 lg:1/3">
           <Logo />
         </Link>
         <div className="flex items-center justify-center gap-3 text-white">
           <BiSearchAlt size={20} className="md:hidden" />
           <HamburgerButton action={showMenu} setShowMenu={setShowMenu} />
         </div>
-        <div className="justify-end hidden w-2/3 gap-3 md:flex">
+        <div className="justify-end hidden gap-3 lg:w-2/3 md:flex">
           <div>
             <InputGroup>
               <InputLeftElement
@@ -66,13 +66,15 @@ export const NavBar = () => {
               <Input
                 type="text"
                 placeholder="Search for products"
-                className="rounded-[10px] w-96 pl-7 placeholder-dark-gray h-10"
+                className="rounded-[10px] md:w-12 lg:w-60 xl:w-96 pl-7 placeholder-dark-gray h-10 md:placeholder-transparent"
               />
             </InputGroup>
           </div>
 
-          <button className={`${styles.GHOST_BUTTON} px-8 `}>Login</button>
-          <button className={`${styles.PRIMARY_BUTTON} px-8 py-2 `}>
+          <button className={`${styles.GHOST_BUTTON} md:px-6 lg:px-8 `}>
+            Login
+          </button>
+          <button className={`${styles.PRIMARY_BUTTON} md:px-6 lg:px-8 py-2 `}>
             Sign Up
           </button>
         </div>

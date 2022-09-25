@@ -12,7 +12,7 @@ module.exports = {
         "light-blue": "#14acde",
       },
       screens: {
-        "modal-2": "700px",
+        sm: "600px",
         "modal-1": "875px",
       },
       animation: {
