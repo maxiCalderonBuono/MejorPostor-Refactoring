@@ -10,8 +10,6 @@ const MainScreen = () => {
 
   const { data, loading } = useFetch(URL);
 
-  console.log(data);
-
   const [latest, setLatest] = useState([]);
   const [active, setActive] = useState([]);
 
@@ -27,8 +25,6 @@ const MainScreen = () => {
     }
   }, [data, loading]);
 
-  console.log(latest);
-
   useEffect(() => {
     const now = new Date();
 
@@ -39,8 +35,6 @@ const MainScreen = () => {
       setActive([...productDetail]);
     }
   }, [data, loading]);
-
-  console.log(active);
 
   return (
     <div className="flex flex-col px-20">

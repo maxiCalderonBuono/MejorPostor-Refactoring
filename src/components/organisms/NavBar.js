@@ -45,8 +45,8 @@ export const NavBar = () => {
   // };
   return (
     <header>
-      <LoginScreen />
-      <RegisterScreen />
+      {/* <LoginScreen />
+      <RegisterScreen /> */}
       <nav className="flex justify-between items-center w-full shadow-md h-[88px] bg-dark-gray py-2 px-5 sm:px-12 md:px-14 lg:px-20">
         <Link to="/" className="md:w-1/2 lg:1/3">
           <Logo />
