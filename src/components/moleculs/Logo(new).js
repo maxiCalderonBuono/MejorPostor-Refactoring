@@ -8,7 +8,7 @@ export const Logo = () => {
         alt="Mejor postor"
         className="w-14"
       />
-      <p className="invisible ml-3 text-4xl font-bold text-white md:visible">
+      <p className="hidden ml-3 text-4xl font-bold text-white md:block">
         Mejor postor
       </p>
     </div>

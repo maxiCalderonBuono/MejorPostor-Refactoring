@@ -10,6 +10,9 @@
 
 // import { useDispatch, useSelector } from "react-redux";
 // import { uiOpenLogin, uiOpenRegister } from "../../actions/modal";
+
+import { useState } from "react";
+
 import LoginScreen from "./auth/LoginScreen";
 import RegisterScreen from "./auth/RegisterScreen";
 
@@ -17,10 +20,11 @@ import { BiSearchAlt } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { Logo } from "../";
 import * as styles from "../atoms/Buttons/buttonStyles";
-import { Flex, InputGroup, InputLeftElement, Input } from "@chakra-ui/react";
+import { InputGroup, InputLeftElement, Input } from "@chakra-ui/react";
+import { HamburgerButton } from "../atoms/HamburgerButton";
 
 export const NavBar = () => {
-  // const [openNav, setOpenNav] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   //Hago el dispatch de la apertura del modal de Login y Registro
   // const dispatch = useDispatch();
@@ -43,10 +47,14 @@ export const NavBar = () => {
     <header>
       <LoginScreen />
       <RegisterScreen />
-      <nav className="flex justify-between items-center w-full shadow-md h-[88px] bg-dark-gray py-2 px-10 md:px-20">
-        <Link to="/" className="w-1/3">
+      <nav className="flex justify-between items-center w-full shadow-md h-[88px] bg-dark-gray py-2 px-5 md:px-20">
+        <Link to="/" className="md:w-1/3">
           <Logo />
         </Link>
+        <div className="flex items-center justify-center gap-3 text-white">
+          <BiSearchAlt size={20} className="md:hidden" />
+          <HamburgerButton action={showMenu} setShowMenu={setShowMenu} />
+        </div>
         <div className="justify-end hidden w-2/3 gap-3 md:flex">
           <div>
             <InputGroup>
