@@ -4,15 +4,14 @@ module.exports = {
     extend: {
       colors: {
         "text-primary": "#feae49",
-        "text-primary-dark": "#fea028",
-        "text-primary-darkest": "#fe9108",
-        "text-secondary": "#a4a4a4",
+        "black-white": "#a4a4a4",
+        "silver-sand": "#1e1e2a",
         "dark-gray": "#3d424a",
-        "dark-blue": "#05a297",
-        "light-blue": "#14acde",
+        "light-gray": "#f3f6f8",
       },
       screens: {
         sm: "600px",
+        "modal-2": "700px",
         "modal-1": "875px",
       },
       animation: {
