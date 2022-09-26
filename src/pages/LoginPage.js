@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { useAuthStore } from "../../hooks";
-import { Error } from "../../calendar";
+// import { useAuthStore } from "../../hooks";
+import { Error } from "../components/atoms/Error";
 import { useForm } from "react-hook-form";
-import { LoadingButton } from "../components/LoadingButton";
+import { LoadingButton } from "../components/atoms/LoadingButton";
 
 // const loginFields = {
 //   email: "",
@@ -18,7 +18,7 @@ export const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const { startLogin, errorMsg, status } = useAuthStore();
+  // const { startLogin, errorMsg, status } = useAuthStore();
 
   // const loginSubmit = (e) => {
   //   e.preventDefault();
@@ -38,15 +38,15 @@ export const LoginPage = () => {
       </div>
       <div className="flex items-center justify-center w-full lg:w-1/2 lg:h-full">
         <div
-          className={`bg-white w-full lg:w-3/4 lg:py-10 flex flex-col justify-center items-center rounded-xl py-6 mt-4 ${
-            errorMsg?.type === "login"
-              ? "drop-shadow-[0_30px_45px_rgba(250,98,127,0.30)]"
-              : "drop-shadow-[0_30px_45px_rgba(22,22,22,0.10)]"
-          }`}
+          className={`bg-white w-full lg:w-3/4 lg:py-10 flex flex-col justify-center items-center rounded-xl py-6 mt-4 
+            // errorMsg?.type === "login"
+              // ? "drop-shadow-[0_30px_45px_rgba(250,98,127,0.30)]"
+              // : "drop-shadow-[0_30px_45px_rgba(22,22,22,0.10)]"
+          `}
         >
           <form
             className="flex-col items-center w-3/4 space-y-8 rounded-lg"
-            onSubmit={handleSubmit(startLogin)}
+            // onSubmit={handleSubmit(startLogin)}
           >
             <div className="relative">
               <input
@@ -119,12 +119,12 @@ export const LoginPage = () => {
               </button>
             </div>
             <div className="mt-0">
-              {status === "checking" ? (
+              {"check" === "checking" ? (
                 <LoadingButton />
               ) : (
                 <button
                   type="submit"
-                  className="block w-full px-6 py-2  md:py-3 rounded-xl bg-sky-500 hover:bg-sky-600 focus:bg-sky-700 active:bg-sky-500 disabled:pointer-events-none disabled:opacity-40 disabled:bg-gray-400"
+                  className="block w-full px-6 py-2 md:py-3 rounded-xl bg-sky-500 hover:bg-sky-600 focus:bg-sky-700 active:bg-sky-500 disabled:pointer-events-none disabled:opacity-40 disabled:bg-gray-400"
                 >
                   <span className="text-white text-md md:text-lg ">Login</span>
                 </button>
@@ -137,9 +137,9 @@ export const LoginPage = () => {
             </div>
           </form>
           <div className="w-3/4 pt-6 space-y-6 border-t">
-            <div className="w-full h-12">
+            {/* <div className="w-full h-12">
               {errorMsg?.type === "login" && <Error msg={errorMsg.error} />}
-            </div>
+            </div> */}
             <span className="block text-center text-gray-500">
               Organize your time in a simple way
             </span>

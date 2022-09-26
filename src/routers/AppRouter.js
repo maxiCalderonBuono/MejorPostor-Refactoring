@@ -1,33 +1,35 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { useEffect } from "react";
-import Home from "../screens/Home";
+import Home from "../pages/Home";
 import { PrivateRoutes } from "./PrivateRoutes";
-import { UserActiveRouter } from "./UserActiveRouter";
 import { PrivateDashboard } from "./PrivateDashborad";
-import Footer from "../components/organisms/Footer";
-import { NavBar } from "../components/organisms/NavBar";
 import { useDispatch } from "react-redux";
 import { startIsAuth } from "../actions/auth";
 import { AboutUs } from "../components/organisms/aboutUs";
-import NotFound from "../screens/NotFound";
-import { Toaster } from "react-hot-toast";
+import AuthRouter from "./AuthRouter";
+import { PublicRoutes } from "./PublicRoutes";
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(startIsAuth());
   }, [dispatch]);
 
   return (
     <Router>
-      <Toaster />
-      <NavBar />
-
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/api/auth/verify/:uid" element={<UserActiveRouter />} />
         <Route path="/aboutUS" element={<AboutUs />} />
+
+        <Route
+          path="/auth/*"
+          element={
+            <PublicRoutes isAuthenticated={false}>
+              <AuthRouter />
+            </PublicRoutes>
+          }
+        />
+
         <Route
           path="/*"
           element={
@@ -37,10 +39,8 @@ export const AppRouter = () => {
           }
         />
 
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<Home />} />
       </Routes>
-
-      <Footer />
     </Router>
   );
 };

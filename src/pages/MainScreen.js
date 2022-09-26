@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { deleteProduct } from "../actions/product";
+import Footer from "../components/organisms/Footer";
+import { NavBar } from "../components/organisms/NavBar";
 import Novedades from "../components/organisms/Novedades";
 import UltimoAviso from "../components/organisms/UltimoAviso";
 import { getDiffDate } from "../helpers/getDiffDate";
@@ -37,15 +39,19 @@ const MainScreen = () => {
   }, [data, loading]);
 
   return (
-    <div className="flex flex-col px-20">
-      <div className="flex flex-col items-center justify-center">
-        <Novedades data={active} loading={loading} />
-      </div>
+    <>
+      <NavBar />
+      <div className="flex flex-col px-20">
+        <div className="flex flex-col items-center justify-center">
+          <Novedades data={active} loading={loading} />
+        </div>
 
-      <div>
-        <UltimoAviso data={latest} loading={loading} />
+        <div>
+          <UltimoAviso data={latest} loading={loading} />
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 export default MainScreen;

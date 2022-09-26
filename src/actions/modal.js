@@ -1,14 +1,11 @@
+// export const uiOpenLogin = () => ({type:types.uiOpenLogin})
 
-import { types } from '../types/types'
+// export const uiCloseLogin = () => ({type:types.uiCloseLogin})
 
-export const uiOpenLogin = () => ({type:types.uiOpenLogin})
+// export const uiOpenRegister = () => ({type:types.uiOpenRegister})
 
-export const uiCloseLogin = () => ({type:types.uiCloseLogin})
+// export const uiCloseRegister = () => ({type:types.uiCloseRegister})
 
-export const uiOpenRegister = () => ({type:types.uiOpenRegister})
+// export const uiIsLoading = () => ({type:types.uiIsLoading})
 
-export const uiCloseRegister = () => ({type:types.uiCloseRegister})
-
-export const uiIsLoading = () => ({type:types.uiIsLoading})
-
-export const uiIsNotLoading = () => ({type:types.uiIsNotLoading})
+// export const uiIsNotLoading = () => ({type:types.uiIsNotLoading})

@@ -1,9 +1,9 @@
 import toast from "react-hot-toast";
 import { fetchConToken, fetchSinToken } from "../helpers/fetch";
-import { types } from "../types/types";
+
 import { uiCloseLogin, uiCloseRegister, uiIsNotLoading } from "./modal";
 
-const login = (user) => ({ type: types.login, payload: user });
+// const login = (user) => ({ type: types.login, payload: user });
 
 export const startLogin = (email, password) => {
   return async (dispatch) => {
@@ -17,14 +17,14 @@ export const startLogin = (email, password) => {
       localStorage.setItem("username", data.username);
       localStorage.setItem("id", data.id);
       const loginToast = toast.loading("Iniciando sesión...");
-      dispatch(
-        login({
-          id: body.payload.id,
-          username: body.payload.username,
-          email: body.payload.email,
-          image: body.payload.image,
-        })
-      );
+      // dispatch(
+      //   login({
+      //     id: body.payload.id,
+      //     username: body.payload.username,
+      //     email: body.payload.email,
+      //     image: body.payload.image,
+      //   })
+      // );
       toast.dismiss(loginToast);
       dispatch(uiCloseLogin());
       toast.success(`Bienvenido ${body.payload.username}`);
@@ -72,33 +72,33 @@ export const startIsAuth = () => {
     const body = await res.json();
     if (res.status === 200) {
       localStorage.setItem("token", body.token);
-      dispatch(
-        login({
-          id: body.payload.id,
-          username: body.payload.username,
-          email: body.payload.email,
-          image: body.payload.image,
-        })
-      );
+      // dispatch(
+      //   login({
+      //     id: body.payload.id,
+      //     username: body.payload.username,
+      //     email: body.payload.email,
+      //     image: body.payload.image,
+      //   })
+      // );
 
       dispatch(uiCloseLogin());
     } else {
       console.log("error", body);
       localStorage.removeItem("token");
-      dispatch(isAuthoFinish());
+      // dispatch(isAuthoFinish());
     }
   };
 };
 
-const isAuthoFinish = () => ({ type: types.isAuthoFinish });
+// const isAuthoFinish = () => ({ type: types.isAuthoFinish });
 
 export const startLogout = () => {
   return (dispatch) => {
     localStorage.removeItem("token");
-    dispatch(logout());
+    // dispatch(logout());
     toast.success("Sesión cerrada");
   };
 };
-const logout = () => ({ type: types.logout });
+// const logout = () => ({ type: types.logout });
 
-export const isValidationFinish = () => ({ type: types.isValidationFinish });
+// export const isValidationFinish = () => ({ type: types.isValidationFinish });

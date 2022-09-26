@@ -3,7 +3,7 @@ import Button from "../atoms/Buttons/Button";
 import * as styles from "../atoms/Buttons/buttonStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../../actions/product";
-import { useForm } from "../../hooks/userForm";
+// import { useForm } from "../../hooks/userForm";
 import toast from "react-hot-toast";
 
 const ProductDetail = ({ detail }) => {
@@ -39,21 +39,21 @@ const ProductDetail = ({ detail }) => {
 
   const { id: bidUser } = useSelector((state) => state.auth);
 
-  const [{ bid }, handleInputChange, reset] = useForm({ bid: "" });
+  // const [{ bid }, handleInputChange, reset] = useForm({ bid: "" });
 
-  const pushNewBid = (e) => {
-    e.preventDefault();
-    if (bid < 0) {
-      toast.error("El precio debe ser mayor a 0");
-      return;
-    }
-    if (bid < highestBid) {
-      toast.error("El precio debe ser mayor al actual");
-      return;
-    }
+  // const pushNewBid = (e) => {
+  //   e.preventDefault();
+  //   if (bid < 0) {
+  //     toast.error("El precio debe ser mayor a 0");
+  //     return;
+  //   }
+  //   if (bid < highestBid) {
+  //     toast.error("El precio debe ser mayor al actual");
+  //     return;
+  //   }
 
-    dispatch(updateProduct(bid, bidUser, _id, reset));
-  };
+  //   dispatch(updateProduct(bid, bidUser, _id, reset));
+  // };
   return (
     <>
       <div className="flex flex-col items-center justify-center w-full h-full p-8">
@@ -122,15 +122,15 @@ const ProductDetail = ({ detail }) => {
                 }).format(highestBid)}
               </p>
               <form
-                onSubmit={pushNewBid}
+                // onSubmit={pushNewBid}
                 className="flex flex-col items-center"
               >
                 <input
                   name="bid"
                   autoComplete="off"
                   placeholder="tu apuesta"
-                  value={bid}
-                  onChange={handleInputChange}
+                  // value={bid}
+                  // onChange={handleInputChange}
                   className="rounded-[43px] border text-text-primary border-text-secondary w-full h-9 text-center mb-3"
                 />
                 <Button

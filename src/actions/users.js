@@ -1,6 +1,5 @@
 import toast from "react-hot-toast";
 import { fetchConToken, fetchSinToken } from "../helpers/fetch";
-import { types } from "../types/types";
 
 export const startEditUser = (userInfo) => {
   return async (dispatch) => {
@@ -8,8 +7,6 @@ export const startEditUser = (userInfo) => {
     const body = await res.json();
 
     if (res.status === 200) {
-      console.log(dispatch(editUser(body.updatedUser)));
-
       toast.success("Usuario actualizado");
     } else {
       toast.error(body.message);
@@ -17,7 +14,7 @@ export const startEditUser = (userInfo) => {
   };
 };
 
-const editUser = (userInfo) => ({
-  type: types.editUser,
-  payload: userInfo,
-});
+// const editUser = (userInfo) => ({
+//   type: types.editUser,
+//   payload: userInfo,
+// });
