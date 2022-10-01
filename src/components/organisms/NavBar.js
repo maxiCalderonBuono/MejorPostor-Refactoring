@@ -33,13 +33,6 @@ export const NavBar = () => {
   //   localStorage.clear();
   // };
 
-  // const openLogin = () => {
-  //   dispatch(uiOpenLogin());
-  // };
-
-  // const OpenRegister = () => {
-  //   dispatch(uiOpenRegister());
-  // };
   return (
     <header>
       <nav className="flex justify-between items-center w-full shadow-md h-[88px] bg-dark-gray py-2 px-5 sm:px-12 md:px-14 lg:px-20">
@@ -61,7 +54,7 @@ export const NavBar = () => {
               <Input
                 type="text"
                 placeholder="Search for products"
-                className="rounded-[10px] md:w-12 lg:w-60 xl:w-96 pl-7 placeholder-dark-gray h-10 md:placeholder-transparent"
+                className="rounded-[10px] md:w-12 lg:w-52 xl:w-80 2xl:w-96 pl-7 placeholder-dark-gray h-10 md:placeholder-transparent"
               />
             </InputGroup>
           </div>

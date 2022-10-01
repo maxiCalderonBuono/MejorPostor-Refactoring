@@ -8,23 +8,25 @@ import { startIsAuth } from "../actions/auth";
 import { AboutUs } from "../components/organisms/aboutUs";
 import AuthRouter from "./AuthRouter";
 import { PublicRoutes } from "./PublicRoutes";
+import { UserActiveRouter } from "./UserActiveRouter";
 
 export const AppRouter = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(startIsAuth());
-  }, [dispatch]);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(startIsAuth());
+  // }, [dispatch]);
 
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aboutUS" element={<AboutUs />} />
+        <Route path="/api/auth/verify/:uid" element={<UserActiveRouter />} />
 
         <Route
           path="/auth/*"
           element={
-            <PublicRoutes isAuthenticated={false}>
+            <PublicRoutes>
               <AuthRouter />
             </PublicRoutes>
           }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { MisOfertas } from "../components/organisms/MisOfertas";
-import { useFetch } from "../hooks/useFetch";
+// import { useFetch } from "../hooks/useFetch";
 
 export const MyBidsScreen = () => {
   //   const [myBids, setMyBids]= useState([])

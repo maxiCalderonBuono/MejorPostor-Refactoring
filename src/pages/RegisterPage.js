@@ -1,68 +1,65 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-// import { useForm } from "../../hooks";
+
 import { useForm } from "react-hook-form";
-// import { useAuthStore } from "../../hooks";
+import { RiEyeCloseFill, RiEyeFill } from "react-icons/ri";
+
 import { Error } from "../components/atoms/Error";
 import { LoadingButton } from "../components/atoms/LoadingButton";
 import { Logo } from "../components";
 import * as styles from "../components/atoms/Buttons/buttonStyles";
-
-const registerFields = {
-  name: "",
-  email: "",
-  password: "",
-  password2: "",
-};
+import { useAuthStore } from "../hooks/useAuthStore";
+import { useState } from "react";
 
 export const RegisterPage = () => {
-  // const { name, email, password, password2, onInputChange } =
-  //   useForm(registerFields);
+  const [showPass, setShowPass] = useState(false);
 
-  // const { startRegister, errorMsg, status } = useAuthStore();
+  const { startRegister, errorMsg, status } = useAuthStore();
 
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
-    watch,
   } = useForm();
 
-  const password = useRef();
+  const checkValue = getValues("email");
 
-  password.current = watch("password", "");
-
-  // const registerSubmit = () => {
-  //   console.log({ name, email, password, password2 });
-  // };
   return (
-    <section className="flex flex-col items-center min-h-screen bg-light-gray">
-      <div className="flex items-center justify-center pt-10 pb-24">
-        <Logo theme={"dark"} className="text-2xl" />
+    <section className="flex flex-col items-center min-h-screen bg-light-gray lg:px-8">
+      <div className="flex items-center justify-center w-full pt-10 pb-24 lg:justify-start lg:py-6">
+        <Link to="/">
+          <Logo theme={"dark"} className="text-2xl md:text-3xl" />
+        </Link>
       </div>
 
-      <div>
-        <div className="hidden md:block">
-          <h1>HELLO</h1>
+      <div className="lg:w-full lg:flex lg:items-center lg:justify-between lg:max-w-[1080px]">
+        <div className="hidden lg:block">
+          <h1 className="mb-4 text-5xl">Search. Bet. Get.</h1>
+          <span className="text-black-white">
+            You'll find the option that you're looking for.
+          </span>
         </div>
         <div className="max-w-[410px]">
           <div
             className={`bg-white w-full p-10 rounded-xl 
             ${
-              "logi" === "login"
+              errorMsg?.type === "register" && checkValue
                 ? "drop-shadow-[0_30px_45px_rgba(250,98,127,0.30)]"
                 : "drop-shadow-[0_30px_45px_rgba(22,22,22,0.10)]"
             }
           `}
           >
             <p className="w-full pb-3 text-3xl text-left">Create an account</p>
-            <span className="text-sm">Already have an account?</span>{" "}
-            <Link
-              to="/auth"
-              className={`${styles.GHOST_BUTTON} md:px-6 lg:px-8 py-2`}
-            >
-              <span className="text-sm tracking-wid">Login instead!</span>
-            </Link>
+            <div className="flex gap-2">
+              <span className="text-sm">Already have an account?</span>{" "}
+              <Link
+                to="/auth"
+                className={`${styles.GHOST_BUTTON} rounded leading-3`}
+              >
+                <span className="block text-sm">Log in</span>
+              </Link>
+            </div>
             <form
               className="flex-col items-center w-full pt-8 space-y-6"
               onSubmit={handleSubmit(startRegister)}
@@ -132,11 +129,12 @@ export const RegisterPage = () => {
                   id="email"
                   type="string"
                   autoComplete="off"
-                  className={`peer w-full h-10  border-b-2 outline-none caret-text-primary ${
-                    errors.email
-                      ? "focus:border-red-400"
-                      : "focus:border-text-primary"
-                  } focus:border-text-primary focus:border-b-[3px] border-gray-300 placeholder-gray-600 invalid:border-b-[3px] focus:invalid:no-underline focus:invalid:outline-none disabled:border-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-500 placeholder-transparent`}
+                  className={`relative peer w-full h-10  border-b-2 outline-none caret-text-primary 
+                     ${
+                       errors.email
+                         ? "focus:border-red-400"
+                         : "focus:border-text-primary"
+                     } focus:border-text-primary focus:border-b-[3px] border-gray-300 placeholder-gray-600 invalid:border-b-[3px] focus:invalid:no-underline focus:invalid:outline-none disabled:border-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-500 placeholder-transparent`}
                   placeholder="Your email"
                   {...register("email", {
                     required: "This is required",
@@ -146,6 +144,7 @@ export const RegisterPage = () => {
                     },
                   })}
                 />
+
                 <label
                   htmlFor="email"
                   className="text-sm text-gray-600 absolute left-0 -top-3.5 peer-placeholder-shown:top-1.5 peer-placeholder-shown:text-base peer-placeholer-shown:text-gray-400 transition-all"
@@ -163,7 +162,7 @@ export const RegisterPage = () => {
               <div className="relative">
                 <input
                   id="password"
-                  type="password"
+                  type={showPass ? "text" : "password"}
                   autoComplete="off"
                   className={`peer w-full h-10 border-b-2 outline-none caret-text-primary ${
                     errors.password
@@ -171,8 +170,6 @@ export const RegisterPage = () => {
                       : "focus:border-text-primary"
                   } focus:border-text-primary focus:border-b-[3px] border-gray-300 placeholder-gray-600 invalid:border-b-[3px] focus:invalid:no-underline focus:invalid:outline-none disabled:border-gray-200 disabled:bg-gray-100 disabled:placeholder-gray-500 placeholder-transparent`}
                   placeholder="Password"
-                  // value={password}
-                  // onChange={onInputChange}
                   {...register("password", {
                     required: "You must specify a password",
                     minLength: {
@@ -194,9 +191,15 @@ export const RegisterPage = () => {
                 >
                   Password
                 </label>
+                <div
+                  onClick={() => setShowPass((prev) => !prev)}
+                  className="absolute right-0 cursor-pointer top-4"
+                >
+                  {showPass ? <RiEyeFill /> : <RiEyeCloseFill />}
+                </div>
               </div>
               <div className="space-y-4">
-                {"check" === "checking" ? (
+                {status === "checking" ? (
                   <LoadingButton />
                 ) : (
                   <button
@@ -207,10 +210,12 @@ export const RegisterPage = () => {
                 )}
               </div>
             </form>
-            <div className="w-3/4 pt-6 mt-2 space-y-6">
-              {/* <div className="w-full h-2">
-              {errorMsg?.type === "register" && <Error msg={errorMsg.error} />}
-            </div> */}
+            <div className="w-full pt-6 mt-2 space-y-6 ">
+              <div className="w-full h-2">
+                {errorMsg?.type === "register" && checkValue && (
+                  <Error msg={errorMsg.error} />
+                )}
+              </div>
             </div>
           </div>
         </div>
