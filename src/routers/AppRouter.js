@@ -9,6 +9,7 @@ import { AboutUs } from "../components/organisms/aboutUs";
 import AuthRouter from "./AuthRouter";
 import { PublicRoutes } from "./PublicRoutes";
 import { UserActiveRouter } from "./UserActiveRouter";
+import { EmailVerificationPage } from "../pages/EmailVerificationPage";
 
 export const AppRouter = () => {
   // const dispatch = useDispatch();
@@ -21,6 +22,7 @@ export const AppRouter = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aboutUS" element={<AboutUs />} />
+
         <Route path="/api/auth/verify/:uid" element={<UserActiveRouter />} />
 
         <Route

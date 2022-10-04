@@ -1,28 +1,39 @@
+import { useState } from "react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { Navigate, useParams } from "react-router-dom";
 import { mejorPostorApi } from "../api";
+import { Spinner } from "../components/atoms/Spinner";
+import { EmailErrorVerificationPage } from "../pages/EmailErrorVerificationPage";
+import { EmailVerificationPage } from "../pages/EmailVerificationPage";
 
-export const UserActiveRouter = (props) => {
-  const dispatch = useDispatch();
+export const UserActiveRouter = () => {
+  const [isLoading, setisLoading] = useState(true);
+  const [status, setStatus] = useState("");
 
   const param = useParams();
 
   useEffect(() => {
     const userState = async () => {
       try {
-        const { data } = await mejorPostorApi(`auth/verify/${param.uid}`);
-
+        const data = await mejorPostorApi(`auth/verify/${param.uid}`);
         if (data.status === 200) {
-          console.log(`data:`, data);
+          setStatus("verified");
+          setisLoading(false);
         }
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        setStatus(error.response.data.message);
+        setisLoading(false);
       }
     };
 
     userState();
-  }, [dispatch, param.uid]);
+  }, [param.uid]);
 
-  return <Navigate to="/" />;
+  if (isLoading) return <Spinner />;
+
+  return status === "verified" ? (
+    <EmailVerificationPage />
+  ) : (
+    <EmailErrorVerificationPage error={status} />
+  );
 };

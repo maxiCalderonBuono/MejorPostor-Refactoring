@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { mejorPostorApi } from "../api";
 import { onChecking, onLogin, onLogout } from "../store";
-import toast from "react-hot-toast";
 
 export const useAuthStore = () => {
-  const { status, user, errorMsg } = useSelector((state) => state.auth);
+  const { status, errorMsg } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
@@ -42,7 +41,6 @@ export const useAuthStore = () => {
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("uid", data.data.uid);
-      toast.success("Por favor verifica tu correo electronico");
       dispatch(onLogin({ name: data.name, uid: data.uid }));
     } catch (error) {
       console.log(`error:`, error);
