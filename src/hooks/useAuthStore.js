@@ -7,25 +7,31 @@ export const useAuthStore = () => {
 
   const dispatch = useDispatch();
 
-  // const startLogin = async ({ email, password }) => {
-  //   dispatch(onChecking());
-  //   try {
-  //     dispatch(clearErrorMessage());
-  //     const { data } = await calendarApi.post("/auth", { email, password });
-  //     localStorage.setItem("token", data.token);
-  //     localStorage.setItem("token-init", new Date().getTime());
+  const startLogin = async ({ email, password }) => {
+    dispatch(onChecking());
+    try {
+      const { data } = await mejorPostorApi.post("auth/signin", {
+        email,
+        password,
+      });
 
-  //     dispatch(onLogin({ name: data.name, uid: data.uid }));
-  //   } catch (error) {
-  //     dispatch(
-  //       onLogout({
-  //         type: "login",
-  //         error:
-  //           "There was an error with your E-Mail/Password combination. Please try again.",
-  //       })
-  //     );
-  //   }
-  // };
+      console.log(`data:`, data);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("email", data.email);
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("id", data.id);
+      dispatch(onLogin({ name: data.name, uid: data.uid }));
+    } catch (error) {
+      dispatch(
+        onLogout({
+          type: "login",
+          error:
+            error.response.data?.message ||
+            "There was an error with your E-Mail/Password combination. Please try again.",
+        })
+      );
+    }
+  };
 
   const startRegister = async ({ name, surname, email, password }) => {
     dispatch(onChecking());
@@ -61,6 +67,6 @@ export const useAuthStore = () => {
     //Methods
 
     startRegister,
-    // startLogin,
+    startLogin,
   };
 };

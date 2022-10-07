@@ -25,7 +25,7 @@ export const EmailErrorVerificationPage = ({ error }) => {
   password.current = watch("password", "");
 
   return (
-    <section className="flex flex-col items-center h-screen min-h-screen bg-light-gray lg:px-8">
+    <section className="flex flex-col items-center h-screen min-h-screen px-8 bg-light-gray">
       <div className="flex items-center justify-center w-full pt-10 pb-24 lg:justify-start lg:pt-6 lg:pb-0">
         <Link to="/">
           <Logo theme={"dark"} className="text-2xl md:text-3xl" />
@@ -37,10 +37,10 @@ export const EmailErrorVerificationPage = ({ error }) => {
           <img
             src="https://res.cloudinary.com/dvqlenul5/image/upload/v1664805251/error-verification_ckr55a.png"
             className="w-[500px] -rotate-12"
-            alt="email illustration"
+            alt="email error illustration"
           />
         </div>
-        <div className="w-[410px]">
+        <div className="lg:w-[410px]">
           <div
             className={`bg-white p-10 rounded-xl w-full
             ${

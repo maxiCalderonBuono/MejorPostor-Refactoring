@@ -67,7 +67,7 @@ export const LoginPage = () => {
             </div>
             <form
               className="flex-col items-center w-full pt-8 space-y-6"
-              // onSubmit={handleSubmit(startLogin)}
+              onSubmit={handleSubmit(startLogin)}
             >
               <div className="relative">
                 <input

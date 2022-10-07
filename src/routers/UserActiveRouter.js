@@ -10,12 +10,14 @@ export const UserActiveRouter = () => {
   const [isLoading, setisLoading] = useState(true);
   const [status, setStatus] = useState("");
 
-  const param = useParams();
+  const { userId, uniqueString } = useParams();
 
   useEffect(() => {
     const userState = async () => {
       try {
-        const data = await mejorPostorApi(`auth/verify/${param.uid}`);
+        const data = await mejorPostorApi(
+          `auth/verify/${userId}/${uniqueString}`
+        );
         if (data.status === 200) {
           setStatus("verified");
           setisLoading(false);
@@ -27,7 +29,7 @@ export const UserActiveRouter = () => {
     };
 
     userState();
-  }, [param.uid]);
+  }, [userId, uniqueString]);
 
   if (isLoading) return <Spinner />;
 

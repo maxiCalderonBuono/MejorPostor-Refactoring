@@ -23,7 +23,10 @@ export const AppRouter = () => {
         <Route path="/" element={<Home />} />
         <Route path="/aboutUS" element={<AboutUs />} />
 
-        <Route path="/api/auth/verify/:uid" element={<UserActiveRouter />} />
+        <Route
+          path="/api/auth/verify/:userId/:uniqueString"
+          element={<UserActiveRouter />}
+        />
 
         <Route
           path="/auth/*"
