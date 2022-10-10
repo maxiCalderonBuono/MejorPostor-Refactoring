@@ -1,15 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React, { useEffect } from "react";
+import React from "react";
 import Home from "../pages/Home";
 import { PrivateRoutes } from "./PrivateRoutes";
 import { PrivateDashboard } from "./PrivateDashborad";
-import { useDispatch } from "react-redux";
-import { startIsAuth } from "../actions/auth";
 import { AboutUs } from "../components/organisms/aboutUs";
 import AuthRouter from "./AuthRouter";
 import { PublicRoutes } from "./PublicRoutes";
 import { UserActiveRouter } from "./UserActiveRouter";
-import { EmailVerificationPage } from "../pages/EmailVerificationPage";
+import { Toaster } from "react-hot-toast";
 
 export const AppRouter = () => {
   // const dispatch = useDispatch();
@@ -18,37 +16,40 @@ export const AppRouter = () => {
   // }, [dispatch]);
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/aboutUS" element={<AboutUs />} />
+    <>
+      <Toaster position="top-right" />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/aboutUS" element={<AboutUs />} />
 
-        <Route
-          path="/api/auth/verify/:userId/:uniqueString"
-          element={<UserActiveRouter />}
-        />
+          <Route
+            path="/api/auth/verify/:userId/:uniqueString"
+            element={<UserActiveRouter />}
+          />
 
-        <Route
-          path="/auth/*"
-          element={
-            <PublicRoutes>
-              <AuthRouter />
-            </PublicRoutes>
-          }
-        />
+          <Route
+            path="/auth/*"
+            element={
+              <PublicRoutes>
+                <AuthRouter />
+              </PublicRoutes>
+            }
+          />
 
-        <Route
-          path="/*"
-          element={
-            <PrivateRoutes>
-              <PrivateDashboard />
-            </PrivateRoutes>
-          }
-        />
+          <Route
+            path="/*"
+            element={
+              <PrivateRoutes>
+                <PrivateDashboard />
+              </PrivateRoutes>
+            }
+          />
 
-        <Route path="*" element={<Home />} />
-      </Routes>
-    </Router>
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </Router>
+    </>
   );
 };
 

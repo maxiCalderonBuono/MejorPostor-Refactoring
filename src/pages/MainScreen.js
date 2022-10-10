@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { deleteProduct } from "../actions/product";
+
 import Footer from "../components/organisms/Footer";
 import { NavBar } from "../components/organisms/NavBar";
 import Novedades from "../components/organisms/Novedades";
@@ -36,6 +36,7 @@ const MainScreen = () => {
   return (
     <>
       <NavBar />
+
       <div className="flex flex-col px-20">
         <div className="flex flex-col items-center justify-center">
           <Novedades data={active} loading={false} />

@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { mejorPostorApi } from "../api";
+import { customToast } from "../helpers/customToast";
 import { onChecking, onLogin, onLogout } from "../store";
 
 export const useAuthStore = () => {
@@ -18,7 +19,6 @@ export const useAuthStore = () => {
       console.log(`data:`, data);
       localStorage.setItem("token", data.token);
       localStorage.setItem("email", data.email);
-      localStorage.setItem("username", data.username);
       localStorage.setItem("id", data.id);
       dispatch(onLogin({ name: data.name, uid: data.uid }));
     } catch (error) {
@@ -46,8 +46,9 @@ export const useAuthStore = () => {
       });
 
       localStorage.setItem("token", data.token);
-      localStorage.setItem("uid", data.data.uid);
+      localStorage.setItem("uid", data.data.id);
       dispatch(onLogin({ name: data.name, uid: data.uid }));
+      customToast();
     } catch (error) {
       console.log(`error:`, error);
       dispatch(
