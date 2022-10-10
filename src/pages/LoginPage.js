@@ -24,6 +24,8 @@ export const LoginPage = () => {
     watch,
   } = useForm();
 
+  console.log(`errors:`, errors);
+
   const checkValue = getValues("email");
 
   const password = useRef();
@@ -49,7 +51,8 @@ export const LoginPage = () => {
           <div
             className={`bg-white p-10 rounded-xl w-full
             ${
-              errorMsg?.type === "login" && checkValue
+              (errorMsg?.type === "login" && checkValue) ||
+              Object.keys(errors).length > 0
                 ? "drop-shadow-[0_30px_45px_rgba(250,98,127,0.30)]"
                 : "drop-shadow-[0_30px_45px_rgba(22,22,22,0.10)]"
             }
@@ -140,7 +143,16 @@ export const LoginPage = () => {
                 >
                   {showPass ? <RiEyeFill /> : <RiEyeCloseFill />}
                 </div>
+                <div>
+                  <Link
+                    to="/auth/password/new"
+                    className={`${styles.GHOST_BUTTON} rounded leading-3`}
+                  >
+                    <span className="text-xs">Forgot your password?</span>{" "}
+                  </Link>
+                </div>
               </div>
+
               <div className="space-y-4">
                 {status === "checking" ? (
                   <LoadingButton />

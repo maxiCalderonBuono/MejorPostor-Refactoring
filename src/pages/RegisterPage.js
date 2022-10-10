@@ -10,9 +10,15 @@ import { Logo } from "../components";
 import * as styles from "../components/atoms/Buttons/buttonStyles";
 import { useAuthStore } from "../hooks/useAuthStore";
 import { useState } from "react";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 
 export const RegisterPage = () => {
   const [showPass, setShowPass] = useState(false);
+
+  const [captchaToken, setCaptchaToken] = useState("");
+  const captcha = useRef();
+
+  const [captchaError, setCaptchaError] = useState("");
 
   const { startRegister, errorMsg, status } = useAuthStore();
 
@@ -22,6 +28,14 @@ export const RegisterPage = () => {
     getValues,
     formState: { errors },
   } = useForm();
+
+  const onSubmit = (data) => {
+    if (!captchaToken) {
+      setCaptchaError("You must verify the captcha");
+      return;
+    }
+    startRegister({ ...data, captchaToken });
+  };
 
   const checkValue = getValues("email");
 
@@ -44,7 +58,9 @@ export const RegisterPage = () => {
           <div
             className={`bg-white w-full p-10 rounded-xl 
             ${
-              errorMsg?.type === "register" && checkValue
+              (errorMsg?.type === "register" && checkValue) ||
+              captchaError ||
+              Object.keys(errors).length > 0
                 ? "drop-shadow-[0_30px_45px_rgba(250,98,127,0.30)]"
                 : "drop-shadow-[0_30px_45px_rgba(22,22,22,0.10)]"
             }
@@ -62,7 +78,7 @@ export const RegisterPage = () => {
             </div>
             <form
               className="flex-col items-center w-full pt-8 space-y-6"
-              onSubmit={handleSubmit(startRegister)}
+              onSubmit={handleSubmit(onSubmit)}
             >
               <div className="flex gap-2">
                 <div className="relative w-1/2">
@@ -198,6 +214,20 @@ export const RegisterPage = () => {
                   {showPass ? <RiEyeFill /> : <RiEyeCloseFill />}
                 </div>
               </div>
+              <div className="flex justify-center">
+                <HCaptcha
+                  sitekey="1eb6dd60-2d5d-4e07-a00c-267fd43b1b46"
+                  ref={captcha}
+                  onVerify={(token) => {
+                    setCaptchaToken(token);
+                    setCaptchaError("");
+                  }}
+                  onExpire={(e) => {
+                    setCaptchaToken("");
+                    setCaptchaError("You must verify the captcha");
+                  }}
+                />
+              </div>
               <div className="space-y-4">
                 {status === "checking" ? (
                   <LoadingButton />
@@ -212,8 +242,11 @@ export const RegisterPage = () => {
             </form>
             <div className="w-full pt-6 mt-2 space-y-6 ">
               <div className="w-full h-2">
-                {errorMsg?.type === "register" && checkValue && (
-                  <Error msg={errorMsg.error} />
+                {captchaError ? (
+                  <Error msg={captchaError} />
+                ) : (
+                  errorMsg?.type === "register" &&
+                  checkValue && <Error msg={errorMsg.error} />
                 )}
               </div>
             </div>

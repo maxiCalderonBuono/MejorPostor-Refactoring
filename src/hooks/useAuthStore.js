@@ -33,7 +33,13 @@ export const useAuthStore = () => {
     }
   };
 
-  const startRegister = async ({ name, surname, email, password }) => {
+  const startRegister = async ({
+    name,
+    surname,
+    email,
+    password,
+    captchaToken,
+  }) => {
     dispatch(onChecking());
     try {
       const { data } = await mejorPostorApi.post("auth/signup", {
@@ -43,6 +49,7 @@ export const useAuthStore = () => {
         email,
         image:
           "https://res.cloudinary.com/di57h1uhf/image/upload/v1648590723/Mejor%20postor/circle-user-solid_abtmjp.png",
+        captchaToken,
       });
 
       localStorage.setItem("token", data.token);
